@@ -1,0 +1,38 @@
+
+<div class="container-fluid">
+
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <form class="card-body" #universityForm="ngForm"  (ngSubmit)="onSubmit(universityForm)">
+          <h4 class="card-title mb-4">Create New University</h4>
+
+            <div class="row mb-4">
+              <label for="universityName" class="col-form-label col-lg-2" >Name</label>
+                <div class="col-lg-10">
+                <input id="universityName"
+                name="universityName" type="text" class="form-control"
+                  placeholder="Enter University Name..." [disabled]="IsInterviewer"
+                  [(ngModel)]="universityInput.universityName">
+              </div>
+            </div>
+            <div class="col-lg-10" >
+              <button
+              type="submit"
+              class="btn btn-primary"
+              >{{ isAddMode ? "Create University" : "Edit University" }}</button>
+            </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+
+<!-- </ng-template> -->
+
+<!-- end row -->
+
+<!-- container-fluid -->
+
+
+
