@@ -11,7 +11,7 @@ import { DropzoneModule } from 'ngx-dropzone-wrapper';
 const routes:Routes =[
   {path:'createUniversity', component:UniversityCreateComponent},
   {path:'listUniversity', component:UniversityListComponent},
-{path:'edit/:id',component:UniversityCreateComponent}
+  {path:'edit/:id',component:UniversityCreateComponent}
 
   ]
 

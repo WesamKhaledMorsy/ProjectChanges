@@ -38,19 +38,21 @@
 
 
 
-              <td *ngIf="!IsUser && !IsInterviewer && LoggedIn">
+              <td *ngIf="!IsUser && LoggedIn">
                     <a *ngIf="!IsUser"
                     [routerLink]="['/university/edit',university.id]"
                     routerLinkActive="active" style="margin-left:2% ;"
                     ><i class="fa fa-marker text-success"></i> Edit</a>
 
-                    <a *ngIf="!IsUser && !IsInterviewer && LoggedIn"
+                    <a *ngIf="!IsUser && LoggedIn"
                     type="button"
                     style="cursor: pointer;" style="margin-right:2% ;"
                     (click) =onDeleteUniversity(university.id)>
                     <i class="fa fa-trash text-danger"></i> Delete</a>
 
               </td>
+
+          
             </tr>
           </tbody>
         </table>

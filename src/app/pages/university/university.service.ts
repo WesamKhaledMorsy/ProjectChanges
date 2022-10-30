@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { helper } from 'echarts';
 import { Observable } from 'rxjs/internal/Observable';
 import { University } from './university.model';
 
@@ -20,13 +21,16 @@ export class UniversityService {
 
   }
 
-  public getUniversityById(id:number) : Observable <any>{
+  public getUniversityById(id:string) : Observable <any>{
+    const headers = new HttpHeaders({
+      Authorization :`Bearer ${localStorage.getItem('jwt')}`,
+    });
     let url="https://localhost:7115/api/University/GetUniversityById";
-    if (id!=0)
-      url += `?id=${id}`
+    if (id!="")
+      url += `?id=${id.toString()}`
 
     return this.http.get<University>(
-      url
+      url,{headers:headers}
     );
   }
 

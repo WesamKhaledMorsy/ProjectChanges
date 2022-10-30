@@ -22,7 +22,7 @@ export class UniversityCreateComponent implements OnInit {
 
   editMode :boolean =false;  //? write editMode to check if we are in edit mode or Add mode
   isAddMode : boolean;        //?  write AddMode to check if we are in edit mode or Add mode
-  UniversityId :number;
+  UniversityId :string="";
 
   IsAdmin !:boolean;
   IsInterviewer !:boolean;
@@ -42,6 +42,7 @@ export class UniversityCreateComponent implements OnInit {
      ) { }
 
   ngOnInit(): void {
+    debugger
     const role :any =localStorage.getItem('roles');
     if(role == "Admin"){
        this.IsAdmin =true;
@@ -61,17 +62,41 @@ export class UniversityCreateComponent implements OnInit {
       this.LoggedIn=true;
     }
 
+
     ///////////////////////////////
     this.route.paramMap.subscribe((params)=>{
-      const id =+params.get("id");
+      console.log(params.keys);
+      const id = params.get("id");
       this.UniversityId=id;
       this.isAddMode =! id;
-      if(id)
+      // if(id == null)
+      // {
+      //   this.isAddMode=true;
+      // }else {
+
+      //   this.isAddMode =false;
+      //   this.universityServices.getUniversityById(id.toString()).subscribe((result)=>{
+
+      //     debugger
+      //     // this.universityInput.id=result[0].id;
+      //     this.universityInput.universityName=result.universityName;
+      //     this.universityInput.adminId=result.adminId;
+
+      //     console.log(result);
+      // }
+      //   );
+    // }
+
+
+      if(params.keys[0])
     {
-      this.universityServices.getUniversityById(id).subscribe((result)=>{
+      debugger
+      this.universityServices.getUniversityById(id.toString()).subscribe((result)=>{
 
         debugger
-        this.universityInput.universityName=result.universityName;
+        //this.universityInput.id=result.id;
+        this.universityInput.universityName=result[0].universityName;
+        this.universityInput.adminId=result[0].adminId;
 
         console.log(result);
       }
@@ -98,7 +123,9 @@ export class UniversityCreateComponent implements OnInit {
         Authorization :`Bearer ${localStorage.getItem('jwt')}`,
       });
       let university = new University();
+      university.id=form.value.id;
         university.universityName = form.value.universityName ;
+        university.adminId="3fa85f64-5717-4562-b3fc-2c963f66afa6";
         debugger
       this.http.post<any>
         ('https://localhost:7115/api/University/CreateNewUniversity',
@@ -119,7 +146,7 @@ export class UniversityCreateComponent implements OnInit {
 
     }
     else{
-      this.universityInput.id=this.UniversityId.toString();
+      this.universityInput.id=this.UniversityId;
       this.universityServices.UpdateUniversity(this.universityInput)
           .subscribe((UpUniversity)=>{
           this.universityUpdated.emit(UpUniversity);
@@ -138,9 +165,12 @@ export class UniversityCreateComponent implements OnInit {
         form.reset(this.universityInput);
   }
 
-  _GetAllUniversityData():Observable<any>{
+  _GetAllUniversityData():Observable<University>{
+    const headers = new HttpHeaders({
+    Authorization :`Bearer ${localStorage.getItem('jwt')}`,
+  });
     let url ="https://localhost:7115/api/University/GetUniversity";
-    return this.http.get<any>(url);
+    return this.http.get<any>(url,{headers:headers});
   }
 
   // GetAllUniversityData(){
