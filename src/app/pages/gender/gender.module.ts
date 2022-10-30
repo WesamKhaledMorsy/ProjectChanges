@@ -6,6 +6,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UiModule } from '../ui/ui.module';
 import { DropzoneModule } from 'ngx-dropzone-wrapper';
 import { GenderRoutingModule } from './gender-routing.module';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -21,6 +22,7 @@ import { GenderRoutingModule } from './gender-routing.module';
     ReactiveFormsModule,
     UiModule,
     DropzoneModule
-  ]
+  ],
+  exports: [RouterModule]
 })
 export class GenderModule { }

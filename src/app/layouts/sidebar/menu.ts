@@ -992,7 +992,28 @@ export const MENU: MenuItem[] = [
         parentId: 158,}
       ]
     },
-   
+    {
+      id:160,
+      label:'Student Statuses',
+      icon:'bx bx-user-check',
+      subItems:[
+      {  id: 161,
+        label: 'Student Statuses',
+        link: '/status/listStatus',
+        parentId: 160,}
+      ]
+    },
+    {
+      id:162,
+      label:'Gender',
+      icon:'bx bx-user-check',
+      subItems:[
+      {  id: 163,
+        label: 'Student Gender',
+        link: '/gender/listGender',
+        parentId: 162,}
+      ]
+    },
 
 ];
 

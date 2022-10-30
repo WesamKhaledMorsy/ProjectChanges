@@ -14,7 +14,7 @@ import { UniversityService } from '../university.service';
 })
 export class UniversityCreateComponent implements OnInit {
 
-  universityData :University  [];
+
 
   universitys : University[];
 

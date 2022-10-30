@@ -10,6 +10,7 @@ const routes:Routes =[
   {path:'createStatus', component:StatusCreateComponent},
   {path:'listStatus', component:StatusListComponent},
   {path:'edit/:id', component:StatusCreateComponent},
+  {path:'',redirectTo:'listStatus',pathMatch:'full'}
 
   ]
 @NgModule({

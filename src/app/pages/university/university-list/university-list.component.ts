@@ -129,12 +129,4 @@ export class UniversityListComponent implements OnInit {
       );
   }
 
-
-  filteration: any | undefined = {} ;
-
-
-
-
-
-
 }

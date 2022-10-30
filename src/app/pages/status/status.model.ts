@@ -1,7 +1,7 @@
 export class Status
 {
-  id ?:string;
-  statusName ?: string;
+  id :string="";
+  statusName : string="";
 
-  adminId:string;
+  adminId:string="";
 }
