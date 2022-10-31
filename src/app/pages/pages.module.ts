@@ -50,6 +50,7 @@ import { InterviewerComponent } from './interviewer/interviewer.component';
 
 import { RoundComponent } from './round/round.component';
 import { TrackComponent } from './track/track.component';
+import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
@@ -60,7 +61,7 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   declarations: [CalendarComponent, ChatComponent, FilemanagerComponent,
      StudentComponent, GradeComponent, GenderComponent, UniversityComponent,
       DocumentsComponent, StatusComponent, InterviewComponent, InterviewerComponent,
-    RoundComponent,TrackComponent],
+    RoundComponent,TrackComponent, AdminDashboardComponent],
   imports: [
     CommonModule,
     FormsModule,

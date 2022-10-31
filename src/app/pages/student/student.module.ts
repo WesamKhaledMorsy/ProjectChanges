@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { StudentRoutingModule } from './student-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { Routes } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { StudentCreateComponent } from './student-create/student-create.component';
 import { StudentListComponent } from './student-list/student-list.component';
 import { StudentProfileComponent } from './student-profile/student-profile.component';
@@ -43,6 +43,7 @@ import { FlatpickrModule } from 'angularx-flatpickr';
     NgbDatepickerModule,
     DropzoneModule,
     FlatpickrModule.forRoot()
-  ]
+  ],
+  exports: [RouterModule]
 })
 export class StudentModule { }

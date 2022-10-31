@@ -105,7 +105,7 @@ export class GenderCreateComponent implements OnInit {
         debugger
       this.http.post<any>
         ('https://localhost:7115/api/Gender/CreateNewGender',
-        status ,{headers:headers}).subscribe(data => {
+        gender ,{headers:headers}).subscribe(data => {
           console.log(data)
 
           //!==

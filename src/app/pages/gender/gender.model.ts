@@ -5,6 +5,8 @@ export class Gender{
   genderType : string="";
 
   adminId:string="";
+
+  userName:string;
   // studentId :string="";
 
   // students:Student[];

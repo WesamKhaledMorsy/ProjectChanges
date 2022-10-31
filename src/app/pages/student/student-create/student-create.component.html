@@ -19,12 +19,8 @@
                        <div class="col-md-9">
                         <input id="name"
                            name="name" type="text" class="form-control"
-                           placeholder="Student Name...">
-                            <!-- <input id="name"
-                            name="name" type="text" class="form-control"
-                              placeholder="Student Name..."
-                              [disabled]="!IsAdmin && IsInterviewer"
-                              [(ngModel)]="studentInput.name"> -->
+                           placeholder="Student Name..." [disabled]="!IsAdmin && IsInterviewer"
+                           [(ngModel)]="StudentInput.studentName">
                         </div>
                   </div>
 
@@ -33,7 +29,9 @@
                        <div class="col-md-9">
                         <input id="userName"
                            name="userName" type="text" class="form-control"
-                           placeholder="User Name...">
+                           placeholder="User Name..."
+                           [disabled]="!IsAdmin && IsInterviewer"
+                           [(ngModel)]="StudentInput.userId" [value]="StudentInput.userName">
                         <!-- <input id="userName"
                               name="userName" type="text" class="form-control"
                                 placeholder="Student Name..."
@@ -53,7 +51,11 @@
                   <div class="row mb-3">
                     <label for="PhoneNumber" class="col-md-3 col-form-label">Phone Number</label>
                     <div class="col-md-9">
-                      <input class="form-control" name="phoneNumber" type="text" placeholder="Enter Phone Number">
+                      <input class="form-control" name="phoneNumber" type="text"
+                       placeholder="Enter Phone Number"
+                       [disabled]="!IsAdmin && IsInterviewer"
+                          [(ngModel)]="StudentInput.phoneNumber"
+                       >
                     </div>
                       <!--
                         <label for="PhoneNubmer" class="col-form-label col-lg-2" >Phone Number</label>
@@ -70,43 +72,146 @@
                     <label for="graduationYear" class="col-md-3 col-form-label">Graduation Year</label>
                     <div class="col-md-9">
                       <input id="graduationYear"
-                      name="graduationYear" type="text" class="form-control"  placeholder="Enter Graduation Year">
+                      name="graduationYear" type="text" class="form-control"
+                        placeholder="Enter Graduation Year"
+                        [disabled]="!IsAdmin && IsInterviewer"
+                        [(ngModel)]="StudentInput.graduationYear"
+                        >
                     </div>
-                    <!--
-                      <label for="graduationYear" class="col-form-label col-lg-2" >Graduation Year</label>
-                        <div class="col-lg-10">
-                        <input id="graduationYear"
-                        name="graduationYear" type="text" class="form-control"
-                          placeholder="Student graduationYear..." [disabled]="!IsAdmin && IsInterviewer"
-                          [(ngModel)]="studentInput.graduationYear">
-                      </div>
-                    -->
+                  </div>
+
+                  <div class="row mb-3">
+                    <label for="genderName" class="col-md-3 col-form-label">gender</label>
+                    <div class="col-md-9">
+                      <select  id="genderName" name="genderName"  class="form-control"
+                      [(ngModel)]="StudentInput.genderId"
+                        placeholder="Enter Gender">
+                        <option value="0" selected>Gender</option>
+                        <option *ngFor="let gender of genders"
+                        [value]="gender.id">
+                          {{gender.genderType}}
+                          </option>
+
+                      </select>
+
+                    </div>
                   </div>
                   <div class="row mb-3">
-                    <label for="gender" class="col-md-3 col-form-label">gender</label>
+                    <label for="roundName" class="col-md-3 col-form-label">Round</label>
                     <div class="col-md-9">
-                      <input id="gender"
-                      name="gender" type="text" class="form-control"  placeholder="Enter Gender">
+                      <select  id="roundName" name="roundName"  class="form-control"
+                      [(ngModel)]="StudentInput.roundId"
+                        placeholder="Enter Gender">
+                        <option value="0" selected>Round</option>
+                        <option *ngFor="let round of rounds"
+                        [value]="round.id">
+                          {{round.roundName}}
+                          </option>
+
+                      </select>
+
                     </div>
-                    <!--
-                      <label for="graduationYear" class="col-form-label col-lg-2" >Graduation Year</label>
-                        <div class="col-lg-10">
-                        <input id="graduationYear"
-                          name="graduationYear" type="text" class="form-control"
-                          placeholder="Student graduationYear..." [disabled]="!IsAdmin && IsInterviewer"
-                          [(ngModel)]="studentInput.graduationYear">
-                      </div>
-                    -->
                   </div>
+
+                  <div class="row mb-3">
+                    <label for="trackName" class="col-md-3 col-form-label">Track</label>
+                    <div class="col-md-9">
+                      <select  id="trackName" name="trackName"  class="form-control"
+                      [(ngModel)]="StudentInput.trackId"
+                        placeholder="Enter Gender">
+                        <option value="0" selected>Tracks</option>
+                        <option *ngFor="let track of tracks"
+                        [value]="track.id">
+                          {{track.trackName}}
+                          </option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="row mb-3" *ngIf="IsAdmin">
+                    <label for="interviewName" class="col-md-3 col-form-label">Interview</label>
+                    <div class="col-md-9">
+                      <select  id="interviewName" name="interviewName"  class="form-control"
+
+                      [(ngModel)]="StudentInput.interviewId"
+                        placeholder="Enter Interview ....">
+                        <option value="0" selected>Interview</option>
+                        <option *ngFor="let interview of interview"
+                        [value]="interview.id">
+                          {{interview.interviewName}}
+                          </option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="row mb-3" *ngIf="IsAdmin">
+                    <label for="interviewerName" class="col-md-3 col-form-label">Interviewer</label>
+                    <div class="col-md-9">
+                      <select  id="interviewerName" name="interviewerName"  class="form-control"
+
+                      [(ngModel)]="StudentInput.interviewerId"
+                        placeholder="Enter Interview ....">
+                        <option value="0" selected>Interview</option>
+                        <option *ngFor="let interviewer of interviewers"
+                        [value]="interviewer.id">
+                          {{interviewer.interviewerName}}
+                          </option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="row mb-3" *ngIf="IsAdmin">
+                    <label for="gradeName" class="col-md-3 col-form-label">Grade</label>
+                    <div class="col-md-9">
+                      <input id="gradeName" name="gradeName" class="form-control"
+                      [(ngModel)]="StudentInput.gradeValue" [value]="StudentInput.gradeId">
+
+                    </div>
+                  </div>
+                  <div class="row mb-3" >
+                    <label for="universityName" class="col-md-3 col-form-label">University</label>
+                    <div class="col-md-9">
+                      <select  id="universityName" name="universityName"  class="form-control"
+
+                      [(ngModel)]="StudentInput.universityId"
+                        placeholder="Enter University ....">
+                        <option value="0" selected> --------- University ---------</option>
+                        <option *ngFor="let university of universities"
+                        [value]="university.id">
+                          {{university.universityName}}
+                          </option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <!-- <div class="row mb-3" *ngIf="IsAdmin">
+                    <label for="interviewStartDate" class="col-md-3 col-form-label">Interview</label>
+                    <div class="col-md-9" *ngFor="let interview of interview">
+                      <input id="interviewStartDate" name="interviewStartDate" type="date" class="form-control"
+
+                      [(ngModel)]="StudentInput.interviewerId"
+                        placeholder="Enter Interview start Date ...." [value]="interview.startDate">
+
+                    </div>
+                  </div> -->
+
 
                 </div>
               </div>
+
 
               <ul class="list-inline wizard mb-0">
                 <li class="next list-inline-item float-end">
                   <button class="btn btn-primary" awNextStep>Next</button>
                 </li>
               </ul>
+
+              <button class="btn btn-info" *ngIf="IsAdmin"
+              [routerLink]="['/student/listStudent']"
+              routerLinkActive="active" style="color:wheat">
+
+                <i class="bx bx-arrow-back"></i> Back To List
+              </button>
             </aw-wizard-step>
 
             <aw-wizard-step>
@@ -148,6 +253,13 @@
                 <li class="next list-inline-item float-end"><button class="btn btn-primary" awNextStep>Next</button>
                 </li>
               </ul>
+
+              <button class="btn btn-info" *ngIf="IsAdmin"
+              [routerLink]="['/student/listStudent']"
+              routerLinkActive="active" style="color:wheat;margin-top: 5px;">
+
+                <i class="bx bx-arrow-back"></i> Back To List
+              </button>
             </aw-wizard-step>
 
             <aw-wizard-step>
@@ -171,6 +283,13 @@
                 <li class="previous list-inline-item"><button class="btn btn-primary" awPreviousStep>Previous</button>
                 </li>
               </ul>
+
+              <button class="btn btn-info" *ngIf="IsAdmin"
+              [routerLink]="['/student/listStudent']"
+              routerLinkActive="active" style="color:wheat ; margin-top: 5px;">
+
+                <i class="bx bx-arrow-back"></i> Back To List
+              </button>
             </aw-wizard-step>
           </aw-wizard>
         </div>

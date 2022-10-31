@@ -9,7 +9,7 @@ const routes:Routes =[
   {path:'createGrade', component:GradeCreateComponent},
   {path:'listGrade', component:GradeListComponent},
   {path:'edit/:id', component:GradeCreateComponent},
-
+  {path:'',redirectTo:'listGrade',pathMatch:'full'}
   ]
 
 @NgModule({
@@ -20,6 +20,9 @@ const routes:Routes =[
     CommonModule,
     RouterModule.forChild(routes),
 
+  ],
+  exports:[
+    RouterModule
   ]
 })
 export class GradeRoutingModule { }

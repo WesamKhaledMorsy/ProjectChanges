@@ -1006,14 +1006,26 @@ export const MENU: MenuItem[] = [
     {
       id:162,
       label:'Gender',
-      icon:'bx bx-user-check',
+      icon:'bx bx-body',
       subItems:[
       {  id: 163,
         label: 'Student Gender',
         link: '/gender/listGender',
         parentId: 162,}
       ]
-    },
 
+    },
+    {
+      id:163,
+      label:'Grades',
+      icon:'bx bx-calculator',
+      subItems:[
+      {  id: 164,
+        label: 'Student Grades',
+        link: '/grade/listGrade',
+        parentId: 163,}
+      ]
+
+    },
 ];
 

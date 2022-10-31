@@ -1,1 +1,62 @@
-<p>grade-list works!</p>
+<div class="container-fluid">
+  <div class="row">
+    <div class>
+      <a
+      class="btn btn-outline-primary mb-3"
+      [routerLink]="['/grade/createGrade']"
+      routerLinkActive="active"
+      *ngIf="!IsUser && !IsInterviewer && LoggedIn">
+        Create Grade
+      </a>
+
+      <div class="table-responsive">
+        <table class="table project-list-table table-nowrap align-middle table-borderless">
+          <thead>
+            <tr>
+              <!-- <th scope="col" style="width: 100px">Interview</th> -->
+              <th scope="col">#</th>
+              <th scope="col">Grade</th>
+              <!-- <th scope="col">Student</th> -->
+              <th scope="col" *ngIf="!IsUser && !IsInterviewer && LoggedIn">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!--  | search:searchText -->
+              <tr *ngFor="let grade of selectGrade ; let i=index" >
+
+                <td>{{i+1}}</td>
+              <td>
+                <a
+                routerLinkActive="active" >
+                  {{grade.value}}
+                </a>
+
+              </td>
+              <td *ngIf="!IsUser && LoggedIn">
+                    <a *ngIf="!IsUser"
+                    [routerLink]="['/grade/edit',grade.id]"
+                    routerLinkActive="active" style="margin-left:2% ;"
+                    ><i class="fa fa-marker text-success"></i> Edit</a>
+
+                    <a *ngIf="!IsUser && LoggedIn"
+                    type="button"
+                    style="cursor: pointer;" style="margin-right:2% ;"
+                    (click) =onDeleteGrade(grade.id)>
+                    <i class="fa fa-trash text-danger"></i> Delete</a>
+
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- <app-pagination
+          [total-items]="Counter"
+          [page-size]="_pageSize"
+          (page-changed)="onPageChange($event)"
+        ></app-pagination> -->
+
+      </div>
+
+
+  </div>
+</div>
