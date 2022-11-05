@@ -8,10 +8,11 @@ import { BlogComponent } from './blog/blog.component';
 import { JobsComponent } from "./jobs/jobs.component";
 
 const routes: Routes = [
-    {
-        path: 'default',
-        component: DefaultComponent
-    },
+  {
+    path: 'default',
+    component: DefaultComponent
+  },
+ 
     {
         path: 'saas',
         component: SaasComponent

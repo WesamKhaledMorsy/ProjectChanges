@@ -18,7 +18,7 @@
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "allowedCommonJsDependencies": [
-              "rxjs", "core-js", "chart.js", "chartist"
+              "rxjs", "core-js", "chart.js", "chartist","lodash"
             ],
             "outputPath": "dist/skote",
             "index": "src/index.html",
@@ -82,7 +82,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "skote:build"
+            "browserTarget": "skote:build",
+            "proxyConfig": "src/proxy.conf.json"
           },
           "configurations": {
             "production": {
@@ -99,6 +100,7 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
+
             "main": "src/test.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.spec.json",

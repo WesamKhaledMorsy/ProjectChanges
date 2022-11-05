@@ -1,1 +1,148 @@
-<p>student-profile works!</p>
+<div class="container-fluid">
+  <!-- start page title -->
+
+  <!-- end page title -->
+
+
+  <div class="row">
+    <div class="col-lg-10">
+      <div class="row">
+
+
+<div class="col-4">
+        <div class="card">
+          <div>
+            <img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTt5NgZ4zm9lYsEj7HQo3AT-8opP0ccd6q6BLI8U3Z68Kf1w6bHypVdsFzOzXnsRCfcU4k&usqp=CAU"
+               class="card-img-top" alt="...">
+          </div>
+          <div class="card-body" >
+            <div class="media" *ngFor="let student of studentDetails">
+            </div>
+                <div style="text-align:center ;" >
+                <h5 class="font-size-14" >Student Profile</h5>
+                <!-- <p class="text-muted mb-0">{{student.name}}</p> -->
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+     <div class="col-8">
+      <div class="card">
+        <div class="card-body" >
+
+          <div class="media" *ngFor="let student of studentDetails">
+            <img src="assets/images/companies/img-1.png" alt="" class="avatar-sm me-4">
+            <div class="font-size-15 mt-4">
+              <h5 class="text-center font-size-15">Student Details</h5>
+              <p class="text-muted"  [(ngModel)]="studentInput.studentName"  >{{student.studentName}}</p>
+            </div>
+          </div>
+
+          <div class="container">
+
+
+             <h5 class="text-truncate font-size-15">Student</h5>
+
+
+            <div class="row task-dates">
+              <div class="col-sm-4 col-lg-8">
+                <div class="mt-4 ">
+                  <h5 class="font-size-14">Student</h5>
+                   <p class="text-muted mb-0" [(ngModel)]="studentInput.userId" >{{studentInput.userName}}</p>
+                 </div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="container">
+
+          <div class="row col-sm-6 col-lg-8 col-xl-8">
+            <div class="mt-4">
+              <h5 class="font-size-14"><i class="dripicons-device-mobile me-1 text-primary"></i> Phone Number </h5>
+              <p class="text-muted mb-0"
+              [(ngModel)]="studentInput.phoneNumber" >{{studentInput.phoneNumber}}</p>
+            </div>
+          </div>
+
+          <div class="row col-sm-6 col-lg-4">
+            <div class="mt-4">
+              <h5 class="font-size-14"><i class="dripicons-flag me-1 text-primary"></i> University</h5>
+              <p class="text-muted mb-0"
+              [(ngModel)]="studentInput.universityId" >{{studentInput.universityName}}</p>
+            </div>
+          </div>
+
+
+            <div class="row col-sm-6 col-lg-8">
+              <div class="mt-4">
+                <h5 class="font-size-14"><i class="bx bxl-google me-1 text-primary"></i>Email</h5>
+                <p class="text-muted mb-0"
+                [(ngModel)]="studentInput.email" >{{studentInput.email}}</p>
+              </div>
+
+            <div class="row col-sm-10 col-lg-8 col-md-10">
+              <div class="mt-4">
+                <h5 class="font-size-14"><i class="bx bx-calendar me-1 text-primary"></i> Graduation Year</h5>
+                <p class="text-muted mb-0"
+                [(ngModel)]="studentInput.graduationYear" >{{studentInput.graduationYear }}</p>
+              </div>
+            </div>
+
+            <div class="row col-sm-10 col-lg-8">
+              <div class="mt-4">
+                <h5 class="font-size-14"><i class="bx bx-pencil me-1 text-primary"></i> Grade</h5>
+                <p class="text-muted mb-0"
+                 [(ngModel)]="studentInput.gradeId">{{studentInput.gradeValue}}</p>
+              </div>
+            </div>
+
+            <div class="row col-sm-10 col-lg-8">
+              <div class="mt-4">
+                <h5 class="font-size-14"><i class="bx bx-help-circle me-1 text-primary"></i> Status</h5>
+                <p  class="badge badge-pill badge-soft-primary font-size-11"
+                [ngClass]=" { 'badge-soft-danger': studentInput.statusName === 'Fail',
+               'badge-soft-warning':studentInput.statusName === 'Waiting for interview' ,
+               'badge-soft-success': studentInput.statusName === 'Passed'}"
+               [(ngModel)]="studentInput.statusId"
+               name="statusName" >{{studentInput.statusName}}</p>
+              </div>
+            </div>
+
+          <div class="row col-sm-10 col-lg-8">
+            <div class="mt-4" >
+              <h5 class="font-size-14"><i class="bx bx-git-repo-forked me-1 text-primary"></i> Track</h5>
+              <!-- <p class="text-muted mb-0" [routerLink]="['/track/detailsTrack',studentInput.trackId]" > -->
+                <p class="text-muted mb-0" [(ngModel)]="studentInput.trackId">
+                {{studentInput.trackName}}
+              </p>
+            </div>
+          </div>
+
+
+
+          <div class="row col-sm-10 col-lg-8">
+            <div class="mt-4"  >
+              <h5 class="font-size-14"><i class="bx bxl-slack me-1 text-primary"></i> Round</h5>
+
+              <!-- <p class="text-muted mb-0"
+              [routerLink]="['/round/detailsRound',studentInput.roundId]"> -->
+              <p class="text-muted mb-0"  [(ngModel)]="studentInput.roundId">
+
+              {{studentInput.roundName}}
+            </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+  </div>
+</div>
+</div>
+</div>
+</div>
+    <!-- end col -->
+
+

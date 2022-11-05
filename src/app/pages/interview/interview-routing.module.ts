@@ -9,17 +9,14 @@ const routes:Routes =[
   {path:'createInterview', component:InterviewCreateComponent},
   {path:'listInterview', component:InterviewListComponent},
   {path:'edit/:id', component:InterviewCreateComponent},
-
-  ]
+  ];
 
 @NgModule({
   declarations: [
-
   ],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
-
   ]
 })
 export class InterviewRoutingModule { }

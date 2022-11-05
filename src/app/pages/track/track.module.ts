@@ -6,13 +6,16 @@ import { DropzoneModule } from 'ngx-dropzone-wrapper';
 import { TrackCreateComponent } from './track-create/track-create.component';
 import { TrackListComponent } from './track-list/track-list.component';
 import { TrackRoutingModule } from './track-routing.module';
+import { RouterLink, RouterModule } from '@angular/router';
+import { TrackDetailsComponent } from './track-details/track-details.component';
 
 
 
 @NgModule({
   declarations: [
     TrackCreateComponent,
-    TrackListComponent
+    TrackListComponent,
+    TrackDetailsComponent
   ],
   imports: [
     CommonModule,
@@ -21,6 +24,7 @@ import { TrackRoutingModule } from './track-routing.module';
     ReactiveFormsModule,
     UiModule,
     DropzoneModule
-  ]
+  ],
+  exports:[RouterModule]
 })
 export class TrackModule { }

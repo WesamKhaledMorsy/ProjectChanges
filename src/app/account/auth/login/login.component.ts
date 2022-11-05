@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 
 import { AuthenticationService } from '../../../core/services/auth.service';
@@ -9,6 +9,9 @@ import { first } from 'rxjs/operators';
 
 import { environment } from '../../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
+import { Student } from 'src/app/pages/student/student.model';
+import { StudentService } from 'src/app/pages/student/student.service';
+import { emailData } from 'src/app/pages/email/inbox/data';
 
 @Component({
   selector: 'app-login',
@@ -33,11 +36,11 @@ export class LoginComponent implements OnInit {
   constructor(private formBuilder: UntypedFormBuilder,
      private route: ActivatedRoute, private router: Router,
      private http : HttpClient,
-     private authenticationService: AuthenticationService,
-    private authFackservice: AuthfakeauthenticationService) { }
+  ) { }
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
+      //userName:['',[Validators.required]],
       email: ['A****@gmail.com', [Validators.required, Validators.email]],
       password: ['*@_+.Ak,d***', [Validators.required]],
     });
@@ -52,6 +55,10 @@ export class LoginComponent implements OnInit {
   // convenience getter for easy access to form fields
   get f() { return this.loginForm.controls; }
 
+  // StudentId :string;
+  // isAddMode :boolean;
+
+ // @Input() studentInput : Student = new Student();
   /**
    * Form submit
    */
@@ -64,11 +71,13 @@ export class LoginComponent implements OnInit {
 
     } else {
       const body = {
+       // UserName:this.loginForm.controls['userName'].value,
         Email :this.loginForm.controls['email'].value,
         Password:this.loginForm.controls['password'].value,
       };
       this.http.post('https://localhost:7115/api/Auth/Login',body)
         .subscribe((response:any)=>{
+
           const token =(<any>response).tokens;
           localStorage.setItem('jwt',token);
 
@@ -80,29 +89,45 @@ export class LoginComponent implements OnInit {
 
           this.router.navigate(['/dashboard']);
           // console.log('response',response);
-          debugger
+         // debugger
         })
+
+        // if(localStorage.role=="Trainee"){
+
+        //   this.route.paramMap.subscribe((params)=>{
+        //     const id = params.get("id");
+        //     this.StudentId=id;
+
+        //     if(id)
+        //     {
+        //     this.studentServices.getStudentById(id).subscribe((result)=>{
+        //       debugger
+
+        //         this.studentInput.studentName=result[0].studentName;
+        //         this.studentInput.phoneNumber=result[0].phoneNumber;
+        //         this.studentInput.email=result[0].email;
+        //         this.studentInput.universityId=result[0].universityId;
+        //         this.studentInput.universityName=result[0].universityName;
+        //         this.studentInput.graduationYear=result[0].graduationYear;
+        //         this.studentInput.gradeId=result[0].gradeId;
+        //         this.studentInput.gradeValue=result[0].gradeValue;
+        //         this.studentInput.statusId=result[0].statusId;
+        //         this.studentInput.statusName=result[0].statusName;
+        //         this.studentInput.roundId=result[0].roundId;
+        //         this.studentInput.roundName=result[0].roundName;
+        //         this.studentInput.trackId=result[0].trackId;
+        //         this.studentInput.trackName=result[0].trackName;
+        //         this.studentInput.interviewId=result[0].interviewId;
+        //         this.studentInput.interviewName=result[0].interviewName;
+        //         this.studentInput.interviewerId=result[0].interviewerId;
+        //         this.studentInput.interviewerName=result[0].interviewerName;
+        //         this.studentInput.userName=result[0].userName;
+        //         debugger
+        //         console.log(result);
+        //       })
+        //   this.router.navigate(['/student/profileStudent',this.studentInput.id])
+        // }
 
     }
   }
-  //  if (environment.defaultauth === 'firebase') {
-  //       this.authenticationService.login(this.f.email.value, this.f.password.value).then((res: any) => {
-  //         this.router.navigate(['/dashboard']);
-  //       })
-  //         .catch(error => {
-  //           this.error = error ? error : '';
-  //         });
-  //     } else {
-  //       this.authFackservice.login(this.f.email.value, this.f.password.value)
-  //         .pipe(first())
-  //         .subscribe(
-  //           data => {
-  //             this.router.navigate(['/dashboard']);
-  //           },
-  //           error => {
-  //             this.error = error ? error : '';
-  //           });
-  //     }
-  //   }
-  // }
 }

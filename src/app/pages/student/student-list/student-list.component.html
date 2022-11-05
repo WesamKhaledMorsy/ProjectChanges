@@ -36,7 +36,7 @@
                 <td>{{i+1}}</td>
               <td>
                 <a
-                routerLinkActive="active" >
+                routerLinkActive="active" [routerLink]="['/student/studentProfile/',student.id]" >
                   {{student.studentName}}
                 </a>
               </td>
@@ -44,7 +44,10 @@
               <td><a routerLinkActive="active"> {{student.phoneNumber}}</a></td>
               <td>
                 <a
-                routerLinkActive="active" >
+                routerLinkActive="active" class="badge badge-pill badge-soft-primary font-size-11"
+                [ngClass]=" { 'badge-soft-danger': student.statusName === 'Missed',
+               'badge-soft-warning':student.statusName === 'Waiting for Interview' ,
+               'badge-soft-success': student.statusName === 'Final Result'}">
                   {{student.statusName}}
                 </a>
               </td>

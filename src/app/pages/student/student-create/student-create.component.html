@@ -13,7 +13,7 @@
               </ng-template>
               <div class="row">
                 <div class="col-12">
-
+                  <form class="card-body" #StudentForm="ngForm"  (ngSubmit)="onSubmit(StudentForm)">
                   <div class="row mb-3">
                     <label for="name" class="col-md-3 col-form-label">Name</label>
                        <div class="col-md-9">
@@ -31,7 +31,7 @@
                            name="userName" type="text" class="form-control"
                            placeholder="User Name..."
                            [disabled]="!IsAdmin && IsInterviewer"
-                           [(ngModel)]="StudentInput.userId" [value]="StudentInput.userName">
+                           [(ngModel)]="StudentInput.userName" >
                         <!-- <input id="userName"
                               name="userName" type="text" class="form-control"
                                 placeholder="Student Name..."
@@ -44,7 +44,8 @@
                   <div class="row mb-3">
                     <label class="col-md-3 col-form-label">Email</label>
                     <div class="col-md-9">
-                      <input class="form-control" name="email" type="text" placeholder="Enter email">
+                      <input class="form-control" name="email" [(ngModel)]="StudentInput.email"
+                      type="text" placeholder="Enter Your Email ..........">
                     </div>
                   </div>
 
@@ -96,10 +97,27 @@
 
                     </div>
                   </div>
+
+                  <div class="row mb-3">
+                    <label for="gradeValue" class="col-md-3 col-form-label">Grade</label>
+                    <div class="col-md-9">
+                      <select  id="gradeValue" name="gradeValue"  class="form-control"
+                      [(ngModel)]="StudentInput.gradeId"
+                        placeholder="Enter Grade">
+                        <option value="0" selected>Grade</option>
+                        <option *ngFor="let grade of grades"
+                        [value]="grade.id">
+                          {{grade.gradeValue}}
+                          </option>
+
+                      </select>
+
+                    </div>
+                  </div>
                   <div class="row mb-3">
                     <label for="roundName" class="col-md-3 col-form-label">Round</label>
                     <div class="col-md-9">
-                      <select  id="roundName" name="roundName"  class="form-control"
+                      <select  id="roundName" name="roundId"  class="form-control"
                       [(ngModel)]="StudentInput.roundId"
                         placeholder="Enter Gender">
                         <option value="0" selected>Round</option>
@@ -116,7 +134,7 @@
                   <div class="row mb-3">
                     <label for="trackName" class="col-md-3 col-form-label">Track</label>
                     <div class="col-md-9">
-                      <select  id="trackName" name="trackName"  class="form-control"
+                      <select  id="trackName" name="trackId"  class="form-control"
                       [(ngModel)]="StudentInput.trackId"
                         placeholder="Enter Gender">
                         <option value="0" selected>Tracks</option>
@@ -128,26 +146,30 @@
                     </div>
                   </div>
 
-                  <div class="row mb-3" *ngIf="IsAdmin">
+                  <div class="row mb-3" *ngIf="!IsUser"  >
                     <label for="interviewName" class="col-md-3 col-form-label">Interview</label>
                     <div class="col-md-9">
-                      <select  id="interviewName" name="interviewName"  class="form-control"
+                      <!-- <input  id="interviewName" name="interviewId" type="text" class="form-control"
+                      [(ngModel)]="StudentInput.interviewName"
+                        placeholder="Enter Interview ...."> -->
+                        <select  id="interviewName" name="interviewId"  class="form-control"
 
-                      [(ngModel)]="StudentInput.interviewId"
-                        placeholder="Enter Interview ....">
-                        <option value="0" selected>Interview</option>
-                        <option *ngFor="let interview of interview"
-                        [value]="interview.id">
-                          {{interview.interviewName}}
-                          </option>
-                      </select>
+                        [(ngModel)]="StudentInput.interviewId"
+                          placeholder="Enter Interview ....">
+                          <option value="0" selected>Interview</option>
+                          <option *ngFor="let interview of interviews"
+                          [value]="interview.id">
+                            {{interview.interviewName}}
+                            </option>
+                        </select>
+
                     </div>
                   </div>
 
                   <div class="row mb-3" *ngIf="IsAdmin">
                     <label for="interviewerName" class="col-md-3 col-form-label">Interviewer</label>
                     <div class="col-md-9">
-                      <select  id="interviewerName" name="interviewerName"  class="form-control"
+                      <select  id="interviewerName" name="interviewerId"  class="form-control"
 
                       [(ngModel)]="StudentInput.interviewerId"
                         placeholder="Enter Interview ....">
@@ -160,19 +182,18 @@
                     </div>
                   </div>
 
-                  <div class="row mb-3" *ngIf="IsAdmin">
+                  <div class="row mb-3" *ngIf="IsAdmin && IsInterviewer">
                     <label for="gradeName" class="col-md-3 col-form-label">Grade</label>
                     <div class="col-md-9">
-                      <input id="gradeName" name="gradeName" class="form-control"
-                      [(ngModel)]="StudentInput.gradeValue" [value]="StudentInput.gradeId">
+                      <input id="gradeValue" name="gradeId" class="form-control"
+                      [(ngModel)]="StudentInput.gradeValue" >
 
                     </div>
                   </div>
                   <div class="row mb-3" >
                     <label for="universityName" class="col-md-3 col-form-label">University</label>
                     <div class="col-md-9">
-                      <select  id="universityName" name="universityName"  class="form-control"
-
+                      <select  id="universityName" name="universityId"  class="form-control"
                       [(ngModel)]="StudentInput.universityId"
                         placeholder="Enter University ....">
                         <option value="0" selected> --------- University ---------</option>
@@ -184,6 +205,20 @@
                     </div>
                   </div>
 
+                  <div class="row mb-3" *ngIf="!IsUser" >
+                    <label for="statusName" class="col-md-3 col-form-label" >Status</label>
+                    <div class="col-md-9">
+                      <select  id="statusName" name="statusId"  class="form-control"
+                      [(ngModel)]="StudentInput.statusId"
+                        placeholder="Enter Status ....">
+                        <option value="0" selected> --------- Status ---------</option>
+                        <option *ngFor="let status of statuses"
+                        [value]="status.id">
+                          {{status.statusName}}
+                          </option>
+                      </select>
+                    </div>
+                  </div>
                   <!-- <div class="row mb-3" *ngIf="IsAdmin">
                     <label for="interviewStartDate" class="col-md-3 col-form-label">Interview</label>
                     <div class="col-md-9" *ngFor="let interview of interview">
@@ -194,8 +229,16 @@
 
                     </div>
                   </div> -->
+                  <div class="row justify-content-end">
+                    <div class="col-lg-10" >
+                      <button
+                     type="submit"
+                      class="btn btn-primary"
+                      >{{ isAddMode ? "Add Student" : "Edit Student" }}</button>
+                    </div>
+                  </div>
 
-
+                  </form>
                 </div>
               </div>
 
@@ -208,7 +251,7 @@
 
               <button class="btn btn-info" *ngIf="IsAdmin"
               [routerLink]="['/student/listStudent']"
-              routerLinkActive="active" style="color:wheat">
+              routerLinkActive="active" style="color:rgb(252, 252, 252)">
 
                 <i class="bx bx-arrow-back"></i> Back To List
               </button>
@@ -221,26 +264,47 @@
               <div class="row">
                 <div class="col-12">
 
-                  <div class="row mb-3">
+                  <!-- <div class="row mb-3">
                     <label class="col-md-3 col-form-label">Name</label>
                     <div class="col-md-9">
                       <input class="form-control" name="email" type="text" placeholder="Enter email">
                     </div>
+                  </div> -->
+
+                  <div class="row">
+                    <h5>Profile Picture</h5>
+                    <ngx-dropzone (change)="uploadFiles($event,StudentInput.id)">
+                      <ngx-dropzone-label>Drop it, baby!</ngx-dropzone-label>
+                      <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
+                        <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+                      </ngx-dropzone-preview>
+                    </ngx-dropzone>
                   </div>
 
-                  <div class="row mb-3">
+                  <div class="row justify-content-end">
+                    <div class="col-lg-10" >
+                      <button
+                     (click)="uploadFiles"
+                      class="btn btn-primary"
+                      >{{ isAddMode ? "Add Document" : "Edit Document" }}</button>
+                    </div>
+                  </div>
+
+
+
+                  <!-- <div class="row mb-3">
                     <label class="col-md-3 col-form-label">Last name</label>
                     <div class="col-md-9">
                       <input class="form-control" name="username" type="text" placeholder="Enter Username">
                     </div>
-                  </div>
+                  </div> -->
 
-                  <div class="row mb-3">
+                  <!-- <div class="row mb-3">
                     <label class="col-md-3 col-form-label">Password</label>
                     <div class="col-md-9">
                       <input class="form-control" name="password" type="password" placeholder="Enter Password">
                     </div>
-                  </div>
+                  </div> -->
 
 
 

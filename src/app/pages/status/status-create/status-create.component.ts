@@ -100,7 +100,7 @@ export class StatusCreateComponent implements OnInit {
       });
       let status = new Status();
       status.id=form.value.id;
-        status.statusName = form.value.statusNamea ;
+        status.statusName = form.value.statusName ;
         status.adminId="3fa85f64-5717-4562-b3fc-2c963f66afa6";
         debugger
       this.http.post<any>

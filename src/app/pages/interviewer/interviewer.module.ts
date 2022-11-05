@@ -3,17 +3,18 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UiModule } from '../ui/ui.module';
 import { DropzoneModule } from 'ngx-dropzone-wrapper';
-import { InterviewCreateComponent } from '../interview/interview-create/interview-create.component';
-import { InterviewListComponent } from '../interview/interview-list/interview-list.component';
 import { InterviewerRoutingModule } from './interviewer-routing.module';
+import {  RouterModule } from '@angular/router';
+import { InterviewerCreateComponent } from './interviewer-create/interviewer-create.component';
+import { InterviewerListComponent } from './interviewer-list/interviewer-list.component';
 
 
 
 
 @NgModule({
   declarations: [
-    InterviewCreateComponent,
-    InterviewListComponent
+    InterviewerCreateComponent,
+    InterviewerListComponent
   ],
   imports: [
     CommonModule,
@@ -22,6 +23,7 @@ import { InterviewerRoutingModule } from './interviewer-routing.module';
     ReactiveFormsModule,
     UiModule,
     DropzoneModule
-  ]
+  ],
+  exports:[RouterModule]
 })
 export class InterviewerModule { }

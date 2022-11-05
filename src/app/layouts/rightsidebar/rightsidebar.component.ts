@@ -21,6 +21,10 @@ export class RightsidebarComponent implements OnInit {
   sidebartype: string;
   topbar: string;
 
+  IsAdmin !:boolean;
+  IsInterviewer !:boolean;
+  IsUser !:boolean;
+  LoggedIn :boolean = false;
   constructor(private eventService: EventService) { }
 
   ngOnInit() {
@@ -38,6 +42,25 @@ export class RightsidebarComponent implements OnInit {
     }
     if (this.attribute == 'horizontal') {
       vertical.removeAttribute('checked');
+    }
+
+    const role :any =localStorage.getItem('roles');
+    if(role == "Admin"){
+       this.IsAdmin =true;
+       this.IsInterviewer=false;
+       this.IsUser=false;
+       this.LoggedIn=true;
+    }else if (role=="Interviewer"){
+      this.IsInterviewer= true;
+      this.IsAdmin = false;
+      this.IsUser=false;
+      this.LoggedIn=true;
+    }
+    else if(role == "Trainee"){
+      this.IsUser=true;
+      this.IsInterviewer=false;
+      this.IsAdmin=false;
+      this.LoggedIn=true;
     }
   }
 
@@ -75,5 +98,10 @@ export class RightsidebarComponent implements OnInit {
   changeSidebartype(sidebar: string) {
     this.sidebartype = sidebar;
     this.eventService.broadcast('changeSidebartype', sidebar);
+  }
+  logout(){
+    localStorage.removeItem('jwt');
+    localStorage.removeItem('role');
+
   }
 }

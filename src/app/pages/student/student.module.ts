@@ -17,6 +17,7 @@ import { UiSwitchModule } from 'ngx-ui-switch';
 import { ColorPickerModule } from 'ngx-color-picker';
 import { NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
 import { FlatpickrModule } from 'angularx-flatpickr';
+import { NgxDropzoneModule } from 'ngx-dropzone';
 
 
 
@@ -42,7 +43,8 @@ import { FlatpickrModule } from 'angularx-flatpickr';
     ColorPickerModule,
     NgbDatepickerModule,
     DropzoneModule,
-    FlatpickrModule.forRoot()
+    FlatpickrModule.forRoot(),
+    NgxDropzoneModule
   ],
   exports: [RouterModule]
 })

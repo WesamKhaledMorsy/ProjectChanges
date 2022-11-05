@@ -5,8 +5,8 @@ export class Track
 {
   id ?:string;
   trackName ?: string;
-  startDate ?: string;
-  endDate?: string;
+  startDate : string;
+  endDate: string;
 
   adminId ?:string;
   roundId ?: string;
@@ -14,7 +14,7 @@ export class Track
 
   students : Student[];
 }
-export class RoundData {
+export class TrackData {
   students :Student[];
   rounds:Round[];
 }

@@ -3,7 +3,7 @@
 <ng-template #contentTemplate>
 
   <!--- Sidemenu -->
-  <div id="sidebar-menu">
+  <div id="sidebar-menu" *ngIf="IsAdmin">
     <!-- Left Menu Start -->
     <ul class="metismenu list-unstyled" id="side-menu" #sideMenu>
       <!-- {{menuItems}} -->

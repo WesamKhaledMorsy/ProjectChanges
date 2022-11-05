@@ -6,13 +6,16 @@ import { RoundListComponent } from './round-list/round-list.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UiModule } from '../ui/ui.module';
 import { DropzoneModule } from 'ngx-dropzone-wrapper';
+import { RouterModule } from '@angular/router';
+import { RoundDetailsComponent } from './round-details/round-details.component';
 
 
 
 @NgModule({
   declarations: [
     RoundCreateComponent,
-    RoundListComponent
+    RoundListComponent,
+    RoundDetailsComponent
   ],
   imports: [
     CommonModule,
@@ -22,6 +25,6 @@ import { DropzoneModule } from 'ngx-dropzone-wrapper';
     UiModule,
     DropzoneModule
   ],
-  
+  exports:[RouterModule]
 })
 export class RoundModule { }

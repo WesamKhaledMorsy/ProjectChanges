@@ -26,6 +26,11 @@ export class SidebarComponent implements OnInit, AfterViewInit, OnChanges {
 
   menuItems = [];
 
+  LogedIn : boolean = false;
+  IsAdmin !:boolean;
+  IsInterviewer !:boolean;
+  IsUser !:boolean;
+
   @ViewChild('sideMenu') sideMenu: ElementRef;
 
   constructor(private eventService: EventService, private router: Router, public translate: TranslateService, private http: HttpClient) {
@@ -38,6 +43,24 @@ export class SidebarComponent implements OnInit, AfterViewInit, OnChanges {
   }
 
   ngOnInit() {
+    const role :any =localStorage.getItem('roles');
+    if(role== "Admin"){
+       this.IsAdmin =true;
+       this.IsInterviewer=false;
+       this.IsUser=false;
+       this.LogedIn=false;
+    }else if (role=="Interviewer"){
+      this.IsInterviewer= true;
+      this.IsAdmin = false;
+      this.IsUser=false;
+      this.LogedIn=false;
+    }
+    else if(role == "Trainee"){
+      this.IsUser=true;
+      this.IsInterviewer=false;
+      this.IsAdmin=false;
+      this.LogedIn=false;
+    }
     this.initialize();
     this._scrollElement();
   }

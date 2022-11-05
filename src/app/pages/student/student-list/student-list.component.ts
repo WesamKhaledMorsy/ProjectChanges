@@ -151,12 +151,15 @@ export class StudentListComponent implements OnInit {
     pageIndex:number,
     pageSize:number
   ): Observable <Student[]>{
+    const headers = new HttpHeaders({
+      Authorization :`Bearer ${localStorage.getItem('jwt')}`,
+    });
     let url=`https://localhost:7115/api/Student/GetAllStudents/pageIndex=${pageIndex}&pageSize=${pageSize}`
     if(id!="") url+=`&id=${id}`;
     if(studentName!="") url+=`&name=${studentName}`;
     if(status !="") url+= `&status=${status}`;
     if(adminId !="") url+= `&adminId=${adminId}`;
-    return this.http.get<Student[]>(url);
+    return this.http.get<Student[]>(url,{headers:headers});
   }
 
 
@@ -191,8 +194,11 @@ export class StudentListComponent implements OnInit {
   }
 
   _GetAllStudentData():Observable<any>{
+    const headers = new HttpHeaders({
+      Authorization :`Bearer ${localStorage.getItem('jwt')}`,
+    });
     let url ="https://localhost:7115/api/Student/GetAllStudentData";
-    return this.http.get<any>(url);
+    return this.http.get<any>(url,{headers:headers});
   }
 
   GetAllStudentData(){

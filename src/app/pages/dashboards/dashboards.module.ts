@@ -16,6 +16,7 @@ import { SaasComponent } from './saas/saas.component';
 import { CryptoComponent } from './crypto/crypto.component';
 import { BlogComponent } from './blog/blog.component';
 import { JobsComponent } from './jobs/jobs.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [DefaultComponent, SaasComponent, CryptoComponent, BlogComponent, JobsComponent],
@@ -33,6 +34,7 @@ import { JobsComponent } from './jobs/jobs.component';
     NgApexchartsModule,
     SharedModule,
     SimplebarAngularModule
-  ]
+  ],
+  exports: [RouterModule]
 })
 export class DashboardsModule { }
