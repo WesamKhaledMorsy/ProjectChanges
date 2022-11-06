@@ -106,7 +106,7 @@ onSubmit(form:NgForm){
       Authorization :`Bearer ${localStorage.getItem('jwt')}`,
     });
     let interviewer = new Interviewer();
-      //interviewer.id =guid();
+      // interviewer.id =guid();
       interviewer.interviewerName = form.value.interviewerName;
       interviewer.startDate = form.value.startDate;
       interviewer.endDate = form.value.endDate;
@@ -115,7 +115,7 @@ onSubmit(form:NgForm){
       // interviewer.interviewId=form.value.interviewId;
       // interviewer.interviewName=form.value.interviewName;
       //interviewer.roundId=form.value.roundId;
-      interviewer.adminId = "3fa85f64-5717-4562-b3fc-2c963f66afa6";
+       interviewer.adminId = "3fa85f64-5717-4562-b3fc-2c963f66afa6";
       debugger
     this.http.post<any>
       ('https://localhost:7115/api/Interviewer/CreateNewInterviewer',interviewer

@@ -60,8 +60,7 @@ export class AuthenticationService {
      */
     logout() {
         // logout the user
-     localStorage.removeItem('jwt');
-     localStorage.removeItem('roles');
+        getFirebaseBackend().logout();
     }
 }
 

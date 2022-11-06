@@ -34,11 +34,11 @@ trackName ?: string;
 genderId ?: string;
 genderType ?:string;
 
-interviewerId ?:string="";
-interviewerName ?: string="";
+interviewerId ?:string;
+interviewerName ?: string;
 
-interviewId?:string="";
-interviewName?:string="";
+interviewId?:string;
+interviewName?:string;
 // documents:Document[];
 
 userId?: string;

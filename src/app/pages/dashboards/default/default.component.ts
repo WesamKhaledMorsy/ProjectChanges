@@ -21,6 +21,7 @@ import { University } from '../../university/university.model';
 import { Gender } from '../../gender/gender.model';
 import { Status } from '../../status/status.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { number } from 'echarts';
 
 @Component({
   selector: 'app-default',
@@ -161,6 +162,8 @@ private http:HttpClient ,
             }
     });
 
+
+
     // for (let index = 0; index < this.getStudents.length; index++) {
     //   let numbers =0;
     //  numbers =this.studentsNumber+1;
@@ -170,8 +173,8 @@ private http:HttpClient ,
     // }
     //  this.studentsNumber;
 
-    
     this.getStudents();
+    this.GetStudentNumber();
     /**
      * horizontal-vertical layput set
      */
@@ -323,6 +326,37 @@ private http:HttpClient ,
       debugger
     });
 
+  }
+  sum:Student[];
+  GetStudentNumber(){
+   //let studNum = this.sum.length;
+   
+    // const headers = new HttpHeaders({
+    //   Authorization :`Bearer ${localStorage.getItem('jwt')}`,
+    // });
+    // let url ="https://localhost:7115/api/Student/StudentNumber";
+    // return this.http.get<any>(url,{headers:headers});
+
+// this.sum =this.students;
+
+if(this.sum != null){
+  //return this.getStudents.length;
+  for(let i=0 ; i<= this.sum.length; i++){
+   let number;
+   number +=1;
+   console.log(number);
+   return number;
+  }
+  return number;
+
+}
+  //   if( this.sum <= this.getStudents.length)
+  //   {
+  //   this.sum += 1;
+  //   debugger
+  //   return  this.sum;
+  // }
+  // return this.getStudents.length;
   }
 
 }

@@ -3,7 +3,7 @@ import { Round } from "../round/round.model";
 import { Student } from "../student/student.model";
 
 export class Interviewer{
- id:string="";
+ id:string;
  interviewerName:string='';
  startDate:string;
  endDate:string;

@@ -18,7 +18,7 @@
                     <label for="name" class="col-md-3 col-form-label">Name</label>
                        <div class="col-md-9">
                         <input id="name"
-                           name="name" type="text" class="form-control"
+                           name="studentName" type="text" class="form-control"
                            placeholder="Student Name..." [disabled]="!IsAdmin && IsInterviewer"
                            [(ngModel)]="StudentInput.studentName">
                         </div>
@@ -84,7 +84,7 @@
                   <div class="row mb-3">
                     <label for="genderName" class="col-md-3 col-form-label">gender</label>
                     <div class="col-md-9">
-                      <select  id="genderName" name="genderName"  class="form-control"
+                      <select  id="genderType" name="genderId"  class="form-control"
                       [(ngModel)]="StudentInput.genderId"
                         placeholder="Enter Gender">
                         <option value="0" selected>Gender</option>
@@ -98,7 +98,7 @@
                     </div>
                   </div>
 
-                  <div class="row mb-3">
+                  <!-- <div class="row mb-3">
                     <label for="gradeValue" class="col-md-3 col-form-label">Grade</label>
                     <div class="col-md-9">
                       <select  id="gradeValue" name="gradeValue"  class="form-control"
@@ -113,7 +113,7 @@
                       </select>
 
                     </div>
-                  </div>
+                  </div> -->
                   <div class="row mb-3">
                     <label for="roundName" class="col-md-3 col-form-label">Round</label>
                     <div class="col-md-9">
@@ -146,12 +146,12 @@
                     </div>
                   </div>
 
-                  <div class="row mb-3" *ngIf="!IsUser"  >
+                  <!-- <div class="row mb-3" *ngIf="!IsUser"  >
                     <label for="interviewName" class="col-md-3 col-form-label">Interview</label>
                     <div class="col-md-9">
-                      <!-- <input  id="interviewName" name="interviewId" type="text" class="form-control"
+                      <input  id="interviewName" name="interviewId" type="text" class="form-control"
                       [(ngModel)]="StudentInput.interviewName"
-                        placeholder="Enter Interview ...."> -->
+                        placeholder="Enter Interview ....">
                         <select  id="interviewName" name="interviewId"  class="form-control"
 
                         [(ngModel)]="StudentInput.interviewId"
@@ -164,8 +164,8 @@
                         </select>
 
                     </div>
-                  </div>
-
+                  </div> -->
+<!--
                   <div class="row mb-3" *ngIf="IsAdmin">
                     <label for="interviewerName" class="col-md-3 col-form-label">Interviewer</label>
                     <div class="col-md-9">
@@ -180,7 +180,7 @@
                           </option>
                       </select>
                     </div>
-                  </div>
+                  </div> -->
 
                   <div class="row mb-3" *ngIf="IsAdmin && IsInterviewer">
                     <label for="gradeName" class="col-md-3 col-form-label">Grade</label>

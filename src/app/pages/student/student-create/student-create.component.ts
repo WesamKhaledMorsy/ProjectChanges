@@ -144,7 +144,7 @@ export class StudentCreateComponent implements OnInit {
       //student.genderType=form.value.genderName;
       student.universityId=form.value.universityId;
       //student.universityName=form.value.universityName;
-      student.gradeId=form.value.gradeId;
+     // student.gradeId=form.value.gradeId;
       //student.gradeValue=form.value.gradeValue;
       student.roundId=form.value.roundId;
       //student.roundName=form.value.roundName;
@@ -154,9 +154,9 @@ export class StudentCreateComponent implements OnInit {
       student.phoneNumber=form.value.phoneNumber;
       student.statusId=form.value.statusId;
       //student.statusName=form.value.statusName;
-      student.interviewerId=form.value.interviewerId;
+//  student.interviewerId=form.value.interviewerId;
       //student.interviewerName=form.value.interviewerName;
-      student.interviewId=form.value.interviewId;
+  //student.interviewId=form.value.interviewId;
       //student.interviewName=form.value.interviewName;
       student.adminId="3fa85f64-5717-4562-b3fc-2c963f66afa6";
         debugger
