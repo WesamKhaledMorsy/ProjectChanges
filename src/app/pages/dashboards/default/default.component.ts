@@ -55,10 +55,15 @@ export class DefaultComponent implements OnInit {
   genders :Gender[];
   statuses : Status[];
 
-
+  submitted = false;
+  // Table data
+  //content?: any;
+  grids?: any;
 
   StudentId :string;
   isAddMode :boolean;
+
+  user:User;
 
   @Input() studentInput : Student = new Student();
   @Output() studentUpdated = new EventEmitter<Student[]>();
@@ -174,7 +179,9 @@ private http:HttpClient ,
     //  this.studentsNumber;
 
     this.getStudents();
-    this.GetStudentNumber();
+    this.getTracks();
+    this.GetStudentByUserName(this.username);
+    this._GetStudentByUserName();
     /**
      * horizontal-vertical layput set
      */
@@ -220,10 +227,12 @@ private http:HttpClient ,
   }
 
   openModal() {
-  if(this.IsUser){
+  if(this.LogedIn){
     this.modalService.open(this.content, { centered: true });
 
   }
+  this.submitted = false;
+    // this.modalService.open(this.content, { size: 'md', centered: true });
   }
 
   weeklyreport() {
@@ -287,9 +296,9 @@ private http:HttpClient ,
     //localStorage.removeItem('currentUser');
     this.LogedIn= true;
   }
+  totalStudent:number;
   selectStudent : Student[];
   getStudents(){
-
     const headers = new HttpHeaders({
       Authorization :`Bearer ${localStorage.getItem('jwt')}`,
     });
@@ -299,7 +308,7 @@ private http:HttpClient ,
     })
     .subscribe(data =>{
       this.selectStudent = data;
-
+      this.totalStudent=this.selectStudent.length;
       console.log(this.selectStudent);
       console.log(this.selectStudent.length);
     })
@@ -321,42 +330,76 @@ private http:HttpClient ,
       this.grades=result.grades;
       this.genders=result.genders;
       this.statuses=result.statuses;
-     // this.documents=result.documents;
+     //this.documents=result.documents;
       this.interviews=result.interviews;
       debugger
     });
 
   }
-  sum:Student[];
-  GetStudentNumber(){
-   //let studNum = this.sum.length;
-   
-    // const headers = new HttpHeaders({
-    //   Authorization :`Bearer ${localStorage.getItem('jwt')}`,
-    // });
-    // let url ="https://localhost:7115/api/Student/StudentNumber";
-    // return this.http.get<any>(url,{headers:headers});
 
-// this.sum =this.students;
+username :string = localStorage.getItem('userName')
+   GetStudentByUserName(userName:string) : Observable <any>{
+    const headers = new HttpHeaders({
+      Authorization :`Bearer ${localStorage.getItem('jwt')}`,
+    });
 
-if(this.sum != null){
-  //return this.getStudents.length;
-  for(let i=0 ; i<= this.sum.length; i++){
-   let number;
-   number +=1;
-   console.log(number);
-   return number;
+    let url="https://localhost:7115/api/Student/GetStudentByUserName";
+    if (userName!="")
+      url += `?username=${userName.toString()}`
+      console.log(userName);
+      debugger
+    return this.http.get<Student>(
+      url,{headers:headers}
+    );
+
   }
-  return number;
 
+  statusName :string ;
+_GetStudentByUserName(){
+  this.GetStudentByUserName(this.username).subscribe(data=>{
+   this.statusName=data[0].statusName;
+    console.log(data[0].statusName);
+  })
 }
-  //   if( this.sum <= this.getStudents.length)
-  //   {
-  //   this.sum += 1;
-  //   debugger
-  //   return  this.sum;
-  // }
-  // return this.getStudents.length;
-  }
+
+
+  selectTracks : Track[];
+  getTracks(){
+    const headers = new HttpHeaders({
+      Authorization :`Bearer ${localStorage.getItem('jwt')}`,
+    });
+  return this.http.get<any>('https://localhost:7115/api/Track/GetTracks' ,{headers:headers})
+  .subscribe(data =>{
+    this.selectTracks = data;
+    console.log(this.selectTracks);
+    console.log(data)
+  })
+}
+
+getAllTracks(
+  id:number,
+  trackName:string,
+  startDate:Date,
+  endDate:Date,
+  roundId:number,
+  adminId:number,
+  pageIndex:number,
+  pageSize:number
+): Observable <Track[]>{
+  const headers = new HttpHeaders({
+    Authorization :`Bearer ${localStorage.getItem('jwt')}`,
+  });
+  let url=`https://localhost:7115/api/Track/GetAllTracks/pageIndex=${pageIndex}&pageSize=${pageSize}`
+  if(id!=0) url+=`&id=${id}`;
+  if(trackName!="") url+=`&roundName=${trackName}`;
+  if(startDate !=null) url+= `&startDate=${startDate}`;
+  if(endDate !=null) url+= `&endDate=${endDate}`;
+  if(roundId!=0) url+=`&roundId=${roundId}`;
+  if(adminId !=0) url+= `&adminId=${adminId}`;
+  return this.http.get<Track[]>(url,{headers:headers});
+}
+
+
+
 
 }

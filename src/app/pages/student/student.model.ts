@@ -41,6 +41,7 @@ interviewId?:string;
 interviewName?:string;
 // documents:Document[];
 
+studentGrade ?: number;
 userId?: string;
 userName?:string;
 }

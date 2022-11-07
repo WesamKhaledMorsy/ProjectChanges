@@ -99,11 +99,11 @@
                   </div>
 
                   <!-- <div class="row mb-3">
-                    <label for="gradeValue" class="col-md-3 col-form-label">Grade</label>
+                    <label for="studentGrade" class="col-md-3 col-form-label">Grade</label>
                     <div class="col-md-9">
-                      <select  id="gradeValue" name="gradeValue"  class="form-control"
+                      <select  id="studentGrade" name="studentGrade"  class="form-control"
                       [(ngModel)]="StudentInput.gradeId"
-                        placeholder="Enter Grade">
+                        placeholder="Enter studentGrade">
                         <option value="0" selected>Grade</option>
                         <option *ngFor="let grade of grades"
                         [value]="grade.id">
@@ -114,6 +114,15 @@
 
                     </div>
                   </div> -->
+                          <div class="row mb-3" *ngIf="IsAdmin">
+                    <label for="studentGrade" class="col-md-3 col-form-label">Grade</label>
+                    <div class="col-md-9">
+                      <input  id="studentGrade" name="studentGrade"  type="number" class="form-control"
+                      [(ngModel)]="StudentInput.studentGrade"
+                        placeholder="Enter studentGrade...">
+
+                    </div>
+                  </div>
                   <div class="row mb-3">
                     <label for="roundName" class="col-md-3 col-form-label">Round</label>
                     <div class="col-md-9">
@@ -146,12 +155,12 @@
                     </div>
                   </div>
 
-                  <!-- <div class="row mb-3" *ngIf="!IsUser"  >
+                  <div class="row mb-3" *ngIf="!IsUser"  >
                     <label for="interviewName" class="col-md-3 col-form-label">Interview</label>
                     <div class="col-md-9">
-                      <input  id="interviewName" name="interviewId" type="text" class="form-control"
+                      <!-- <input  id="interviewName" name="interviewId" type="text" class="form-control"
                       [(ngModel)]="StudentInput.interviewName"
-                        placeholder="Enter Interview ....">
+                        placeholder="Enter Interview ...."> -->
                         <select  id="interviewName" name="interviewId"  class="form-control"
 
                         [(ngModel)]="StudentInput.interviewId"
@@ -164,8 +173,8 @@
                         </select>
 
                     </div>
-                  </div> -->
-<!--
+                  </div>
+
                   <div class="row mb-3" *ngIf="IsAdmin">
                     <label for="interviewerName" class="col-md-3 col-form-label">Interviewer</label>
                     <div class="col-md-9">
@@ -180,16 +189,17 @@
                           </option>
                       </select>
                     </div>
-                  </div> -->
+                  </div>
 
-                  <div class="row mb-3" *ngIf="IsAdmin && IsInterviewer">
+                  <!-- <div class="row mb-3" *ngIf="IsAdmin && IsInterviewer">
                     <label for="gradeName" class="col-md-3 col-form-label">Grade</label>
                     <div class="col-md-9">
                       <input id="gradeValue" name="gradeId" class="form-control"
                       [(ngModel)]="StudentInput.gradeValue" >
 
                     </div>
-                  </div>
+                  </div> -->
+                  
                   <div class="row mb-3" >
                     <label for="universityName" class="col-md-3 col-form-label">University</label>
                     <div class="col-md-9">
@@ -205,7 +215,7 @@
                     </div>
                   </div>
 
-                  <div class="row mb-3" *ngIf="!IsUser" >
+                  <div class="row mb-3" *ngIf="IsAdmin && IsInterviewer&& !IsUser" >
                     <label for="statusName" class="col-md-3 col-form-label" >Status</label>
                     <div class="col-md-9">
                       <select  id="statusName" name="statusId"  class="form-control"
@@ -234,10 +244,21 @@
                       <button
                      type="submit"
                       class="btn btn-primary"
-                      >{{ isAddMode ? "Add Student" : "Edit Student" }}</button>
+                      >{{ isAddMode ? "JOIN US" : "Edit Student" }}</button>
+
                     </div>
                   </div>
 
+                  <!-- [routerLink]="['/student/studentProfile',StudentInput.id]" -->
+                  <div class="row justify-content-end"  *ngIf="StudentForm || IsUser" style="margin-top: 5px">
+                    <div class="col-lg-10" >
+                      <button [disabled]="StudentForm"
+                     type="submit" [routerLink]="['/student/studentProfile',StudentInput.id]"
+                      class="btn btn-primary"
+                      >Go To Profile</button>
+
+                    </div>
+                  </div>
                   </form>
                 </div>
               </div>

@@ -44,6 +44,7 @@ export class TrackListComponent implements OnInit {
         this.IsAdmin=false;
         this.LoggedIn=true;
       }
+
       this.getTracks();
       this.GetAllTrackData();
     }
@@ -59,54 +60,54 @@ export class TrackListComponent implements OnInit {
     })
   }
 
-  getAllTracks(
-    id:number,
-    trackName:string,
-    startDate:Date,
-    endDate:Date,
-    roundId:number,
-    adminId:number,
-    pageIndex:number,
-    pageSize:number
-  ): Observable <Track[]>{
-    const headers = new HttpHeaders({
-      Authorization :`Bearer ${localStorage.getItem('jwt')}`,
-    });
-    let url=`https://localhost:7115/api/Track/GetAllTracks/pageIndex=${pageIndex}&pageSize=${pageSize}`
-    if(id!=0) url+=`&id=${id}`;
-    if(trackName!="") url+=`&roundName=${trackName}`;
-    if(startDate !=null) url+= `&startDate=${startDate}`;
-    if(endDate !=null) url+= `&endDate=${endDate}`;
-    if(roundId!=0) url+=`&roundId=${roundId}`;
-    if(adminId !=0) url+= `&adminId=${adminId}`;
-    return this.http.get<Track[]>(url,{headers:headers});
-  }
+  // getAllTracks(
+  //   id:number,
+  //   trackName:string,
+  //   startDate:Date,
+  //   endDate:Date,
+  //   roundId:number,
+  //   adminId:number,
+  //   pageIndex:number,
+  //   pageSize:number
+  // ): Observable <Track[]>{
+  //   const headers = new HttpHeaders({
+  //     Authorization :`Bearer ${localStorage.getItem('jwt')}`,
+  //   });
+  //   let url=`https://localhost:7115/api/Track/GetAllTracks/pageIndex=${pageIndex}&pageSize=${pageSize}`
+  //   if(id!=0) url+=`&id=${id}`;
+  //   if(trackName!="") url+=`&roundName=${trackName}`;
+  //   if(startDate !=null) url+= `&startDate=${startDate}`;
+  //   if(endDate !=null) url+= `&endDate=${endDate}`;
+  //   if(roundId!=0) url+=`&roundId=${roundId}`;
+  //   if(adminId !=0) url+= `&adminId=${adminId}`;
+  //   return this.http.get<Track[]>(url,{headers:headers});
+  // }
 
-  trackId:number =0;
-  trackName:string ="";
-  startDate :Date;
-  endDate :Date;
-  roundId:number;
-  adminId:number;
-  _pageIndex =1;
-  _pageSize=20;
-  selectedTracks : Track[];
+  // trackId:number =0;
+  // trackName:string ="";
+  // startDate :Date;
+  // endDate :Date;
+  // roundId:number;
+  // adminId:number;
+  // _pageIndex =1;
+  // _pageSize=20;
+  // selectedTracks : Track[];
 
-  FilterTracks(){
-    this.getAllTracks(
-      this.trackId,
-      this.trackName,
-      this.startDate,
-      this.endDate,
-      this.roundId,
-      this.adminId,
-      this._pageIndex,
-      this._pageSize
-    ).subscribe((result:any)=>
-    {
-      this.selectedTracks=result.values;
-    })
-  }
+  // FilterTracks(){
+  //   this.getAllTracks(
+  //     this.trackId,
+  //     this.trackName,
+  //     this.startDate,
+  //     this.endDate,
+  //     this.roundId,
+  //     this.adminId,
+  //     this._pageIndex,
+  //     this._pageSize
+  //   ).subscribe((result:any)=>
+  //   {
+  //     this.selectedTracks=result.values;
+  //   })
+  // }
 
   public deleteTrack(trackId:number){
     const headers = new HttpHeaders({
@@ -171,7 +172,7 @@ export class TrackListComponent implements OnInit {
 
   Reset(){
     this.filteration= {};
-    this.FilterTracks();
+   // this.FilterTracks();
   }
 
   rounds : Round[];

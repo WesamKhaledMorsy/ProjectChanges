@@ -24,7 +24,7 @@
               <th scope="col">Grade</th>
               <th scope="col">Round</th>
               <th scope="col">Track</th>
-              <th scope="col">Interview</th>
+              <!-- <th scope="col">Interview</th> -->
               <th scope="col">Interviewer</th>
               <th scope="col" *ngIf="!IsUser && !IsInterviewer && LoggedIn">Action</th>
             </tr>
@@ -45,9 +45,9 @@
               <td>
                 <a
                 routerLinkActive="active" class="badge badge-pill badge-soft-primary font-size-11"
-                [ngClass]=" { 'badge-soft-danger': student.statusName === 'Missed',
+                [ngClass]=" { 'badge-soft-danger': student.statusName === 'Missed'||'Rejected',
                'badge-soft-warning':student.statusName === 'Waiting for Interview' ,
-               'badge-soft-success': student.statusName === 'Final Result'}">
+               'badge-soft-success': student.statusName === 'Accepted'}">
                   {{student.statusName}}
                 </a>
               </td>
@@ -55,10 +55,10 @@
                 <a routerLinkActive="active">{{student.genderName}}</a>
               </td>
               <td><a routerLinkActive="active">{{student.universityName}}</a></td>
-              <td><a routerLinkActive="active">{{student.gradeValue}}</a></td>
+              <td><a routerLinkActive="active">{{student.studentGrade}}</a></td>
               <td><a routerLinkActive="active">{{student.roundName}}</a></td>
               <td><a routerLinkActive="active">{{student.trackName}}</a></td>
-              <td><a routerLinkActive="active">{{student.interviewName}}</a></td>
+              <!-- <td><a routerLinkActive="active">{{student.interviewName}}</a></td> -->
               <td><a routerLinkActive="active">{{student.interviewerName}}</a></td>
 
               <td *ngIf="!IsUser && LoggedIn">

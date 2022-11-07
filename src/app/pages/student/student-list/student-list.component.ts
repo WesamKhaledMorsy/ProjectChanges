@@ -61,7 +61,7 @@ export class StudentListComponent implements OnInit {
 
   }
  documents : Document[];
-  grades : Grade[];
+  //grades : Grade[];
   universities :University[];
   genders :Gender[];
   statuses : Status[];
@@ -207,7 +207,7 @@ export class StudentListComponent implements OnInit {
       this.rounds=result.rounds;
       this.tracks=result.tracks;
       this.universities=result.universities;
-      this.grades=result.grades;
+      //this.grades=result.grades;
       this.genders=result.genders;
       this.statuses=result.statuses;
       this.documents=result.documents;

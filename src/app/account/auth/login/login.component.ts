@@ -172,6 +172,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
+
       email: ['admin@themesbrand.com', [Validators.required, Validators.email]],
       password: ['123456', [Validators.required]],
     });
@@ -206,7 +207,7 @@ export class LoginComponent implements OnInit {
                 Email :this.loginForm.controls['email'].value,
                 Password:this.loginForm.controls['password'].value,
               };
-              this.http.post('https://localhost:7115/api/Auth/Login',body)
+              this.http.post('https://localhost:7115/api/Auth/Login',this.loginForm.value)
                 .subscribe((response:any)=>{
 
                   const token =(<any>response).tokens;
@@ -214,7 +215,8 @@ export class LoginComponent implements OnInit {
 
                   const role = response.roles;
                   localStorage.setItem('roles',role);
-
+                  const userName = response.username;
+                  localStorage.setItem('userName', userName)
                   console.log(token);
                   // this.invalidLogin=false;
                   debugger

@@ -34,6 +34,21 @@ export class StudentService {
     );
   }
 
+  //https://localhost:7115/api/Student/GetStudentByUserName
+
+  public GetStudentByUserName(userName:string) : Observable <any>{
+    const headers = new HttpHeaders({
+      Authorization :`Bearer ${localStorage.getItem('jwt')}`,
+    });
+    let url="https://localhost:7115/api/Student/GetStudentByUserName";
+    if (userName!="")
+      url += `?id=${userName.toString()}`
+
+    return this.http.get<Student>(
+      url,{headers:headers}
+    );
+  }
+
   public UpdateStudent(student: Student): Observable<Student[]> {
     const headers = new HttpHeaders({
       Authorization :`Bearer ${localStorage.getItem('jwt')}`,

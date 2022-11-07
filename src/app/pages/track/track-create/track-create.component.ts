@@ -51,6 +51,7 @@ export class TrackCreateComponent implements OnInit {
       this.trackInput.startDate=this.formatDate(result[0].startDate);
       this.trackInput.endDate=this.formatDate(result[0].endDate);
       this.trackInput.roundId=result[0].roundId;
+     // this.trackInput.trackImage=result[0].trackImage;
       this.trackInput.adminId=result[0].adminId;
       console.log(result);
     }
@@ -82,6 +83,7 @@ onSubmit(form:NgForm){
       track.startDate = form.value.startDate;
       track.endDate = form.value.endDate;
       track.roundId=form.value.roundId;
+      //track.trackImage=form.value.trackImage;
       track.adminId = "3fa85f64-5717-4562-b3fc-2c963f66afa6";
       debugger
     this.http.post<any>

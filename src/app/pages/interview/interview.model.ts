@@ -2,7 +2,7 @@ import { Interviewer } from "../interviewer/interviewer.model";
 import { Student } from "../student/student.model";
 
 export class Interview{
- id:string="";
+ id:string;
  interviewName:string='';
  startDate:string;
  endDate:string;

@@ -95,7 +95,7 @@ export class StudentCreateComponent implements OnInit {
        // this.StudentInput.statusName=result[0].statusName;
         this.StudentInput.universityId=result[0].universityId;
         //this.StudentInput.universityName=result[0].universityName;
-        this.StudentInput.gradeId=result[0].gradeId;
+        this.StudentInput.studentGrade=result[0].studentGrade;
        //this.StudentInput.gradeValue=result[0].gradeValue;
        // this.StudentInput.adminId=result[0].adminId;
         this.StudentInput.roundId=result[0].roundId;
@@ -146,6 +146,7 @@ export class StudentCreateComponent implements OnInit {
       //student.universityName=form.value.universityName;
      // student.gradeId=form.value.gradeId;
       //student.gradeValue=form.value.gradeValue;
+      student.studentGrade=form.value.studentGrade;
       student.roundId=form.value.roundId;
       //student.roundName=form.value.roundName;
       student.trackId=form.value.trackId;
@@ -154,7 +155,7 @@ export class StudentCreateComponent implements OnInit {
       student.phoneNumber=form.value.phoneNumber;
       student.statusId=form.value.statusId;
       //student.statusName=form.value.statusName;
-//  student.interviewerId=form.value.interviewerId;
+    student.interviewerId=form.value.interviewerId;
       //student.interviewerName=form.value.interviewerName;
   //student.interviewId=form.value.interviewId;
       //student.interviewName=form.value.interviewName;

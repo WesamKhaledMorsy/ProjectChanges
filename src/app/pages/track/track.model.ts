@@ -12,6 +12,7 @@ export class Track
   roundId ?: string;
   roundName ?:string;
 
+  trackImage?: string;
   students : Student[];
 }
 export class TrackData {
