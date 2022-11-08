@@ -46,6 +46,7 @@
                 <a
                 routerLinkActive="active" class="badge badge-pill badge-soft-primary font-size-11"
                 [ngClass]=" { 'badge-soft-danger': student.statusName === 'Missed'||'Rejected',
+                'badge-soft-primary':student.statusName ==='waiting for accepting',
                'badge-soft-warning':student.statusName === 'Waiting for Interview' ,
                'badge-soft-success': student.statusName === 'Accepted'}">
                   {{student.statusName}}

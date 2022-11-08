@@ -88,7 +88,7 @@ export class StudentCreateComponent implements OnInit {
         debugger
         //this.universityInput.id=result.id;
         this.StudentInput.studentName=result[0].studentName;
-        this.StudentInput.email=result[0].email;
+       // this.StudentInput.email=result[0].email;
         this.StudentInput.phoneNumber=result[0].phoneNumber;
         this.StudentInput.graduationYear=result[0].graduationYear;
         this.StudentInput.statusId=result[0].statusId;
@@ -116,6 +116,7 @@ export class StudentCreateComponent implements OnInit {
     }
     });
     this.GetAllStudentData();
+    this.validate();
   }
 
   formatDate(date) {
@@ -129,6 +130,28 @@ export class StudentCreateComponent implements OnInit {
     return [year, month, day].join("-");
   }
 
+  userId :string = localStorage.getItem('userId');
+  public getStudentByUserId(id:string) : Observable <any>{
+    const headers = new HttpHeaders({
+      Authorization :`Bearer ${localStorage.getItem('jwt')}`,
+    });
+    let url="https://localhost:7115/api/Student/GetStudentByUserId";
+    if (id!="")
+      url += `?id=${id}`
+      console.log(id);
+    return this.http.get<Student>(
+      url,{headers:headers}
+    );
+  }
+
+  _getStudentByUserId(){
+    this.getStudentByUserId(this.userId).subscribe(data=>{
+      this.userId=data[0].userId;
+       console.log(data[0].statusName);
+  })
+}
+userid :string =localStorage.getItem('userId');
+username:string=localStorage.getItem('userName');
   onSubmit(form:NgForm){
     if(this.isAddMode){
       const headers = new HttpHeaders({
@@ -137,9 +160,9 @@ export class StudentCreateComponent implements OnInit {
       let student = new Student();
       //student.id=guid();
       student.studentName=form.value.studentName;
-     // student.userId=form.value.userId;
-      student.userName=form.value.userName;
-      student.email=form.value.email;
+      student.userId=this.userid;
+      student.userName=this.username;
+      //student.email=form.value.email;
       student.genderId=form.value.genderId;
       //student.genderType=form.value.genderName;
       student.universityId=form.value.universityId;
@@ -288,6 +311,27 @@ export class StudentCreateComponent implements OnInit {
   };
   onRemove(files){
 localStorage.removeItem(files);
+  }
+
+ validate(){
+
+    // var inputBox = document.getElementById("inputBox");
+    // var invalidChars = [
+    //   "-",
+    //   "+",
+    //   "e",
+    // ];
+    // inputBox.addEventListener("keydown", function(e) {
+    //   if (invalidChars.includes(e.key)) {
+    //     e.preventDefault();
+    //   }
+    // });
+  //   $("#input").keypress(function(event) {
+  //     if (event.which != 8 && event.which != 0 && (event.which < 48 || event.which > 57)) {
+  //         $(".alert").html("Enter only digits!").show().fadeOut(2000);
+  //         return false;
+  //     }
+  // });
   }
 
 }

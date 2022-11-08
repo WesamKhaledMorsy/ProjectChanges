@@ -61,6 +61,9 @@ export class AuthenticationService {
     logout() {
         // logout the user
         getFirebaseBackend().logout();
+        localStorage.removeItem('jwt');
+        localStorage.removeItem('userName');
+        localStorage.removeItem('userId');
     }
 }
 

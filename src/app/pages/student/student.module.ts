@@ -44,7 +44,8 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
     NgbDatepickerModule,
     DropzoneModule,
     FlatpickrModule.forRoot(),
-    NgxDropzoneModule
+    NgxDropzoneModule,
+    
   ],
   exports: [RouterModule]
 })

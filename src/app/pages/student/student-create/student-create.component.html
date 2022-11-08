@@ -18,13 +18,13 @@
                     <label for="name" class="col-md-3 col-form-label">Name</label>
                        <div class="col-md-9">
                         <input id="name"
-                           name="studentName" type="text" class="form-control"
+                           name="studentName" type="text" class="form-control" required
                            placeholder="Student Name..." [disabled]="!IsAdmin && IsInterviewer"
                            [(ngModel)]="StudentInput.studentName">
                         </div>
                   </div>
 
-                  <div class="row mb-3">
+                  <!-- <div class="row mb-3">
                     <label for="name" class="col-md-3 col-form-label">User Name</label>
                        <div class="col-md-9">
                         <input id="userName"
@@ -32,31 +32,43 @@
                            placeholder="User Name..."
                            [disabled]="!IsAdmin && IsInterviewer"
                            [(ngModel)]="StudentInput.userName" >
-                        <!-- <input id="userName"
-                              name="userName" type="text" class="form-control"
-                                placeholder="Student Name..."
-                                [disabled]="!IsAdmin && IsInterviewer"
-                                [(ngModel)]="studentInput.userName"> -->
                         </div>
-                  </div>
+                  </div> -->
 
 
-                  <div class="row mb-3">
+                  <!-- <div class="row mb-3">
                     <label class="col-md-3 col-form-label">Email</label>
                     <div class="col-md-9">
                       <input class="form-control" name="email" [(ngModel)]="StudentInput.email"
                       type="text" placeholder="Enter Your Email ..........">
                     </div>
-                  </div>
+                  </div> -->
 
                   <div class="row mb-3">
                     <label for="PhoneNumber" class="col-md-3 col-form-label">Phone Number</label>
                     <div class="col-md-9">
-                      <input class="form-control" name="phoneNumber" type="text"
+                      <input class="form-control" name="phoneNumber"
                        placeholder="Enter Phone Number"
-                       [disabled]="!IsAdmin && IsInterviewer"
+                       required minlength="11" type="text" pattern="^[0-9]*$" maxlength="11"
+                       [disabled]="IsInterviewer"
                           [(ngModel)]="StudentInput.phoneNumber"
+                          #name="ngModel"
                        >
+                       <div class="alert"></div>
+                            <!-- <div *ngIf="phoneNumber.invalid && (phoneNumber.dirty || phoneNumber.touched)"
+                            class="alert">
+
+                          <div *ngIf="StudentInput.phoneNumber.errors?.['required']">
+                            Name is required.
+                          </div>
+                          <div *ngIf="phoneNumber.errors?.['maxlength']">
+                            Name must be at least 4 characters long.
+                          </div>
+                          <div *ngIf="phoneNumber.errors?.['forbiddenName']">
+                            Name cannot be Bob.
+                          </div>
+
+                        </div> -->
                     </div>
                       <!--
                         <label for="PhoneNubmer" class="col-form-label col-lg-2" >Phone Number</label>
@@ -75,6 +87,9 @@
                       <input id="graduationYear"
                       name="graduationYear" type="text" class="form-control"
                         placeholder="Enter Graduation Year"
+                         minlength="4" required
+                        pattern="^[0-9]*$"
+                        maxlength="4"
                         [disabled]="!IsAdmin && IsInterviewer"
                         [(ngModel)]="StudentInput.graduationYear"
                         >
@@ -155,12 +170,10 @@
                     </div>
                   </div>
 
-                  <div class="row mb-3" *ngIf="!IsUser"  >
+                  <!-- <div class="row mb-3" *ngIf="!IsUser"  >
                     <label for="interviewName" class="col-md-3 col-form-label">Interview</label>
                     <div class="col-md-9">
-                      <!-- <input  id="interviewName" name="interviewId" type="text" class="form-control"
-                      [(ngModel)]="StudentInput.interviewName"
-                        placeholder="Enter Interview ...."> -->
+
                         <select  id="interviewName" name="interviewId"  class="form-control"
 
                         [(ngModel)]="StudentInput.interviewId"
@@ -173,7 +186,7 @@
                         </select>
 
                     </div>
-                  </div>
+                  </div> -->
 
                   <div class="row mb-3" *ngIf="IsAdmin">
                     <label for="interviewerName" class="col-md-3 col-form-label">Interviewer</label>
@@ -199,7 +212,7 @@
 
                     </div>
                   </div> -->
-                  
+
                   <div class="row mb-3" >
                     <label for="universityName" class="col-md-3 col-form-label">University</label>
                     <div class="col-md-9">
@@ -215,7 +228,7 @@
                     </div>
                   </div>
 
-                  <div class="row mb-3" *ngIf="IsAdmin && IsInterviewer&& !IsUser" >
+                  <div class="row mb-3" *ngIf="IsAdmin || IsInterviewer && !IsUser" >
                     <label for="statusName" class="col-md-3 col-form-label" >Status</label>
                     <div class="col-md-9">
                       <select  id="statusName" name="statusId"  class="form-control"
@@ -243,7 +256,7 @@
                     <div class="col-lg-10" >
                       <button
                      type="submit"
-                      class="btn btn-primary"
+                      class="btn btn-primary" [disabled]="!StudentForm.valid"
                       >{{ isAddMode ? "JOIN US" : "Edit Student" }}</button>
 
                     </div>
@@ -252,7 +265,7 @@
                   <!-- [routerLink]="['/student/studentProfile',StudentInput.id]" -->
                   <div class="row justify-content-end"  *ngIf="StudentForm || IsUser" style="margin-top: 5px">
                     <div class="col-lg-10" >
-                      <button [disabled]="StudentForm"
+                      <button [disabled]="!StudentForm.valid"
                      type="submit" [routerLink]="['/student/studentProfile',StudentInput.id]"
                       class="btn btn-primary"
                       >Go To Profile</button>
@@ -266,7 +279,7 @@
 
               <ul class="list-inline wizard mb-0">
                 <li class="next list-inline-item float-end">
-                  <button class="btn btn-primary" awNextStep>Next</button>
+                  <button class="btn btn-primary" [disabled]="!StudentForm.valid" awNextStep>Next</button>
                 </li>
               </ul>
 

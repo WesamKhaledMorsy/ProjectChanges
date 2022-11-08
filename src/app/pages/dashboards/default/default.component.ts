@@ -102,86 +102,12 @@ private http:HttpClient ,
       this.LogedIn=false;
     }
 
-    this.route.paramMap.subscribe((params)=>{
-      const id = params.get("id");
-
-      this.StudentId=id;
-      this.isAddMode =! id;
-      if(id)
-      {
-      this.studentServices.getStudentById(id).subscribe((result)=>{
-        debugger
-
-          this.studentInput.studentName=result[0].studentName;
-          this.studentInput.phoneNumber=result[0].phoneNumber;
-          this.studentInput.email=result[0].email;
-          this.studentInput.universityId=result[0].universityId;
-          this.studentInput.universityName=result[0].universityName;
-          this.studentInput.graduationYear=result[0].graduationYear;
-          this.studentInput.gradeId=result[0].gradeId;
-          this.studentInput.gradeValue=result[0].gradeValue;
-          this.studentInput.statusId=result[0].statusId;
-          this.studentInput.statusName=result[0].statusName;
-          this.studentInput.roundId=result[0].roundId;
-          this.studentInput.roundName=result[0].roundName;
-          this.studentInput.trackId=result[0].trackId;
-          this.studentInput.trackName=result[0].trackName;
-          this.studentInput.interviewId=result[0].interviewId;
-          this.studentInput.interviewName=result[0].interviewName;
-          this.studentInput.interviewerId=result[0].interviewerId;
-          this.studentInput.interviewerName=result[0].interviewerName;
-          this.studentInput.userName=result[0].userName;
-          debugger
-          console.log(result);
-        })
-
-       }else if(id == ""){
-        debugger
-        this.studentInput.id = guid();
-        let id =this.studentInput.id ;
-        this.studentServices.getStudentById(id.toString()).subscribe((result)=>{
-          debugger
-
-          this.studentInput.studentName=result[0].studentName;
-          this.studentInput.phoneNumber=result[0].phoneNumber;
-          this.studentInput.email=result[0].email;
-          this.studentInput.universityId=result[0].universityId;
-          this.studentInput.universityName=result[0].universityName;
-          this.studentInput.graduationYear=result[0].graduationYear;
-          this.studentInput.gradeId=result[0].gradeId;
-          this.studentInput.gradeValue=result[0].gradeValue;
-          this.studentInput.statusId=result[0].statusId;
-          this.studentInput.statusName=result[0].statusName;
-          this.studentInput.roundId=result[0].roundId;
-          this.studentInput.roundName=result[0].roundName;
-          this.studentInput.trackId=result[0].trackId;
-          this.studentInput.trackName=result[0].trackName;
-          this.studentInput.interviewId=result[0].interviewId;
-          this.studentInput.interviewName=result[0].interviewName;
-          this.studentInput.interviewerId=result[0].interviewerId;
-          this.studentInput.interviewerName=result[0].interviewerName;
-          this.studentInput.userName=result[0].userName;
-          debugger
-         console.log(result);
-       })
-            }
-    });
-
-
-
-    // for (let index = 0; index < this.getStudents.length; index++) {
-    //   let numbers =0;
-    //  numbers =this.studentsNumber+1;
-    // this.studentsNumber = numbers;
-
-    // console.log(numbers);
-    // }
-    //  this.studentsNumber;
-
     this.getStudents();
     this.getTracks();
     this.GetStudentByUserName(this.username);
     this._GetStudentByUserName();
+    this.getStudentByUserId(this.userId);
+     this._getStudentByUserId();
     /**
      * horizontal-vertical layput set
      */
@@ -292,12 +218,16 @@ private http:HttpClient ,
   Logout(){
     localStorage.removeItem('jwt');
     localStorage.removeItem('roles');
-    //localStorage.removeItem('users');
-    //localStorage.removeItem('currentUser');
+    localStorage.removeItem('users');
+    localStorage.removeItem('currentUser');
+    localStorage.removeItem('userName');
+    localStorage.removeItem('userId');
     this.LogedIn= true;
   }
   totalStudent:number;
   selectStudent : Student[];
+
+
   getStudents(){
     const headers = new HttpHeaders({
       Authorization :`Bearer ${localStorage.getItem('jwt')}`,
@@ -313,6 +243,7 @@ private http:HttpClient ,
       console.log(this.selectStudent.length);
     })
   }
+
   _GetAllStudentData():Observable<any>{
     const headers = new HttpHeaders({
       Authorization :`Bearer ${localStorage.getItem('jwt')}`,
@@ -337,6 +268,28 @@ private http:HttpClient ,
 
   }
 
+  userId :string = localStorage.getItem('userId');
+  public getStudentByUserId(id:string) : Observable <any>{
+    const headers = new HttpHeaders({
+      Authorization :`Bearer ${localStorage.getItem('jwt')}`,
+    });
+    let url="https://localhost:7115/api/Student/GetStudentByUserId";
+    if (id!="")
+      url += `?id=${id}`
+      console.log(id);
+    return this.http.get<Student>(
+      url,{headers:headers}
+    );
+  }
+
+  _getStudentByUserId(){
+    this.getStudentByUserId(this.userId).subscribe(data=>{
+      this.userId=data[0].userId;
+      this.statusName=data[0].statusName;
+
+       console.log(data[0].statusName);
+  })
+}
 username :string = localStorage.getItem('userName')
    GetStudentByUserName(userName:string) : Observable <any>{
     const headers = new HttpHeaders({
@@ -345,7 +298,7 @@ username :string = localStorage.getItem('userName')
 
     let url="https://localhost:7115/api/Student/GetStudentByUserName";
     if (userName!="")
-      url += `?username=${userName.toString()}`
+      url += `?username=${userName}`
       console.log(userName);
       debugger
     return this.http.get<Student>(
@@ -353,6 +306,7 @@ username :string = localStorage.getItem('userName')
     );
 
   }
+
 
   statusName :string ;
 _GetStudentByUserName(){

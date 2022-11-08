@@ -216,7 +216,9 @@ export class LoginComponent implements OnInit {
                   const role = response.roles;
                   localStorage.setItem('roles',role);
                   const userName = response.username;
-                  localStorage.setItem('userName', userName)
+                  localStorage.setItem('userName', userName);
+                  const userId=response.userId;
+                  localStorage.setItem('userId',userId);
                   console.log(token);
                   // this.invalidLogin=false;
                   debugger

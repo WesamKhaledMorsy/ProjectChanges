@@ -51,6 +51,7 @@ import { InterviewerComponent } from './interviewer/interviewer.component';
 import { RoundComponent } from './round/round.component';
 import { TrackComponent } from './track/track.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
+import { RouterModule } from '@angular/router';
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
@@ -71,8 +72,8 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     NgApexchartsModule,
     ReactiveFormsModule,
     DashboardsModule,
-    CryptoModule,
-    EcommerceModule,
+    //CryptoModule,
+     EcommerceModule,
     EmailModule,
     InvoicesModule,
     HttpClientModule,
@@ -82,8 +83,8 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     ContactsModule,
     BlogModule,
     UtilityModule,
-    UiModule,
-    FormModule,
+     UiModule,
+    FormsModule,
     TablesModule,
     IconsModule,
     ChartModule,
@@ -97,5 +98,6 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     LightboxModule,
     PickerModule
   ],
+  exports:[RouterModule]
 })
 export class PagesModule { }

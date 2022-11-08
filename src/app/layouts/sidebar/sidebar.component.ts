@@ -66,8 +66,8 @@ export class SidebarComponent implements OnInit, AfterViewInit, OnChanges {
   }
 
   ngAfterViewInit() {
-    this.menu = new MetisMenu(this.sideMenu.nativeElement);
-    this._activateMenuDropdown();
+    // this.menu = new MetisMenu(this.sideMenu.nativeElement);
+    // this._activateMenuDropdown();
   }
 
   toggleMenu(event) {

@@ -61,7 +61,16 @@ export class SignupComponent implements OnInit {
       console.log("response",data);
       localStorage.setItem('jwt', data.tokens);
       localStorage.setItem('roles',data.roles);
-      this.router.navigate(['/student/createStudent']);
+      localStorage.setItem('userId',data.userId);
+      localStorage.setItem('userName',data.username);
+      if(data.tokens!=null && data.roles=="Trainee")
+      {
+        this.router.navigate(['/student/createStudent']);
+      }else{
+        window.alert("Please put your data Write");
+        this.router.navigate(['/account/signup']);
+      }
+
 
       debugger
     })

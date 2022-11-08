@@ -37,5 +37,7 @@ export class AuthfakeauthenticationService {
         // this.currentUserSubject.next(null);
         localStorage.removeItem('jwt');
         localStorage.removeItem('roles');
+        localStorage.removeItem('userName');
+        localStorage.removeItem('userId');
     }
 }

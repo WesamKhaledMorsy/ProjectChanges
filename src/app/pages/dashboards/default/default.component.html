@@ -402,26 +402,30 @@
     </div>
     <!-- end page title -->
 
-    <div class="row" >
+    <div class="row " >
         <div class=" col-lg-12">
             <div class="card overflow-hidden">
-                <div class="bg-primary bg-soft">
+                <div class="bg-primary bg-soft" style="margin-bottom: 8px; background-color:white;">
                     <div class="row" *ngIf="IsUser">
-                        <div class="col-lg-12">
+                        <div class="col-6">
                             <div class="text-primary p-3">
-                                <h5 class="text-primary" *ngIf="LogedIn">Welcome!</h5>
-
+                              <h4  class="text-primary"
+                              style="float:left ; font-size:50px;
+                              color:black; font-family: 'Times New Roman', Times, serif;">
+                              Welcome To KAITECH
+                            </h4>
                             </div>
                         </div>
+
                         <div class="col-5 align-self-end">
-                            <img src="assets/images/profile-img.png" alt="" class="img-fluid">
+
+                            <img src="assets/images/greeting.png" alt="" class="img-fluid">
                         </div>
                     </div>
                 </div>
-
 <div class="row">
 
-  <div class="card" *ngIf="IsUser">
+  <!-- <div class="card" *ngIf="IsUser">
       <div class="text-center mb-12 mt-12" >
           <div class="avatar-md mx-auto mb-12">
               <div class="avatar-title bg-light rounded-circle text-success h1">
@@ -441,16 +445,53 @@
               </div>
           </div>
       </div>
-  </div>
+  </div> -->
 
+  <!-- <div class="flip-card">
+    <div class="flip-card-inner">
+      <div class="flip-card-front">
+        <img src="assets/images/avatar.png" alt="Avatar" style="width:300px;height:300px;">
+      </div>
+      <div class="flip-card-back">
+        <h1>John Doe</h1>
+        <p>Architect & Engineer</p>
+        <p>We love that guy</p>
+      </div>
+    </div>
+  </div> -->
+
+  <div class="row"  *ngIf="!IsAdmin && !IsInterviewer" >
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+
+          <div class="mr-3" >
+            <h5  class="mb-2" style="font-size:30px; color:rgb(52, 89, 190);">{{username}}</h5>
+              <img class="card-img-left img-fluid" src="assets/images/avatar.png" alt="Student Profile"  >
+              </div>
+            </div>
+            <div class="flip-card-back">
+              <div class="row">
+                <div class="col-12" >
+                  <p class="m-5 text-dark" style="font-size:30px">Status</p>
+                </div>
+                <div class="col-12" style="font-size:30px">
+                  <p class="mb-0 ml-5" >{{statusName}}</p>
+                </div>
+              </div>
+
+        </div>
+      </div>
+  </div>
+  </div>
 
 <div class="row col-12 justify-content-center">
   <div class="card mini-stats-wid justify-content-center" *ngIf="IsAdmin">
     <div class="card-body">
         <div class="d-flex flex-wrap">
             <div class="mr-3">
-                <h5 class="text-muted mb-2">Total Students</h5>
-                <h5 class="mb-0">{{totalStudent}}</h5>
+                <h5 class="text-muted mb-2" style="display: flex; align-items: center;">Total Students</h5>
+                <h5 class="mb-0" style="display: flex; align-items: center;">{{totalStudent}}</h5>
             </div>
             <div class="avatar-sm ms-auto">
                 <div class="avatar-title bg-light rounded-circle text-primary font-size-20">
@@ -462,30 +503,50 @@
 </div>
 </div>
 
+  <!-- <div class="flip-card">
+    <div class="flip-card-inner">
+      <div class="flip-card-front">
+        <img src="assets/images/avatar.png" alt="Avatar" style="width:300px;height:300px;">
+      </div>
+      <div class="flip-card-back">
+        <h1>John Doe</h1>
+        <p>Architect & Engineer</p>
+        <p>We love that guy</p>
+      </div>
+    </div>
+  </div> -->
 
+<br>
+<div class="row col-m-4 col-lg-4" *ngFor="let track of selectTracks">
+      <div class="zoom">
+         <div class="flip-card" >
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
 
-<div class="row col-6"  *ngFor="let track of selectTracks">
-
-    <div class="card" >
-      <div class="card-body">
-        <div class="d-flex flex-wrap">
-              <div class="mr-3" >
-                  <img class="card-img-top img-fluid" src="" alt="Track Image"  >
-                   <h5  class="mb-0 mt-5" >{{track.trackName}}</h5>
-                    <h5  class="mb-0">{{track.startDate | date:'MMM d, y'}}</h5>
-                    <button class="bg-info mt-5"
-                    [routerLink]="['/track/detailsTrack',track.id]"
-                    routerLinkActive="active" style="color:rgb(255, 255, 255); font-size: 15px; float:right">
-                      <i class="bx bx-arrow-back"></i> Go
-                    </button>
-
-              </div>
-              <div class="avatar-sm ms-auto">
-                  <div class="avatar-title bg-light rounded-circle text-primary font-size-20">
-                      <i class="bx bx-git-repo-forked"></i>
+                      <img class="card-img-top img-fluid"
+                      src="assets/images/word-track-hammered-black.jpg" alt="Track Image"  >
+                      </div>
+                      <div class="flip-card-back">
+                        <h5  class="mb-5 mt-5"><strong>{{track.trackName}}</strong></h5>
+                        <h5  class="mb-0">{{track.startDate | date:'MMM d, y'}}</h5>
+                        <button class="bg-info mt-2"
+                        [routerLink]="['/track/detailsTrack',track.id]"
+                        routerLinkActive="active"
+                         style="color:rgb(255, 255, 255);
+                                font-size: 20px; float:center;
+                                 border-radius: 5px;">
+                        <i class="bx bx-arrow-back"></i> Go
+                      </button>
+                      <div class="row">
+                        <!-- <button class="btn"><i class="fa fa-download"></i> Download File</button> -->
+                        <!-- <a href="assets/images/word-track-hammered-black.jpg" download>
+                          <img src="assets/images/word-track-hammered-black.jpg" alt="W3Schools" width="104" height="142">
+                        </a> -->
+                      </div>
+                    </div>
                   </div>
-              </div>
-            </div>
+          </div>
+        </div>
       </div>
   </div>
 </div>
@@ -495,27 +556,68 @@
 <br>
 <hr>
 
-<div class="row col-6" *ngIf="IsAdmin"  >
-  <div class="card" *ngFor="let student of selectStudent">
+<div class="row"  *ngIf="IsAdmin"  >
+  <div class="card" style="align-items: center;">
     <div class="card-body">
       <div class="d-flex flex-wrap">
-            <div class="mr-3" >
-                <img class="card-img-top img-fluid" src="{{student}}" alt="Student Profile"  >
-                 <h5  class="mb-0 mt-5">{{student.studentName}}</h5>
-                 <div class="row">
-                    <div class="col-8">
-                      <h6 class="text-muted mb-2">Status</h6>
-                    </div>
-                    <div class="col-12">
-                      <p class="mb-0 ml-5">{{student.statusName}}</p>
-                    </div>
-                 </div>
+            <div class="table-responsive">
+              <table class="table project-list-table table-nowrap align-middle table-striped table-dark">
+                <thead>
+                  <tr>
+                    <!-- <th scope="col" style="width: 100px">Interview</th> -->
+                    <th scope="col">#</th>
+                    <th scope="col">Student</th>
+                    <th scope="col">User Name</th>
+                    <th scope="col">Phone Number</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Gender</th>
+                    <th scope="col">University</th>
+                    <!-- <th scope="col">Grade</th> -->
+                    <th scope="col">Round</th>
+                    <th scope="col">Track</th>
+                    <!-- <th scope="col">Interview</th> -->
+                    <th scope="col">Interviewer</th>
+
+                  </tr>
+                </thead>
+                <tbody>
+                  <!--  | search:searchText -->
+                    <tr *ngFor="let student of selectStudent ; let i=index" >
+
+                      <td>{{i+1}}</td>
+                    <td>
+                      <a
+                      routerLinkActive="active" [routerLink]="['/student/studentProfile/',student.id]" >
+                        {{student.studentName}}
+                      </a>
+                    </td>
+                    <td><a routerLinkActive="active"> {{student.userName}}</a></td>
+                    <td><a routerLinkActive="active"> {{student.phoneNumber}}</a></td>
+                    <td>
+                      <a
+                      routerLinkActive="active" class="badge badge-pill badge-soft-primary font-size-11"
+                      [ngClass]=" { 'badge-soft-danger': student.statusName === 'Missed'||'Rejected',
+                     'badge-soft-warning':student.statusName === 'Waiting for Interview' ,
+                     'badge-soft-success': student.statusName === 'Accepted'}">
+                        {{student.statusName}}
+                      </a>
+                    </td>
+                    <td>
+                      <a routerLinkActive="active">{{student.genderName}}</a>
+                    </td>
+                    <td><a routerLinkActive="active">{{student.universityName}}</a></td>
+                    <!-- <td><a routerLinkActive="active">{{student.studentGrade}}</a></td> -->
+                    <td><a routerLinkActive="active">{{student.roundName}}</a></td>
+                    <td><a routerLinkActive="active">{{student.trackName}}</a></td>
+                    <!-- <td><a routerLinkActive="active">{{student.interviewName}}</a></td> -->
+                    <td><a routerLinkActive="active">{{student.interviewerName}}</a></td>
+                  </tr>
+                </tbody>
+              </table>
+
+
             </div>
-            <div class="avatar-sm ms-auto">
-                <div class="avatar-title bg-light rounded-circle text-primary font-size-20">
-                    <i class="far fa-address-book"></i>
-                </div>
-            </div>
+
       </div>
     </div>
 </div>
@@ -524,31 +626,7 @@
 
 
 
-<div class="row col-6" *ngIf="!IsAdmin && !IsInterviewer" >
-  <div class="card" >
-    <div class="card-body">
-      <div class="d-flex flex-wrap">
-            <div class="mr-3" >
-                <img class="card-img-top img-fluid" src="{{studentInput}}" alt="Student Profile"  >
-                 <h5  class="mb-0">{{username}}</h5>
-                 <div class="row">
-                    <div class="col-8">
-                      <h6 class="text-muted mb-2">Status</h6>
-                    </div>
-                    <div class="col-12">
-                      <p class="mb-0 ml-5">{{statusName}}</p>
-                    </div>
-                 </div>
-            </div>
-            <div class="avatar-sm ms-auto">
-                <div class="avatar-title bg-light rounded-circle text-primary font-size-20">
-                    <i class="far fa-address-book"></i>
-                </div>
-            </div>
-      </div>
-    </div>
-</div>
-</div>
+
 
 </div>
 

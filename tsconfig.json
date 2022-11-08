@@ -15,7 +15,7 @@
     "typeRoots": [
       "node_modules/@types"
     ],
-    "types": [ "youtube" ],
+    "types": [ "youtube","jquery" ],
     "lib": [
       "es2018",
       "dom"
