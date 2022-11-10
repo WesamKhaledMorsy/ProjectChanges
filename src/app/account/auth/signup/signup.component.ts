@@ -7,6 +7,7 @@ import { environment } from '../../../../environments/environment';
 import { first } from 'rxjs/operators';
 import { UserProfileService } from '../../../core/services/user.service';
 import { HttpClient } from '@angular/common/http';
+import { User } from 'src/app/core/models/auth.models';
 
 @Component({
   selector: 'app-signup',
@@ -45,6 +46,8 @@ export class SignupComponent implements OnInit {
   /**
    * On submit form
    */
+
+  user:User;
   onSubmit() {
 
 
@@ -63,10 +66,14 @@ export class SignupComponent implements OnInit {
       localStorage.setItem('roles',data.roles);
       localStorage.setItem('userId',data.userId);
       localStorage.setItem('userName',data.username);
-      if(data.tokens!=null && data.roles=="Trainee")
+      if(this.http.request)
       {
         this.router.navigate(['/student/createStudent']);
-      }else{
+      }else if(data.tokens==null){
+        //window.alert("This Email is exist");
+        this.router.navigate(['/account/signup']);
+      }
+      else{
         window.alert("Please put your data Write");
         this.router.navigate(['/account/signup']);
       }

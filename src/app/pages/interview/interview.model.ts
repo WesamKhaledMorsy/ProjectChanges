@@ -7,9 +7,12 @@ export class Interview{
  startDate:string;
  endDate:string;
 
+ startTime:string;
+ endTime:string;
  interviewerId: string;
  studentId:string;
  studentName:string;
+ Students:Student[];
  count:number;
  adminId:string;
 

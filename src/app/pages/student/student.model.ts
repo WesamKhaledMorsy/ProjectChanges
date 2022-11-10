@@ -43,6 +43,7 @@ interviewName?:string;
 profilePicture?:string;
 //studentCertificate?;string;
 studentGrade ?: number;
+interviewDate?:string;
 userId?: string;
 userName?:string;
 }

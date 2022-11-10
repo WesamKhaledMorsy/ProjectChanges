@@ -18,6 +18,7 @@ import { ColorPickerModule } from 'ngx-color-picker';
 import { NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
 import { FlatpickrModule } from 'angularx-flatpickr';
 import { NgxDropzoneModule } from 'ngx-dropzone';
+import { SearchPipe } from './search.pipe';
 
 
 
@@ -26,7 +27,8 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
   declarations: [
     StudentCreateComponent,
     StudentListComponent,
-    StudentProfileComponent
+    StudentProfileComponent,
+    SearchPipe
   ],
   imports: [
     CommonModule,

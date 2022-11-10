@@ -78,6 +78,7 @@ export class InterviewCreateComponent implements OnInit {
         this.interviewInput.interviewName=result[0].interviewName;
         this.interviewInput.startDate=this.formatDate(result[0].startDate);
         this.interviewInput.endDate=this.formatDate(result[0].endDate);
+
         //this.interviewInput.studentId=result[0].studentId;
         this.interviewInput.interviewerId=result[0].interviewerId;
         this.interviewInput.adminId=result[0].adminId;
@@ -112,6 +113,8 @@ export class InterviewCreateComponent implements OnInit {
         interview.startDate = form.value.startDate;
         interview.endDate = form.value.endDate;
        // interview.studentId=form.value.studentId;
+       interview.startTime=form.value.startTime;
+       interview.endTime=form.value.endTime;
         interview.interviewerId=form.value.interviewerId;
         interview.count=form.value.count;
         interview.adminId = "3fa85f64-5717-4562-b3fc-2c963f66afa6";

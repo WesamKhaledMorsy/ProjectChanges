@@ -58,8 +58,8 @@ export class StudentListComponent implements OnInit {
     }
     this.GetAllStudentData();
     this.getStudents();
-    this.getAllStudnets(this.studentId,this.studentName,
-      this.email,this.statusName,this._pageIndex,this._pageSize);
+    this.getAllStudnets(this.studentName,
+      this.email,this.statusId,this._pageIndex,this._pageSize);
     this.FilterStudents();
 
   }
@@ -147,10 +147,10 @@ export class StudentListComponent implements OnInit {
   }
 
   getAllStudnets(
-    id:string,
+
     studentName:string,
     email:string,
-    status:string,
+    statusId:string,
     pageIndex:number,
     pageSize:number
   ): Observable <Student[]>{
@@ -158,10 +158,10 @@ export class StudentListComponent implements OnInit {
       Authorization :`Bearer ${localStorage.getItem('jwt')}`,
     });
     let url=`https://localhost:7115/api/Student/GetAllStudents?pageIndex=${pageIndex}&pageSize=${pageSize}`
-    if(id!="") url+=`&id=${id}`;
+
     if(studentName!="") url+=`&name=${studentName}`;
     if(email!="") url+=`&email=${email}`;
-    if(status !="") url+= `&status=${status}`;
+    if(statusId !="") url+= `&statusId=${statusId}`;
 debugger
     return this.http.get<Student[]>(url,{headers:headers});
   }
@@ -169,18 +169,18 @@ debugger
 
   studentId:string ;
   studentName:string ;
-  statusName:string;
   email:string;
+  statusId:string;
   _pageIndex =1;
   _pageSize=20;
   selectedStudents : Student[];
 
   FilterStudents(){
     this.getAllStudnets(
-      this.studentId,
+
       this.studentName,
       this.email,
-      this.statusName,
+      this.statusId,
       this._pageIndex,
       this._pageSize
     ).subscribe((result:any)=>
@@ -220,5 +220,7 @@ debugger
     });
 
   }
-
+  sortName(){
+    this.selectStudent.sort((a,b) => a.statusName.localeCompare(b.studentName));
+  }
 }

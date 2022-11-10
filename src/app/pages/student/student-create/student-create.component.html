@@ -84,7 +84,7 @@
                   <div class="row mb-3">
                     <label for="graduationYear" class="col-md-3 col-form-label">Graduation Year</label>
                     <div class="col-md-9">
-                      <input id="graduationYear"
+                      <!-- <input id="graduationYear"
                       name="graduationYear" type="text" class="form-control"
                         placeholder="Enter Graduation Year"
                          minlength="4" required
@@ -92,7 +92,25 @@
                         maxlength="4"
                         [disabled]="!IsAdmin && IsInterviewer"
                         [(ngModel)]="StudentInput.graduationYear"
-                        >
+                        > -->
+                        <select id="graduationYear"
+                        name="graduationYear" type="text" class="form-control"
+                          placeholder="Enter Graduation Year"
+                           minlength="4" required
+                          pattern="^[0-9]*$"
+                          maxlength="4"
+                          [disabled]="!IsAdmin && IsInterviewer"
+                          [(ngModel)]="StudentInput.graduationYear">
+                          <option>2015</option>
+                          <option>2016</option><option>2017</option>
+                          <option>2018</option>
+                          <option>2019</option>
+                          <option>2020</option>
+                          <option>2021</option>
+                          <option>2022</option>
+                          <option>2023</option>
+
+                        </select>
                     </div>
                   </div>
 
@@ -133,7 +151,9 @@
                           <div class="row mb-3" *ngIf="IsAdmin || IsInterviewer">
                     <label for="studentGrade" class="col-md-3 col-form-label">Grade</label>
                     <div class="col-md-9">
-                      <input  id="studentGrade" name="studentGrade"  type="number" class="form-control"
+                      <input  id="studentGrade" name="studentGrade"
+                      maxlength="2"
+                      type="number" class="form-control"
                       [(ngModel)]="StudentInput.studentGrade"  [disabled]="!IsInterviewer"
                         placeholder="Enter studentGrade...">
 
@@ -234,10 +254,12 @@
                   <div class="row mb-3" *ngIf="IsAdmin || IsInterviewer && !IsUser" >
                     <label for="statusName" class="col-md-3 col-form-label" >Status</label>
                     <div class="col-md-9">
-                      <select  id="statusName" name="statusId"  class="form-control"
+                      <select
+                      [disabled]="isAddMode"
+                      id="statusName" name="statusId"  class="form-control"
                       [(ngModel)]="StudentInput.statusId"
                         placeholder="Enter Status ....">
-                        <option value="0" selected> --------- Status ---------</option>
+                        <option value="0" selected >Waiting for Interview</option>
                         <option *ngFor="let status of statuses"
                         [value]="status.id">
                           {{status.statusName}}
