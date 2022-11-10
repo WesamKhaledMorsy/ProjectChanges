@@ -108,6 +108,7 @@ private http:HttpClient ,
     this._GetStudentByUserName();
     this.getStudentByUserId(this.userId);
      this._getStudentByUserId();
+     this.GetAllInterviewerData();
     /**
      * horizontal-vertical layput set
      */
@@ -354,6 +355,28 @@ getAllTracks(
 }
 
 
+//interviews : Interview[];
+ // rounds : Round[];
+ interviewerName : string = localStorage.getItem('userName');
+  student:Student[];
+  _GetAllInterviewerData():Observable<any>{
+    const headers = new HttpHeaders({
+      Authorization :`Bearer ${localStorage.getItem('jwt')}`,
+    });
+    debugger
+    let url ="https://localhost:7115/api/Interviewer/GetInterviewersData";
+    return this.http.get<any>(url,{headers:headers});
+  }
+
+  GetAllInterviewerData(){
+    this._GetAllInterviewerData().subscribe((result : any)=> {
+
+      this.interviews=result.interviews;
+      this.students=result.students;
+      debugger
+    });
+
+  }
 
 
 }

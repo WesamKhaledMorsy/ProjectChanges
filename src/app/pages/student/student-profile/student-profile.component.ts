@@ -15,6 +15,10 @@ import { StudentService } from '../student.service';
 })
 export class StudentProfileComponent implements OnInit {
 
+  IsAdmin !:boolean;
+  IsInterviewer !:boolean;
+  IsUser !:boolean;
+  LoggedIn : boolean = false;
 
   studentDetails :Student[];
   rounds : Round[] =[];
@@ -32,7 +36,24 @@ export class StudentProfileComponent implements OnInit {
     private route:ActivatedRoute ) { }
 
   ngOnInit(): void {
-
+    const role :any =localStorage.getItem('roles');
+    if(role== "Admin"){
+       this.IsAdmin =true;
+       this.IsInterviewer=false;
+       this.IsUser=false;
+       this.LoggedIn=true;
+    }else if (role=="Interviewer"){
+      this.IsInterviewer= true;
+      this.IsAdmin = false;
+      this.IsUser=false;
+      this.LoggedIn=true;
+    }
+    else if(role == "Trainee"){
+      this.IsUser=true;
+      this.IsInterviewer=false;
+      this.IsAdmin=false;
+      this.LoggedIn=true;
+    }
     this.route.paramMap.subscribe((params)=>{
       const id = params.get("id");
       const userName=params.get("userName");
@@ -50,8 +71,9 @@ export class StudentProfileComponent implements OnInit {
           this.studentInput.universityId=result[0].universityId;
           this.studentInput.universityName=result[0].universityName;
           this.studentInput.graduationYear=result[0].graduationYear;
-          this.studentInput.gradeId=result[0].gradeId;
-          this.studentInput.gradeValue=result[0].gradeValue;
+          // this.studentInput.gradeId=result[0].gradeId;
+          // this.studentInput.gradeValue=result[0].gradeValue;
+          this.studentInput.studentGrade=result[0].studentGrade;
           this.studentInput.statusId=result[0].statusId;
           this.studentInput.statusName=result[0].statusName;
           this.studentInput.roundId=result[0].roundId;
@@ -80,8 +102,9 @@ export class StudentProfileComponent implements OnInit {
           this.studentInput.universityId=result[0].universityId;
           this.studentInput.universityName=result[0].universityName;
           this.studentInput.graduationYear=result[0].graduationYear;
-          this.studentInput.gradeId=result[0].gradeId;
-          this.studentInput.gradeValue=result[0].gradeValue;
+          // this.studentInput.gradeId=result[0].gradeId;
+          // this.studentInput.gradeValue=result[0].gradeValue;
+          this.studentInput.studentGrade=result[0].studentGrade;
           this.studentInput.statusId=result[0].statusId;
           this.studentInput.statusName=result[0].statusName;
           this.studentInput.roundId=result[0].roundId;
@@ -107,8 +130,9 @@ export class StudentProfileComponent implements OnInit {
           this.studentInput.universityId=result[0].universityId;
           this.studentInput.universityName=result[0].universityName;
           this.studentInput.graduationYear=result[0].graduationYear;
-          this.studentInput.gradeId=result[0].gradeId;
-          this.studentInput.gradeValue=result[0].gradeValue;
+          // this.studentInput.gradeId=result[0].gradeId;
+          // this.studentInput.gradeValue=result[0].gradeValue;
+          this.studentInput.studentGrade=result[0].studentGrade;
           this.studentInput.statusId=result[0].statusId;
           this.studentInput.statusName=result[0].statusName;
           this.studentInput.roundId=result[0].roundId;

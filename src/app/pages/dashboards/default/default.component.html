@@ -402,7 +402,7 @@
     </div>
     <!-- end page title -->
 
-    <div class="row " >
+    <div class="row">
         <div class=" col-lg-12">
             <div class="card overflow-hidden">
                 <div class="bg-primary bg-soft" style="margin-bottom: 8px; background-color:white;">
@@ -460,7 +460,7 @@
     </div>
   </div> -->
 
-  <div class="row"  *ngIf="!IsAdmin && !IsInterviewer" >
+  <div class="row"  *ngIf="!IsAdmin && IsInterviewer || IsUser" >
     <div class="flip-card">
       <div class="flip-card-inner">
         <div class="flip-card-front">
@@ -471,11 +471,16 @@
               </div>
             </div>
             <div class="flip-card-back">
-              <div class="row">
+              <div class="row" *ngIf="IsInterviewer">
+                <div class="col-12">
+                  <p class="m-5 text-dark" style="font-size:30px">{{username}}</p>
+                </div>
+              </div>
+              <div class="row" *ngIf="IsUser">
                 <div class="col-12" >
                   <p class="m-5 text-dark" style="font-size:30px">Status</p>
                 </div>
-                <div class="col-12" style="font-size:30px">
+                <div class="col-12" style="font-size:30px" >
                   <p class="mb-0 ml-5" >{{statusName}}</p>
                 </div>
               </div>
@@ -517,37 +522,41 @@
   </div> -->
 
 <br>
-<div class="row col-m-4 col-lg-4" *ngFor="let track of selectTracks">
-      <div class="zoom">
-         <div class="flip-card" >
-          <div class="flip-card-inner">
-            <div class="flip-card-front">
+<div *ngIf="IsUser || IsAdmin">
 
-                      <img class="card-img-top img-fluid"
-                      src="assets/images/word-track-hammered-black.jpg" alt="Track Image"  >
-                      </div>
-                      <div class="flip-card-back">
-                        <h5  class="mb-5 mt-5"><strong>{{track.trackName}}</strong></h5>
-                        <h5  class="mb-0">{{track.startDate | date:'MMM d, y'}}</h5>
-                        <button class="bg-info mt-2"
-                        [routerLink]="['/track/detailsTrack',track.id]"
-                        routerLinkActive="active"
-                         style="color:rgb(255, 255, 255);
-                                font-size: 20px; float:center;
-                                 border-radius: 5px;">
-                        <i class="bx bx-arrow-back"></i> Go
-                      </button>
-                      <div class="row">
-                        <!-- <button class="btn"><i class="fa fa-download"></i> Download File</button> -->
-                        <!-- <a href="assets/images/word-track-hammered-black.jpg" download>
-                          <img src="assets/images/word-track-hammered-black.jpg" alt="W3Schools" width="104" height="142">
-                        </a> -->
+  <div class="row col-m-4 col-lg-4"  *ngFor="let track of selectTracks">
+        <div class="zoom">
+           <div class="flip-card" >
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+
+                        <img class="card-img-top img-fluid"
+                        src="assets/images/word-track-hammered-black.jpg" alt="Track Image"  >
+                        </div>
+                        <div class="flip-card-back">
+                          <h5  class="mb-5 mt-5"><strong>{{track.trackName}}</strong></h5>
+                          <h5  class="mb-0">{{track.startDate | date:'MMM d, y'}}</h5>
+                          <button class="bg-info mt-2"
+                          [routerLink]="['/track/detailsTrack',track.id]"
+                          routerLinkActive="active"
+                           style="color:rgb(255, 255, 255);
+                                  font-size: 20px; float:center;
+                                   border-radius: 5px;">
+                          <i class="bx bx-arrow-back"></i> Go
+                        </button>
+                        <div class="row">
+                          <!-- <button class="btn"><i class="fa fa-download"></i> Download File</button> -->
+                          <!-- <a href="assets/images/word-track-hammered-black.jpg" download>
+                            <img src="assets/images/word-track-hammered-black.jpg" alt="W3Schools" width="104" height="142">
+                          </a> -->
+                        </div>
                       </div>
                     </div>
-                  </div>
+            </div>
           </div>
         </div>
-      </div>
+</div>
+
   </div>
 </div>
 </div>
@@ -556,7 +565,7 @@
 <br>
 <hr>
 
-<div class="row"  *ngIf="IsAdmin"  >
+<div class="row"  *ngIf="IsAdmin">
   <div class="card" style="align-items: center;">
     <div class="card-body">
       <div class="d-flex flex-wrap">
@@ -622,6 +631,17 @@
     </div>
 </div>
 </div>
+
+<div class="row">
+  <div class="card">
+    <div class="caed-body">
+      <div class="d-flex flex-wrap">
+          <a [routerLink]="['/student/listStudent']">Go To Students </a>
+      </div>
+    </div>
+  </div>
+</div>
+
 </div>
 
 

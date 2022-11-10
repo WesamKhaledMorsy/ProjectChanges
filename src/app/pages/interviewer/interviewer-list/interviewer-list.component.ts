@@ -50,7 +50,7 @@ export class InterviewerListComponent implements OnInit {
     }
 
     this.getinterviewers();
-    this._GetAllInterviewerData();
+    this.GetAllInterviewerData();
   }
 
   students :Student[];
@@ -193,20 +193,21 @@ export class InterviewerListComponent implements OnInit {
 
   interviews : Interview[];
   rounds : Round[];
-
+  student:Student[];
   _GetAllInterviewerData():Observable<any>{
     const headers = new HttpHeaders({
       Authorization :`Bearer ${localStorage.getItem('jwt')}`,
     });
     debugger
-    let url ="https://localhost:7115/api/Interviewer/GetAllInterviewerData";
+    let url ="https://localhost:7115/api/Interviewer/GetInterviewersData";
     return this.http.get<any>(url,{headers:headers});
   }
 
   GetAllInterviewerData(){
     this._GetAllInterviewerData().subscribe((result : any)=> {
 
-      this.interviews=result.rounds;
+      this.interviews=result.interviews;
+      this.students=result.students;
       debugger
     });
 

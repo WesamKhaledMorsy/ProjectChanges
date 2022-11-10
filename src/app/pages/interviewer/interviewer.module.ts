@@ -7,6 +7,7 @@ import { InterviewerRoutingModule } from './interviewer-routing.module';
 import {  RouterModule } from '@angular/router';
 import { InterviewerCreateComponent } from './interviewer-create/interviewer-create.component';
 import { InterviewerListComponent } from './interviewer-list/interviewer-list.component';
+import { InterviewerDetailsComponent } from './interviewer-details/interviewer-details.component';
 
 
 
@@ -14,7 +15,8 @@ import { InterviewerListComponent } from './interviewer-list/interviewer-list.co
 @NgModule({
   declarations: [
     InterviewerCreateComponent,
-    InterviewerListComponent
+    InterviewerListComponent,
+    InterviewerDetailsComponent
   ],
   imports: [
     CommonModule,

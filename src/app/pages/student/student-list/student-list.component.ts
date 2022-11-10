@@ -58,6 +58,9 @@ export class StudentListComponent implements OnInit {
     }
     this.GetAllStudentData();
     this.getStudents();
+    this.getAllStudnets(this.studentId,this.studentName,
+      this.email,this.statusName,this._pageIndex,this._pageSize);
+    this.FilterStudents();
 
   }
  documents : Document[];
@@ -119,8 +122,8 @@ export class StudentListComponent implements OnInit {
         if (result.value) {
           //!main code for delete
           this.deleteStudent(studentId)
-            .subscribe((_Student)=> {
-              this.studentUpdated.emit(_Student);
+            .subscribe((_student)=> {
+              this.studentUpdated.emit(_student);
               this.getStudents()
             });
             //!===============
@@ -146,28 +149,28 @@ export class StudentListComponent implements OnInit {
   getAllStudnets(
     id:string,
     studentName:string,
+    email:string,
     status:string,
-    adminId:string,
     pageIndex:number,
     pageSize:number
   ): Observable <Student[]>{
     const headers = new HttpHeaders({
       Authorization :`Bearer ${localStorage.getItem('jwt')}`,
     });
-    let url=`https://localhost:7115/api/Student/GetAllStudents/pageIndex=${pageIndex}&pageSize=${pageSize}`
+    let url=`https://localhost:7115/api/Student/GetAllStudents?pageIndex=${pageIndex}&pageSize=${pageSize}`
     if(id!="") url+=`&id=${id}`;
     if(studentName!="") url+=`&name=${studentName}`;
+    if(email!="") url+=`&email=${email}`;
     if(status !="") url+= `&status=${status}`;
-    if(adminId !="") url+= `&adminId=${adminId}`;
+debugger
     return this.http.get<Student[]>(url,{headers:headers});
   }
 
 
-  studentId:string ="";
-  studentName:string ="";
+  studentId:string ;
+  studentName:string ;
   statusName:string;
   email:string;
-  adminId:string;
   _pageIndex =1;
   _pageSize=20;
   selectedStudents : Student[];
@@ -176,12 +179,13 @@ export class StudentListComponent implements OnInit {
     this.getAllStudnets(
       this.studentId,
       this.studentName,
+      this.email,
       this.statusName,
-      this.adminId,
       this._pageIndex,
       this._pageSize
     ).subscribe((result:any)=>
     {
+      debugger
       this.selectedStudents=result.values;
     })
   }

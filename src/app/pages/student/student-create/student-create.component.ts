@@ -18,6 +18,7 @@ import { Interviewer } from '../../interviewer/interviewer.model';
 import { Options } from 'ng5-slider';
 import { guid } from '@fullcalendar/angular';
 import { __param } from 'tslib';
+import { data } from 'jquery';
 
 @Component({
   selector: 'app-student-create',
@@ -230,7 +231,7 @@ username:string=localStorage.getItem('userName');
     let url ="https://localhost:7115/api/Student/GetAllStudentData";
     return this.http.get<any>(url,{headers:headers});
   }
-  documents : Document[];
+   documents : Document[];
   grades : Grade[];
   universities :University[];
   genders :Gender[];
@@ -249,7 +250,7 @@ username:string=localStorage.getItem('userName');
       this.grades=result.grades;
       this.genders=result.genders;
       this.statuses=result.statuses;
-      this.documents=result.documents;
+      //this.documents=result.documents;
       this.interviews=result.interviews;
     this.interviewers=result.interviewers;
       debugger
@@ -263,10 +264,13 @@ username:string=localStorage.getItem('userName');
   @Output() onUploadFinished=new EventEmitter();
   selectedFiles=[];
   DocumentId = guid();
-  public uploadFiles=(files,DocumentId) => {
+
+  isUploaded :boolean;
+  public uploadPhoto=(files,StudentId) => {
     const headers = new HttpHeaders({
       Authorization :`Bearer ${localStorage.getItem('jwt')}`,
     });
+    StudentId = this.StudentId;
     this.selectedFiles=files;
     if (files.length==0) return;
 
@@ -274,32 +278,22 @@ username:string=localStorage.getItem('userName');
     const formData=new FormData();
     debugger;
     formData.append("file", fileToUpload, fileToUpload.name);
-    formData.append('doc', JSON.stringify(this.documents))
+    formData.append('doc', JSON.stringify(this.files))
+    console.log(this.selectedFiles)
+    console.log(fileToUpload.name)
 
+  let url ="https://localhost:7115/api/Student/UploadStudentPhoto";
+    if(StudentId!=""){
 
-  let url ="https://localhost:7115/api/Document/UploadFiles";
-    if(DocumentId!=""){
-
-      url +=`?id=${DocumentId}`
+      url +=`?id=${StudentId}`
     }
-
-      return this.http.post<Track>(url, formData ,
+    this.isUploaded =true;
+      return this.http.post<Student>(url, formData ,
        {
         reportProgress: true,
         observe: "events",
         headers:headers
       })
-
-
-    // // ?id=8
-    // this.http
-    //   .post("https://localhost:7115/api/Document/UploadFiles", formData ,
-    //    {
-    //     reportProgress: true,
-    //     observe: "events",
-    //     headers:headers
-    //   }
-
       .subscribe((event) => {
         if (event.type===HttpEventType.UploadProgress) {
           this.progress=Math.round((100*event.loaded)/event.total);

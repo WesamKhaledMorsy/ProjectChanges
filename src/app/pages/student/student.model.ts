@@ -40,7 +40,8 @@ interviewerName ?: string;
 interviewId?:string;
 interviewName?:string;
 // documents:Document[];
-
+profilePicture?:string;
+//studentCertificate?;string;
 studentGrade ?: number;
 userId?: string;
 userName?:string;

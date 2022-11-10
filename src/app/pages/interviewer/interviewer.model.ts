@@ -15,7 +15,7 @@ export class Interviewer{
 
  roundId :number;
  roundName: string;
-
+students:Student[];
  studentName : string;
  studentId:string;
  studentInterviewer:Student[];

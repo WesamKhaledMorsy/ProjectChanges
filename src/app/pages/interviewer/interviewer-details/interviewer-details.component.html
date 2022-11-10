@@ -1,72 +1,7 @@
 <div class="container-fluid">
-  <div class="row">
-    <div class="col-4 d-inline-block">
-        <label for="studentName">Student Name</label>
-        <select
-        id="studentName"
-        name="studentName"
-         class="form-select"
-        [(ngModel)]="studentName"
-       >
-          <option value="" selected>Select Student Name</option>
-          <option  *ngFor="let student of selectStudent"
-          [value]="student.studentName">
-            {{student.studentName}}
-          </option>
-        </select>
-    </div>
 
-  <div class="col-3 d-inline-block">
-      <label for="status">Statues</label>
-      <select id="statusName" name="statusName"  class="form-select" >
-        <option  *ngFor="let status of statuses"
-        [ngValue]="status.statusName">
-          {{status.statusName}}
-        </option>
-      </select>
-  </div>
-
-<div class="col-3 d-inline-block">
-    <label for="Email">Email</label>
-    <input id="Email" type="text" name="email" class="form-control"
-    [(ngModel)]="email" >
-      <!-- <option  *ngFor="let project of projectData"
-      [ngValue]="project.id"  >
-        {{project.identifier}}
-      </option> -->
-</div>
-
-</div>
-
-<div class="btn-group btn-group-example mb-3" role="group">
-    <!-- <button type="button" class="btn btn-primary w-xs mt-2" (click)="onFilterChange()" > -->
-      <button type="button" class="btn btn-primary w-xs mt-2" (click)="FilterStudents()" >
-
-      Search<i class="bx bx-search-alt search-icon"></i></button>
-    <!-- <button type="button" class="btn btn-danger w-xs mt-2" (click)="Reset()"> -->
-      <button type="button" class="btn btn-danger w-xs mt-2" (click)="Reset()">
-      Reset  </button>
-</div>
-
-</div>
-
-<!-- <div class="row">
-<div class="col-6">
-  <button  (click)="onFilterChangeDescription()" class="btn btn-success mt-1 ml-5">
-    Search with Description
-  </button>
-</div>
-</div> -->
-  <!--!-->
   <div class="row">
     <div class>
-      <a
-      class="btn btn-outline-primary mb-3"
-      [routerLink]="['/student/createStudent']"
-      routerLinkActive="active"
-      *ngIf="!IsUser && !IsInterviewer && LoggedIn">
-        Create Student
-      </a>
 
       <div class="table-responsive">
         <table class="table project-list-table table-nowrap align-middle table-borderless">
@@ -85,7 +20,7 @@
               <th scope="col">Track</th>
               <!-- <th scope="col">Interview</th> -->
               <th scope="col">Interviewer</th>
-              <th scope="col" *ngIf="IsAdmin && IsInterviewer && LoggedIn">Action</th>
+              <th scope="col" >Action</th>
             </tr>
           </thead>
           <tbody>
@@ -121,17 +56,13 @@
               <!-- <td><a routerLinkActive="active">{{student.interviewName}}</a></td> -->
               <td><a routerLinkActive="active">{{student.interviewerName}}</a></td>
 
-              <td *ngIf="!IsUser && LoggedIn">
-                    <a *ngIf="IsAdmin && LoggedIn"
+              <td >
+                    <a
                     [routerLink]="['/student/edit',student.id]"
                     routerLinkActive="active" style="margin-left:2% ;"
                     ><i class="fa fa-marker text-success"></i> Edit</a>
 
-                    <a *ngIf="IsAdmin && LoggedIn"
-                    type="button"
-                    style="cursor: pointer;" style="margin-right:2% ;"
-                    (click) =onDeleteStudent(student.id)>
-                    <i class="fa fa-trash text-danger"></i> Delete</a>
+
 
               </td>
             </tr>
@@ -149,3 +80,4 @@
 
   </div>
 </div>
+

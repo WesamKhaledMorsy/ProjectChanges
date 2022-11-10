@@ -101,6 +101,7 @@
                     <div class="col-md-9">
                       <select  id="genderType" name="genderId"  class="form-control"
                       [(ngModel)]="StudentInput.genderId"
+                      [disabled]="IsInterviewer"
                         placeholder="Enter Gender">
                         <option value="0" selected>Gender</option>
                         <option *ngFor="let gender of genders"
@@ -129,11 +130,11 @@
 
                     </div>
                   </div> -->
-                          <div class="row mb-3" *ngIf="IsAdmin">
+                          <div class="row mb-3" *ngIf="IsAdmin || IsInterviewer">
                     <label for="studentGrade" class="col-md-3 col-form-label">Grade</label>
                     <div class="col-md-9">
                       <input  id="studentGrade" name="studentGrade"  type="number" class="form-control"
-                      [(ngModel)]="StudentInput.studentGrade"
+                      [(ngModel)]="StudentInput.studentGrade"  [disabled]="!IsInterviewer"
                         placeholder="Enter studentGrade...">
 
                     </div>
@@ -143,6 +144,7 @@
                     <div class="col-md-9">
                       <select  id="roundName" name="roundId"  class="form-control"
                       [(ngModel)]="StudentInput.roundId"
+                      [disabled]="IsInterviewer"
                         placeholder="Enter Gender">
                         <option value="0" selected>Round</option>
                         <option *ngFor="let round of rounds"
@@ -160,6 +162,7 @@
                     <div class="col-md-9">
                       <select  id="trackName" name="trackId"  class="form-control"
                       [(ngModel)]="StudentInput.trackId"
+                      [disabled]="IsInterviewer"
                         placeholder="Enter Gender">
                         <option value="0" selected>Tracks</option>
                         <option *ngFor="let track of tracks"
@@ -217,7 +220,7 @@
                     <label for="universityName" class="col-md-3 col-form-label">University</label>
                     <div class="col-md-9">
                       <select  id="universityName" name="universityId"  class="form-control"
-                      [(ngModel)]="StudentInput.universityId"
+                      [(ngModel)]="StudentInput.universityId"  [disabled]="IsInterviewer"
                         placeholder="Enter University ....">
                         <option value="0" selected> --------- University ---------</option>
                         <option *ngFor="let university of universities"
@@ -279,7 +282,7 @@
 
               <ul class="list-inline wizard mb-0">
                 <li class="next list-inline-item float-end">
-                  <button class="btn btn-primary" [disabled]="!StudentForm.valid" awNextStep>Next</button>
+                  <button class="btn btn-primary" [disabled]="!StudentForm.valid || IsInterviewer" awNextStep>Next</button>
                 </li>
               </ul>
 
@@ -307,8 +310,8 @@
 
                   <div class="row">
                     <h5>Profile Picture</h5>
-                    <ngx-dropzone (change)="uploadFiles($event,StudentInput.id)">
-                      <ngx-dropzone-label>Drop it, baby!</ngx-dropzone-label>
+                    <ngx-dropzone  (change)="uploadPhoto($event,StudentInput.id)">
+                      <ngx-dropzone-label>Drop it, Here!</ngx-dropzone-label>
                       <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
                         <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
                       </ngx-dropzone-preview>
@@ -318,13 +321,11 @@
                   <div class="row justify-content-end">
                     <div class="col-lg-10" >
                       <button
-                     (click)="uploadFiles"
+                     (click)="uploadPhoto"
                       class="btn btn-primary"
                       >{{ isAddMode ? "Add Document" : "Edit Document" }}</button>
                     </div>
                   </div>
-
-
 
                   <!-- <div class="row mb-3">
                     <label class="col-md-3 col-form-label">Last name</label>
@@ -332,23 +333,24 @@
                       <input class="form-control" name="username" type="text" placeholder="Enter Username">
                     </div>
                   </div> -->
-
                   <!-- <div class="row mb-3">
                     <label class="col-md-3 col-form-label">Password</label>
                     <div class="col-md-9">
                       <input class="form-control" name="password" type="password" placeholder="Enter Password">
                     </div>
                   </div> -->
-
-
-
                 </div>
               </div>
 
               <ul class="list-inline wizard mb-0">
-                <li class="previous list-inline-item"><button class="btn btn-primary" awPreviousStep>Previous</button>
+                <li class="previous list-inline-item">
+                  <button class="btn btn-primary"
+                  awPreviousStep>Previous</button>
                 </li>
-                <li class="next list-inline-item float-end"><button class="btn btn-primary" awNextStep>Next</button>
+                <li class="next list-inline-item float-end">
+                  <button class="btn btn-primary"
+                  *ngIf="isUploaded"
+                  awNextStep>Next</button>
                 </li>
               </ul>
 
