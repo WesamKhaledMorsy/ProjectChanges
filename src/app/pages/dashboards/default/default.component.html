@@ -412,7 +412,7 @@
                               <h4  class="text-primary"
                               style="float:left ; font-size:50px;
                               color:black; font-family: 'Times New Roman', Times, serif;">
-                              Welcome To KAITECH
+                              Welcome To KAITECH <em>{{username}}</em>
                             </h4>
                             </div>
                         </div>
@@ -524,37 +524,34 @@
 <br>
 <div *ngIf="IsUser || IsAdmin">
 
-  <div class="row col-m-4 col-lg-4"  *ngFor="let track of selectTracks">
+  <div class="row "  >
+    <div class="col-md-4 col-lg-4 col-xl-4" *ngFor="let track of selectTracks">
+
         <div class="zoom">
-           <div class="flip-card" >
+          <div class="flip-card mt-5" >
             <div class="flip-card-inner">
               <div class="flip-card-front">
-
                         <img class="card-img-top img-fluid"
                         src="assets/images/word-track-hammered-black.jpg" alt="Track Image"  >
-                        </div>
-                        <div class="flip-card-back">
+              </div>
+              <div class="flip-card-back">
                           <h5  class="mb-5 mt-5"><strong>{{track.trackName}}</strong></h5>
                           <h5  class="mb-0">{{track.startDate | date:'MMM d, y'}}</h5>
                           <button class="bg-info mt-2"
                           [routerLink]="['/track/detailsTrack',track.id]"
                           routerLinkActive="active"
-                           style="color:rgb(255, 255, 255);
+                          style="color:rgb(255, 255, 255);
                                   font-size: 20px; float:center;
-                                   border-radius: 5px;">
+                                  border-radius: 5px;">
                           <i class="bx bx-arrow-back"></i> Go
                         </button>
-                        <div class="row">
-                          <!-- <button class="btn"><i class="fa fa-download"></i> Download File</button> -->
-                          <!-- <a href="assets/images/word-track-hammered-black.jpg" download>
-                            <img src="assets/images/word-track-hammered-black.jpg" alt="W3Schools" width="104" height="142">
-                          </a> -->
-                        </div>
-                      </div>
+
+              </div>
                     </div>
             </div>
           </div>
-        </div>
+      </div>
+      </div>
 </div>
 
   </div>
@@ -632,7 +629,7 @@
 </div>
 </div>
 
-<div class="row">
+<div class="row" *ngIf="IsInterviewer">
   <div class="card">
     <div class="caed-body">
       <div class="d-flex flex-wrap">
