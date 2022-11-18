@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { AbstractControl, UntypedFormBuilder, UntypedFormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { AuthenticationService } from '../../../core/services/auth.service';
@@ -8,6 +8,8 @@ import { first } from 'rxjs/operators';
 import { UserProfileService } from '../../../core/services/user.service';
 import { HttpClient } from '@angular/common/http';
 import { User } from 'src/app/core/models/auth.models';
+import { Observable } from 'rxjs/internal/Observable';
+//import { CustomEmailValidator } from "../shared/custom-email.validator";
 
 @Component({
   selector: 'app-signup',
@@ -23,6 +25,7 @@ export class SignupComponent implements OnInit {
 
   // set the currenr year
   year: number = new Date().getFullYear();
+  someServiceWorkingWithDatabase: any;
 
   // tslint:disable-next-line: max-line-length
   constructor(private formBuilder: UntypedFormBuilder,
@@ -30,16 +33,37 @@ export class SignupComponent implements OnInit {
       private router: Router,
       private http : HttpClient,
        private authenticationService: AuthenticationService,
-    private userService: UserProfileService) { }
+    private userService: UserProfileService,
+    //private emailValidator: CustomEmailValidator
+    ) { }
 
   ngOnInit() {
     this.signupForm = this.formBuilder.group({
-      username: ['', Validators.required],
+      // username: [{value: null, disabled: false},
+      //   [Validators.required, this.validateUsername()]],
+      username: ['',[Validators.required]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
     });
   }
-
+//   private validateUsername(): ValidatorFn {
+//     return (control: AbstractControl): {[key: string]:any} => {
+//       return this.someServiceWorkingWithDatabase.checkUsername(control)
+//         .subscribe(
+//           ({ data }) => {
+//             let res: string = data;
+//             if (res === control.value) {
+//               return { 'alreadyExist': true };
+//             } else {
+//               return null;
+//             }
+//           },
+//           (error) => {
+//             console.log(error);
+//           }
+//         );
+//     }
+// }
   // convenience getter for easy access to form fields
   get f() { return this.signupForm.controls; }
 
@@ -83,4 +107,8 @@ export class SignupComponent implements OnInit {
     })
 
   }
+
+}
+interface AsyncValidatorFn {
+  (c: AbstractControl): Promise<ValidationErrors|null>|Observable<ValidationErrors|null>
 }

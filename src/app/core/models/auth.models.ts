@@ -7,3 +7,6 @@ export class User {
   token?: string;
   email: string;
 }
+export const users: Array<User> = [
+ 
+];

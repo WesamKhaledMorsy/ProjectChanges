@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { User } from '../models/auth.models';
+import { User, users } from '../models/auth.models';
+import { Observable, of } from "rxjs";
+import { delay } from "rxjs/operators";
 
 @Injectable({ providedIn: 'root' })
 export class UserProfileService {
@@ -14,4 +16,9 @@ export class UserProfileService {
     register(user: User) {
         return this.http.post(`/users/register`, user);
     }
+
+  getByEmail(email: string): Observable<User | undefined> {
+    const user = users.find(user => user.email === email);
+    return of(user).pipe(delay(500));
+  }
 }

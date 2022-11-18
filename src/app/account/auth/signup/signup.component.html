@@ -61,6 +61,10 @@
                   </div>
                 </div>
 
+                <div class="form-control" *ngIf="this.signupForm['controls']
+  .username.hasError('alreadyExist')">
+    *this username already exists in our database</div>
+
                 <div class="mb-3">
                   <label for="password" class="form-label">Password</label>
 

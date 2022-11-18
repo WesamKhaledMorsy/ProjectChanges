@@ -23,7 +23,7 @@
               [(ngModel)]="studentName"
              >
                 <option value="" selected>Select Student Name</option>
-                <option  *ngFor="let student of selectStudent"
+                <option  *ngFor="let student of StudentData"
                 [value]="student.studentName">
                   {{student.studentName}}
                 </option>
@@ -107,7 +107,7 @@
           </thead>
           <tbody>
             <!--  | search:searchText -->
-              <tr *ngFor="let student of selectStudent | searchFilter: searchText ; let i=index;" >
+              <tr *ngFor="let student of StudentData | searchFilter: searchText ; let i=index;" >
 
                 <td>{{i+1}}</td>
               <td>

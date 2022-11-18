@@ -154,7 +154,7 @@
                       <input  id="studentGrade" name="studentGrade"
                       maxlength="2"
                       type="number" class="form-control"
-                      [(ngModel)]="StudentInput.studentGrade"  [disabled]="!IsInterviewer"
+                      [(ngModel)]="StudentInput.studentGrade"  [disabled]="!IsInterviewer && !IsAdmin"
                         placeholder="Enter studentGrade...">
 
                     </div>
@@ -296,7 +296,7 @@
                       >Go To Profile</button>
                     </div>
                   </div>
-                  
+
                   </form>
                 </div>
               </div>

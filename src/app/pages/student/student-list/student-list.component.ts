@@ -57,10 +57,10 @@ export class StudentListComponent implements OnInit {
       this.LoggedIn=true;
     }
     this.GetAllStudentData();
-    this.getStudents();
-    this.getAllStudnets(this.studentName,
-      this.email,this.statusId,this._pageIndex,this._pageSize);
-    this.FilterStudents();
+   // this.getStudents();
+    // this.getAllStudnets(this.studentName,
+    //   this.email,this.statusId,this._pageIndex,this._pageSize);
+      this.FilterStudents();
 
   }
  documents : Document[];
@@ -147,7 +147,6 @@ export class StudentListComponent implements OnInit {
   }
 
   getAllStudnets(
-
     studentName:string,
     email:string,
     statusId:string,
@@ -168,13 +167,14 @@ debugger
 
 
   studentId:string ;
-  studentName:string ;
-  email:string;
-  statusId:string;
+  studentName:string="" ;
+  email:string="";
+  statusId:string="";
   _pageIndex =1;
   _pageSize=20;
-  selectedStudents : Student[];
 
+  selectedStudents : Student[];
+ StudentData : Student[]=[];
   FilterStudents(){
     this.getAllStudnets(
 
@@ -183,10 +183,13 @@ debugger
       this.statusId,
       this._pageIndex,
       this._pageSize
-    ).subscribe((result:any)=>
+    ).subscribe((result:Student[])=>
     {
       debugger
-      this.selectedStudents=result.values;
+      this.selectedStudents=result;
+      this.StudentData=this.selectedStudents;
+      return this.StudentData;
+     //console.log(this.StudentData);
     })
   }
 
@@ -221,6 +224,9 @@ debugger
 
   }
   sortName(){
-    this.selectStudent.sort((a,b) => a.statusName.localeCompare(b.studentName));
+    this.StudentData.sort((a,b) => a.studentName.localeCompare(b.studentName));
+  }
+  sortStatus(){
+    this.StudentData.sort((a,b) => a.statusName.localeCompare(b.statusName));
   }
 }
