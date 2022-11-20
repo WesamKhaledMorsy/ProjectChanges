@@ -3,6 +3,7 @@ import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angu
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/internal/Observable';
+import { environment } from 'src/environments/environment';
 import Swal from 'sweetalert2';
 import { Status } from '../status.model';
 import { StatusService } from '../status.service';
@@ -104,7 +105,7 @@ export class StatusCreateComponent implements OnInit {
         status.adminId="3fa85f64-5717-4562-b3fc-2c963f66afa6";
         debugger
       this.http.post<any>
-        ('https://localhost:7115/api/Status/CreateNewStatus',
+        (`${environment.apiUrl}/api/Status/CreateNewStatus`,
         status ,{headers:headers}).subscribe(data => {
           console.log(data)
 
@@ -145,7 +146,7 @@ export class StatusCreateComponent implements OnInit {
     const headers = new HttpHeaders({
     Authorization :`Bearer ${localStorage.getItem('jwt')}`,
   });
-    let url ="https://localhost:7115/api/Status/GetStatus";
+    let url =`${environment.apiUrl}/api/Status/GetStatus`;
     return this.http.get<any>(url,{headers:headers});
   }
 

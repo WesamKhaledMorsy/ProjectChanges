@@ -19,6 +19,7 @@ import { Options } from 'ng5-slider';
 import { guid } from '@fullcalendar/angular';
 import { __param } from 'tslib';
 import { data } from 'jquery';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-student-create',
@@ -149,7 +150,7 @@ export class StudentCreateComponent implements OnInit {
     const headers = new HttpHeaders({
       Authorization :`Bearer ${localStorage.getItem('jwt')}`,
     });
-    let url="https://localhost:7115/api/Student/GetStudentByUserId";
+    let url=`${environment.apiUrl}/api/Student/GetStudentByUserId`;
     if (id!="")
       url += `?id=${id}`
       console.log(id);
@@ -199,7 +200,7 @@ username:string=localStorage.getItem('userName');
       student.adminId="3fa85f64-5717-4562-b3fc-2c963f66afa6";
         debugger
       this.http.post<any>
-        ('https://localhost:7115/api/Student/CreateNewStudent',
+        (`${environment.apiUrl}/api/Student/CreateNewStudent`,
         student ,{headers:headers}).subscribe(data => {
           console.log(data)
 
@@ -241,7 +242,7 @@ username:string=localStorage.getItem('userName');
     const headers = new HttpHeaders({
     Authorization :`Bearer ${localStorage.getItem('jwt')}`,
   });
-    let url ="https://localhost:7115/api/Student/GetAllStudentData";
+    let url =`${environment.apiUrl}/api/Student/GetAllStudentData`;
     return this.http.get<any>(url,{headers:headers});
   }
    documents : Document[];
@@ -295,7 +296,7 @@ username:string=localStorage.getItem('userName');
     console.log(this.selectedFiles)
     console.log(fileToUpload.name)
 
-  let url ="https://localhost:7115/api/Student/UploadStudentPhoto";
+  let url =`${environment.apiUrl}/api/Student/UploadStudentPhoto`;
     if(StudentId!=""){
 
       url +=`?id=${StudentId}`

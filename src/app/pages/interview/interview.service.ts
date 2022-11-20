@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
+import { environment } from 'src/environments/environment';
 import { Interview } from '../interview/interview.model';
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,7 @@ export class InterviewService {
     });
     interview.id  ;
     return this.http.post<Interview[]>
-        ('https://localhost:7115/api/Interview/CreateNewInterview',interview,{headers:headers});
+        (`${environment.apiUrl}/api/Interview/CreateNewInterview`,interview,{headers:headers});
 
   }
 
@@ -24,7 +25,7 @@ export class InterviewService {
     const headers = new HttpHeaders({
       Authorization :`Bearer ${localStorage.getItem('jwt')}`,
     });
-    let url="https://localhost:7115/api/Interview/GetInterviewById";
+    let url=`${environment.apiUrl}/api/Interview/GetInterviewById`;
     if (id!="")
       url += `?id=${id}`
 
@@ -38,7 +39,7 @@ export class InterviewService {
       Authorization :`Bearer ${localStorage.getItem('jwt')}`,
     });
     return this.http.put<Interview[]>(
-      "https://localhost:7115/api/Interview/EditInterview",
+      `${environment.apiUrl}/api/Interview/EditInterview`,
       interview ,{headers:headers}
     );
   }

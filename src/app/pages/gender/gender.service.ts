@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
+import { environment } from 'src/environments/environment';
 import { Gender } from './gender.model';
 
 @Injectable({
@@ -17,7 +18,7 @@ export class GenderService {
     });
     gender.id  ;
     return this.http.post<Gender[]>
-        ('https://localhost:7115/api/Gender/CreateNewGender',gender,{headers:headers});
+        (`${environment.apiUrl}/api/Gender/CreateNewGender`,gender,{headers:headers});
 
   }
 
@@ -25,7 +26,7 @@ export class GenderService {
     const headers = new HttpHeaders({
       Authorization :`Bearer ${localStorage.getItem('jwt')}`,
     });
-    let url="https://localhost:7115/api/Gender/GetGenderById";
+    let url=`${environment.apiUrl}/api/Gender/GetGenderById`;
     if (id!="")
       url += `?id=${id.toString()}`
 
@@ -39,7 +40,7 @@ export class GenderService {
       Authorization :`Bearer ${localStorage.getItem('jwt')}`,
     });
     return this.http.put<Gender[]>(
-      "https://localhost:7115/api/Gender/EditGender",
+      `${environment.apiUrl}/api/Gender/EditGender`,
       gender ,{headers:headers}
     );
   }

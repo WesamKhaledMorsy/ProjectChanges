@@ -207,7 +207,7 @@ export class LoginComponent implements OnInit {
                 Email :this.loginForm.controls['email'].value,
                 Password:this.loginForm.controls['password'].value,
               };
-              this.http.post('https://localhost:7115/api/Auth/Login',this.loginForm.value)
+              this.http.post(`${environment.apiUrl}/api/Auth/Login`,this.loginForm.value)
                 .subscribe((response:any)=>{
 
                   const token =(<any>response).tokens;

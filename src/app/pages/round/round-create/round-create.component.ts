@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { environment } from 'src/environments/environment';
 import Swal from 'sweetalert2';
 import { Round } from '../round.model';
 import { RoundService } from '../round.service';
@@ -81,7 +82,7 @@ export class RoundCreateComponent implements OnInit {
         round.adminId = "3fa85f64-5717-4562-b3fc-2c963f66afa6";
         debugger
       this.http.post<any>
-        ('https://localhost:7115/api/Round/CreateNewRound',round ,{headers:headers}).subscribe(data => {
+        (`${environment.apiUrl}/api/Round/CreateNewRound`,round ,{headers:headers}).subscribe(data => {
           console.log(data)
 
           //!==

@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
+import { environment } from 'src/environments/environment';
 import { Status } from './status.model';
 
 @Injectable({
@@ -16,7 +17,7 @@ export class StatusService {
     });
     status.id  ;
     return this.http.post<Status[]>
-        ('https://localhost:7115/api/Status/CreateNewStatus',status,{headers:headers});
+        (`${environment.apiUrl}/api/Status/CreateNewStatus`,status,{headers:headers});
 
   }
 
@@ -24,7 +25,7 @@ export class StatusService {
     const headers = new HttpHeaders({
       Authorization :`Bearer ${localStorage.getItem('jwt')}`,
     });
-    let url="https://localhost:7115/api/Status/GetStatusById";
+    let url=`${environment.apiUrl}/api/Status/GetStatusById`;
     if (id!="")
       url += `?id=${id.toString()}`
 
@@ -38,7 +39,7 @@ export class StatusService {
       Authorization :`Bearer ${localStorage.getItem('jwt')}`,
     });
     return this.http.put<Status[]>(
-      "https://localhost:7115/api/Status/EditStatus",
+      `${environment.apiUrl}/api/Status/EditStatus`,
       status ,{headers:headers}
     );
   }

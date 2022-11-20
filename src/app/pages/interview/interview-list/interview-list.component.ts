@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Observable } from 'rxjs/internal/Observable';
+import { environment } from 'src/environments/environment';
 import Swal from 'sweetalert2';
 import { Interview } from '../../interview/interview.model';
 import { Interviewer } from '../../interviewer/interviewer.model';
@@ -55,7 +56,7 @@ export class InterviewListComponent implements OnInit {
     const headers = new HttpHeaders({
       Authorization :`Bearer ${localStorage.getItem('jwt')}`,
     });
-    return this.http.get<any>('https://localhost:7115/api/Interview/GetInterviews'
+    return this.http.get<any>(`${environment.apiUrl}/api/Interview/GetInterviews`
     ,{
       headers:headers
     })
@@ -80,7 +81,7 @@ export class InterviewListComponent implements OnInit {
     const headers = new HttpHeaders({
       Authorization :`Bearer ${localStorage.getItem('jwt')}`,
     });
-    let url=`https://localhost:7115/api/Interview/GetAllInterviews/pageIndex=${pageIndex}&pageSize=${pageSize}`
+    let url=`${environment.apiUrl}/api/Interview/GetAllInterviews/pageIndex=${pageIndex}&pageSize=${pageSize}`
     if(id!="") url+=`&id=${id}`;
     if(interviewName!="") url+=`&roundName=${interviewName}`;
     if(startDate !=null) url+= `&startDate=${startDate}`;
@@ -120,7 +121,7 @@ export class InterviewListComponent implements OnInit {
     const headers = new HttpHeaders({
       Authorization :`Bearer ${localStorage.getItem('jwt')}`,
     });
-    let url ="https://localhost:7115/api/Interview/DeleteInterview";
+    let url =`${environment.apiUrl}/api/Interview/DeleteInterview`;
     if(interviewId !="")
       url +=`?id=${interviewId}`
 
@@ -189,7 +190,7 @@ export class InterviewListComponent implements OnInit {
     const headers = new HttpHeaders({
       Authorization :`Bearer ${localStorage.getItem('jwt')}`,
     });
-    let url ="https://localhost:7115/api/Interview/GetInterviewsData";
+    let url =`${environment.apiUrl}/api/Interview/GetInterviewsData`;
     return this.http.get<any>(url,{headers:headers});
   }
 

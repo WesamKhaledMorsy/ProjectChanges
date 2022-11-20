@@ -4,6 +4,7 @@ import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { guid } from '@fullcalendar/angular';
 import { Observable } from 'rxjs/internal/Observable';
+import { environment } from 'src/environments/environment';
 import Swal from 'sweetalert2';
 import { Interviewer } from '../../interviewer/interviewer.model';
 import { Round } from '../../round/round.model';
@@ -120,7 +121,7 @@ export class InterviewCreateComponent implements OnInit {
         interview.adminId = "3fa85f64-5717-4562-b3fc-2c963f66afa6";
         debugger
       this.http.post<any>
-        ('https://localhost:7115/api/Interview/CreateNewInterview',
+        (`${environment.apiUrl}/api/Interview/CreateNewInterview`,
         interview ,{headers:headers}).subscribe(data => {
           console.log(data)
 
@@ -161,7 +162,7 @@ export class InterviewCreateComponent implements OnInit {
     const headers = new HttpHeaders({
       Authorization :`Bearer ${localStorage.getItem('jwt')}`,
     });
-    let url ="https://localhost:7115/api/Interview/GetInterviewsData";
+    let url =`${environment.apiUrl}/api/Interview/GetInterviewsData`;
     return this.http.get<any>(url,{headers:headers});
   }
 

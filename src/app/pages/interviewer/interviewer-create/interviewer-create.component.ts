@@ -4,6 +4,7 @@ import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { guid } from '@fullcalendar/angular';
 import { Observable } from 'rxjs/internal/Observable';
+import { environment } from 'src/environments/environment';
 import Swal from 'sweetalert2';
 import { Interview } from '../../interview/interview.model';
 import { Student } from '../../student/student.model';
@@ -118,7 +119,7 @@ onSubmit(form:NgForm){
        interviewer.adminId = "3fa85f64-5717-4562-b3fc-2c963f66afa6";
       debugger
     this.http.post<any>
-      ('https://localhost:7115/api/Interviewer/CreateNewInterviewer',interviewer
+      (`${environment.apiUrl}/api/Interviewer/CreateNewInterviewer`,interviewer
       ,{headers:headers}).subscribe(data => {
         console.log(data)
 
@@ -159,7 +160,7 @@ _GetAllInterviewerData():Observable<any>{
   const headers = new HttpHeaders({
     Authorization :`Bearer ${localStorage.getItem('jwt')}`,
   });
-  let url ="https://localhost:7115/api/Interviewer/GetInterviewersData";
+  let url =`${environment.apiUrl}/api/Interviewer/GetInterviewersData`;
   return this.http.get<any>(url,{headers:headers});
 }
 

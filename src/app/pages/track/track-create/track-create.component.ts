@@ -3,6 +3,7 @@ import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angu
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/internal/Observable';
+import { environment } from 'src/environments/environment';
 import Swal from 'sweetalert2';
 import { Round } from '../../round/round.model';
 import { Track } from '../track.model';
@@ -87,7 +88,7 @@ onSubmit(form:NgForm){
       track.adminId = "3fa85f64-5717-4562-b3fc-2c963f66afa6";
       debugger
     this.http.post<any>
-      ('https://localhost:7115/api/Track/CreateNewTrack',track ,{headers:headers}).subscribe(data => {
+      (`${environment.apiUrl}/api/Track/CreateNewTrack`,track ,{headers:headers}).subscribe(data => {
         console.log(data)
 
         //!==
@@ -127,7 +128,7 @@ _GetAllTrackData():Observable<any>{
   const headers = new HttpHeaders({
     Authorization :`Bearer ${localStorage.getItem('jwt')}`,
   });
-  let url ="https://localhost:7115/api/Track/GetAllTrackData";
+  let url =`${environment.apiUrl}/api/Track/GetAllTrackData`;
   return this.http.get<any>(url,{headers:headers});
 }
 

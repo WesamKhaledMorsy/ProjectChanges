@@ -1,5 +1,6 @@
 export const environment = {
   production: true,
+  apiUrl: "https://admissionsystem.azurewebsites.net/",
   defaultauth: 'fackbackend',
   firebaseConfig: {
     apiKey: '',

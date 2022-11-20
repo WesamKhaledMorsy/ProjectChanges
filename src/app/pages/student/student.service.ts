@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
+import { environment } from 'src/environments/environment';
 import { Student } from './student.model';
 
 @Injectable({
@@ -17,7 +18,7 @@ export class StudentService {
     });
     student.id  ;
     return this.http.post<Student[]>
-        ('https://localhost:7115/api/Student/CreateNewStudent',student,{headers:headers});
+        (`${environment.apiUrl}/api/Student/CreateNewStudent`,student,{headers:headers});
 
   }
 
@@ -25,7 +26,7 @@ export class StudentService {
     const headers = new HttpHeaders({
       Authorization :`Bearer ${localStorage.getItem('jwt')}`,
     });
-    let url="https://localhost:7115/api/Student/GetStudentById";
+    let url=`${environment.apiUrl}/api/Student/GetStudentById`;
     if (id!="")
       url += `?id=${id.toString()}`
 
@@ -40,7 +41,7 @@ export class StudentService {
     const headers = new HttpHeaders({
       Authorization :`Bearer ${localStorage.getItem('jwt')}`,
     });
-    let url="https://localhost:7115/api/Student/GetStudentByUserName";
+    let url=`${environment.apiUrl}/api/Student/GetStudentByUserName`;
     if (userName!="")
       url += `?id=${userName.toString()}`
 
@@ -54,7 +55,7 @@ export class StudentService {
       Authorization :`Bearer ${localStorage.getItem('jwt')}`,
     });
     return this.http.put<Student[]>(
-      "https://localhost:7115/api/Student/EditStudent",
+      `${environment.apiUrl}/api/Student/EditStudent`,
       student ,{headers:headers}
     );
   }

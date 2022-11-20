@@ -3,6 +3,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs/internal/Observable';
+import { environment } from 'src/environments/environment';
 import { Interview } from '../../interview/interview.model';
 import { Round } from '../../round/round.model';
 import { Status } from '../../status/status.model';
@@ -89,7 +90,7 @@ id=this.userid;
    });
    console.log(id)
    debugger
-   let url ="https://localhost:7115/api/Student/GetStudentByInterviewerId";
+   let url =`${environment.apiUrl}/api/Student/GetStudentByInterviewerId`;
    return this.http.get<any>(url,{headers:headers});
  }
 
@@ -117,7 +118,7 @@ getStudents(){
   const headers = new HttpHeaders({
     Authorization :`Bearer ${localStorage.getItem('jwt')}`,
   });
-  return this.http.get<any>('https://localhost:7115/api/Student/GetStudents'
+  return this.http.get<any>(`${environment.apiUrl}/api/Student/GetStudents`
   ,{
     headers:headers
   })
@@ -138,7 +139,7 @@ getAllStudents(
   const headers = new HttpHeaders({
     Authorization :`Bearer ${localStorage.getItem('jwt')}`,
   });
-  let url=`https://localhost:7115/api/Student/GetAllStudents/pageIndex=${pageIndex}&pageSize=${pageSize}`
+  let url=`${environment.apiUrl}/api/Student/GetAllStudents/pageIndex=${pageIndex}&pageSize=${pageSize}`
   if(id!="") url+=`&id=${id}`;
   if(studentName!="") url+=`&name=${studentName}`;
   if(status !="") url+= `&status=${status}`;

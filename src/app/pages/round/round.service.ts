@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
+import { environment } from 'src/environments/environment';
 import { Round } from './round.model';
 
 @Injectable({
@@ -18,7 +19,7 @@ export class RoundService {
     });
     round.id  ;
     return this.http.post<Round[]>
-        ('https://localhost:7115/api/Round/CreateNewRound',round,{headers:headers});
+        (`${environment.apiUrl}/api/Round/CreateNewRound`,round,{headers:headers});
 
   }
 
@@ -26,7 +27,7 @@ export class RoundService {
     const headers = new HttpHeaders({
       Authorization :`Bearer ${localStorage.getItem('jwt')}`,
     });
-    let url="https://localhost:7115/api/Round/GetRoundById";
+    let url=`${environment.apiUrl}/api/Round/GetRoundById`;
     if (id!="")
       url += `?id=${id}`
 
@@ -40,7 +41,7 @@ export class RoundService {
       Authorization :`Bearer ${localStorage.getItem('jwt')}`,
     });
     return this.http.put<Round[]>(
-      "https://localhost:7115/api/Round/EditRound",
+      `${environment.apiUrl}/api/Round/EditRound`,
       round,{headers:headers}
     );
   }

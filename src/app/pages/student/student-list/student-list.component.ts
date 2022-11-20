@@ -13,6 +13,7 @@ import { Round } from '../../round/round.model';
 import { Observable } from 'rxjs/internal/Observable';
 import { Document } from '../../documents/document.model';
 import { Interview } from '../../interview/interview.model';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-student-list',
@@ -77,7 +78,7 @@ export class StudentListComponent implements OnInit {
     const headers = new HttpHeaders({
       Authorization :`Bearer ${localStorage.getItem('jwt')}`,
     });
-    return this.http.get<any>('https://localhost:7115/api/Student/GetStudents'
+    return this.http.get<any>(`${environment.apiUrl}/api/Student/GetStudents`
     ,{
       headers:headers
     })
@@ -92,7 +93,7 @@ export class StudentListComponent implements OnInit {
     const headers = new HttpHeaders({
       Authorization :`Bearer ${localStorage.getItem('jwt')}`,
     });
-    let url ="https://localhost:7115/api/Student/DeleteStudent";
+    let url =`${environment.apiUrl}/api/Student/DeleteStudent`;
     if(studentId !="")
       url +=`?id=${studentId}`
 
@@ -156,7 +157,7 @@ export class StudentListComponent implements OnInit {
     const headers = new HttpHeaders({
       Authorization :`Bearer ${localStorage.getItem('jwt')}`,
     });
-    let url=`https://localhost:7115/api/Student/GetAllStudents?pageIndex=${pageIndex}&pageSize=${pageSize}`
+    let url=`${environment.apiUrl}/api/Student/GetAllStudents?pageIndex=${pageIndex}&pageSize=${pageSize}`
 
     if(studentName!="") url+=`&name=${studentName}`;
     if(email!="") url+=`&email=${email}`;
@@ -204,7 +205,7 @@ debugger
     const headers = new HttpHeaders({
       Authorization :`Bearer ${localStorage.getItem('jwt')}`,
     });
-    let url ="https://localhost:7115/api/Student/GetAllStudentData";
+    let url =`${environment.apiUrl}/api/Student/GetAllStudentData`;
     return this.http.get<any>(url,{headers:headers});
   }
 

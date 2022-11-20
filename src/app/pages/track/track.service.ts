@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
+import { environment } from 'src/environments/environment';
 import { Track } from './track.model';
 
 @Injectable({
@@ -16,7 +17,7 @@ export class TrackService {
     });
     track.id  ;
     return this.http.post<Track[]>
-        ('https://localhost:7115/api/Track/CreateNewTrack',track,{headers:headers});
+        (`${environment.apiUrl}/api/Track/CreateNewTrack`,track,{headers:headers});
 
   }
 
@@ -24,7 +25,7 @@ export class TrackService {
     const headers = new HttpHeaders({
       Authorization :`Bearer ${localStorage.getItem('jwt')}`,
     });
-    let url="https://localhost:7115/api/Track/GetTrackById";
+    let url=`${environment.apiUrl}/api/Track/GetTrackById`;
     if (id!="")
       url += `?id=${id}`
 
@@ -38,7 +39,7 @@ export class TrackService {
       Authorization :`Bearer ${localStorage.getItem('jwt')}`,
     });
     return this.http.put<Track[]>(
-      "https://localhost:7115/api/Track/EditTrack",
+      `${environment.apiUrl}/api/Track/EditTrack`,
       track,{headers:headers}
     );
   }

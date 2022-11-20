@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Observable } from 'rxjs/internal/Observable';
+import { environment } from 'src/environments/environment';
 import Swal from 'sweetalert2';
 import { Round } from '../../round/round.model';
 import { Track } from '../track.model';
@@ -53,7 +54,7 @@ export class TrackListComponent implements OnInit {
       const headers = new HttpHeaders({
         Authorization :`Bearer ${localStorage.getItem('jwt')}`,
       });
-    return this.http.get<any>('https://localhost:7115/api/Track/GetTracks' ,{headers:headers})
+    return this.http.get<any>(`${environment.apiUrl}/api/Track/GetTracks` ,{headers:headers})
     .subscribe(data =>{
       this.selectTracks = data;
       console.log(this.selectTracks);
@@ -113,7 +114,7 @@ export class TrackListComponent implements OnInit {
     const headers = new HttpHeaders({
       Authorization :`Bearer ${localStorage.getItem('jwt')}`,
     });
-    let url ="https://localhost:7115/api/Track/DeleteTrack";
+    let url =`${environment.apiUrl}/api/Track/DeleteTrack`;
     if(trackId!=0)
       url +=`?id=${trackId}`
 
@@ -181,7 +182,7 @@ export class TrackListComponent implements OnInit {
     const headers = new HttpHeaders({
       Authorization :`Bearer ${localStorage.getItem('jwt')}`,
     });
-    let url ="https://localhost:7115/api/Track/GetAllTrackData";
+    let url =`${environment.apiUrl}/api/Track/GetAllTrackData`;
     return this.http.get<any>(url,{headers:headers});
   }
 

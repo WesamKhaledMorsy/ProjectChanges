@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 import Swal from 'sweetalert2';
 import { Student } from '../../student/student.model';
 import { Gender } from '../gender.model';
@@ -56,7 +57,7 @@ id: string;
     const headers = new HttpHeaders({
       Authorization :`Bearer ${localStorage.getItem('jwt')}`,
     });
-    return this.http.get<any>('https://localhost:7115/api/Gender/GetGenders'
+    return this.http.get<any>(`${environment.apiUrl}/api/Gender/GetGenders`
     ,{
       headers:headers
     })
@@ -71,7 +72,7 @@ id: string;
     const headers = new HttpHeaders({
       Authorization :`Bearer ${localStorage.getItem('jwt')}`,
     });
-    let url ="https://localhost:7115/api/Gender/DeleteGender";
+    let url =`${environment.apiUrl}/api/Gender/DeleteGender`;
     if(genderId !="")
       url +=`?id=${genderId}`
 

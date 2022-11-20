@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { environment } from 'src/environments/environment';
 import Swal from 'sweetalert2';
 import { Status } from '../status.model';
 
@@ -51,7 +52,7 @@ export class StatusListComponent implements OnInit {
     const headers = new HttpHeaders({
       Authorization :`Bearer ${localStorage.getItem('jwt')}`,
     });
-    return this.http.get<any>('https://localhost:7115/api/Status/GetStatus'
+    return this.http.get<any>(`${environment.apiUrl}/api/Status/GetStatus`
     ,{
       headers:headers
     })
@@ -66,7 +67,7 @@ export class StatusListComponent implements OnInit {
     const headers = new HttpHeaders({
       Authorization :`Bearer ${localStorage.getItem('jwt')}`,
     });
-    let url ="https://localhost:7115/api/Status/DeleteStatus";
+    let url =`${environment.apiUrl}/api/Status/DeleteStatus`;
     if(statusId !="")
       url +=`?id=${statusId}`
 

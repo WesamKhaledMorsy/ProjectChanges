@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { environment } from 'src/environments/environment';
 import Swal from 'sweetalert2';
 import { Student } from '../../student/student.model';
 import { University } from '../university.model';
@@ -53,7 +54,7 @@ export class UniversityListComponent implements OnInit {
     const headers = new HttpHeaders({
       Authorization :`Bearer ${localStorage.getItem('jwt')}`,
     });
-    return this.http.get<any>('https://localhost:7115/api/University/GetUniversity'
+    return this.http.get<any>(`${environment.apiUrl}/api/University/GetUniversity`
     ,{
       headers:headers
     })
@@ -75,7 +76,7 @@ export class UniversityListComponent implements OnInit {
     const headers = new HttpHeaders({
       Authorization :`Bearer ${localStorage.getItem('jwt')}`,
     });
-    let url ="https://localhost:7115/api/University/DeleteUniversity";
+    let url =`${environment.apiUrl}/api/University/DeleteUniversity`;
     if(universityId !=0)
       url +=`?id=${universityId}`
 

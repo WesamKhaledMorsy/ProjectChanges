@@ -83,7 +83,7 @@ export class SignupComponent implements OnInit {
       Password:this.signupForm.controls['password'].value,
     }
     debugger
-    this.http.post<any>('https://localhost:7115/api/Auth/Register',body)
+    this.http.post<any>(`${environment.apiUrl}/api/Auth/Register`,body)
     .subscribe((data)=>{
       console.log("response",data);
       localStorage.setItem('jwt', data.tokens);

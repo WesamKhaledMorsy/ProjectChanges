@@ -3,6 +3,7 @@ import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angu
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/internal/Observable';
+import { environment } from 'src/environments/environment';
 import Swal from 'sweetalert2';
 import { University } from '../university.model';
 import { UniversityService } from '../university.service';
@@ -128,7 +129,7 @@ export class UniversityCreateComponent implements OnInit {
         university.adminId="3fa85f64-5717-4562-b3fc-2c963f66afa6";
         debugger
       this.http.post<any>
-        ('https://localhost:7115/api/University/CreateNewUniversity',
+        (`${environment.apiUrl}/api/University/CreateNewUniversity`,
         university ,{headers:headers}).subscribe(data => {
           console.log(data)
 
@@ -169,7 +170,7 @@ export class UniversityCreateComponent implements OnInit {
     const headers = new HttpHeaders({
     Authorization :`Bearer ${localStorage.getItem('jwt')}`,
   });
-    let url ="https://localhost:7115/api/University/GetUniversity";
+    let url =`${environment.apiUrl}/api/University/GetUniversity`;
     return this.http.get<any>(url,{headers:headers});
   }
 

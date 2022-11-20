@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { helper } from 'echarts';
 import { Observable } from 'rxjs/internal/Observable';
+import { environment } from 'src/environments/environment';
 import { University } from './university.model';
 
 @Injectable({
@@ -17,7 +18,7 @@ export class UniversityService {
     });
     university.id  ;
     return this.http.post<University[]>
-        ('https://localhost:7115/api/University/CreateNewUniversity',university,{headers:headers});
+        (`${environment.apiUrl}/api/University/CreateNewUniversity`,university,{headers:headers});
 
   }
 
@@ -25,7 +26,7 @@ export class UniversityService {
     const headers = new HttpHeaders({
       Authorization :`Bearer ${localStorage.getItem('jwt')}`,
     });
-    let url="https://localhost:7115/api/University/GetUniversityById";
+    let url=`${environment.apiUrl}/api/University/GetUniversityById`;
     if (id!="")
       url += `?id=${id.toString()}`
 
@@ -39,7 +40,7 @@ export class UniversityService {
       Authorization :`Bearer ${localStorage.getItem('jwt')}`,
     });
     return this.http.put<University[]>(
-      "https://localhost:7115/api/University/EditUniversity",
+      `${environment.apiUrl}/api/University/EditUniversity`,
       university ,{headers:headers}
     );
   }

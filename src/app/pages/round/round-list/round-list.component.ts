@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Observable } from 'rxjs/internal/Observable';
+import { environment } from 'src/environments/environment';
 import Swal from 'sweetalert2';
 import { Round } from '../round.model';
 
@@ -52,7 +53,7 @@ export class RoundListComponent implements OnInit {
       const headers = new HttpHeaders({
         Authorization :`Bearer ${localStorage.getItem('jwt')}`,
       });
-    return this.http.get<any>('https://localhost:7115/api/Round/GetRounds',{headers:headers})
+    return this.http.get<any>(`${environment.apiUrl}/api/Round/GetRounds`,{headers:headers})
     .subscribe(data =>{
       this.selectRounds = data;
       console.log(this.selectRounds);
@@ -73,7 +74,7 @@ export class RoundListComponent implements OnInit {
     const headers = new HttpHeaders({
       Authorization :`Bearer ${localStorage.getItem('jwt')}`,
     });
-    let url=`https://localhost:7115/api/Round/GetAllRounds/pageIndex=${pageIndex}&pageSize=${pageSize}`
+    let url=`${environment.apiUrl}/api/Round/GetAllRounds/pageIndex=${pageIndex}&pageSize=${pageSize}`
     if(id!="") url+=`&id=${id}`;
     if(roundName!="") url+=`&roundName=${roundName}`;
     if(startDate !=null) url+= `&startDate=${startDate}`;
@@ -116,7 +117,7 @@ export class RoundListComponent implements OnInit {
     const headers = new HttpHeaders({
       Authorization :`Bearer ${localStorage.getItem('jwt')}`,
     });
-    let url ="https://localhost:7115/api/Round/DeleteRound";
+    let url =`${environment.apiUrl}/api/Round/DeleteRound`;
     if(roundId!="")
       url +=`?id=${roundId}`
 
