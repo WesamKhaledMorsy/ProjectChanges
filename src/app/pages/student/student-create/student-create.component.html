@@ -288,7 +288,15 @@
                   </div>
 
                   <!-- [routerLink]="['/student/studentProfile',StudentInput.id]" -->
-                  <div class="row justify-content-end"  *ngIf="StudentForm || IsUser" style="margin-top: 5px">
+                  <div class="row justify-content-end"  *ngIf="StudentForm || IsAdmin || IsInterviewer" style="margin-top: 5px">
+                    <div class="col-lg-10" >
+                      <button [disabled]="!StudentForm.valid"
+                     type="submit" [routerLink]="['/student/studentProfile',StudentInput.id]"
+                      class="btn btn-primary"
+                      >Go To Profile</button>
+                    </div>
+                  </div>
+                  <div class="row justify-content-end"  *ngIf="IsUser" style="margin-top: 5px">
                     <div class="col-lg-10" >
                       <button [disabled]="!StudentForm.valid"
                      type="submit" [routerLink]="['/student/studentProfile',StudentInput.userId]"

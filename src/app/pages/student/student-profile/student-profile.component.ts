@@ -55,42 +55,42 @@ export class StudentProfileComponent implements OnInit {
       this.LoggedIn=true;
     }
     this.route.paramMap.subscribe((params)=>{
-      const id = params.get("userId");
+      const id = params.get("id");
       const userId = localStorage.getItem("userId");
       const userName=params.get("userName");
       console.log(userName);
-      this.StudentId=userId;
+      this.StudentId=id;
       this.isAddMode =! userId;
-      // if(id)
-      // {
-      // this.studentServices.getStudentById(id).subscribe((result)=>{
-      //   debugger
+      if(id)
+      {
+      this.studentServices.getStudentById(id).subscribe((result)=>{
+        debugger
 
-      //     this.studentInput.studentName=result[0].studentName;
-      //     this.studentInput.phoneNumber=result[0].phoneNumber;
-      //     this.studentInput.email=result[0].email;
-      //     this.studentInput.universityId=result[0].universityId;
-      //     this.studentInput.universityName=result[0].universityName;
-      //     this.studentInput.graduationYear=result[0].graduationYear;
-      //     // this.studentInput.gradeId=result[0].gradeId;
-      //     // this.studentInput.gradeValue=result[0].gradeValue;
-      //     this.studentInput.studentGrade=result[0].studentGrade;
-      //     this.studentInput.statusId=result[0].statusId;
-      //     this.studentInput.statusName=result[0].statusName;
-      //     this.studentInput.roundId=result[0].roundId;
-      //     this.studentInput.roundName=result[0].roundName;
-      //     this.studentInput.trackId=result[0].trackId;
-      //     this.studentInput.trackName=result[0].trackName;
-      //     this.studentInput.interviewId=result[0].interviewId;
-      //     this.studentInput.interviewName=result[0].interviewName;
-      //     this.studentInput.interviewerId=result[0].interviewerId;
-      //     this.studentInput.interviewerName=result[0].interviewerName;
-      //     this.studentInput.userName=result[0].userName;
-      //     debugger
-      //     console.log(result);
-      //   })
+          this.studentInput.studentName=result[0].studentName;
+          this.studentInput.phoneNumber=result[0].phoneNumber;
+          this.studentInput.email=result[0].email;
+          this.studentInput.universityId=result[0].universityId;
+          this.studentInput.universityName=result[0].universityName;
+          this.studentInput.graduationYear=result[0].graduationYear;
+          // this.studentInput.gradeId=result[0].gradeId;
+          // this.studentInput.gradeValue=result[0].gradeValue;
+          this.studentInput.studentGrade=result[0].studentGrade;
+          this.studentInput.statusId=result[0].statusId;
+          this.studentInput.statusName=result[0].statusName;
+          this.studentInput.roundId=result[0].roundId;
+          this.studentInput.roundName=result[0].roundName;
+          this.studentInput.trackId=result[0].trackId;
+          this.studentInput.trackName=result[0].trackName;
+          this.studentInput.interviewId=result[0].interviewId;
+          this.studentInput.interviewName=result[0].interviewName;
+          this.studentInput.interviewerId=result[0].interviewerId;
+          this.studentInput.interviewerName=result[0].interviewerName;
+          this.studentInput.userName=result[0].userName;
+          debugger
+          console.log(result);
+        })
 
-      //  }else
+       }else
        if(id == undefined && userId){
         debugger
         // this.studentInput.id = guid();
@@ -146,9 +146,9 @@ export class StudentProfileComponent implements OnInit {
           this.studentInput.interviewerId=result[0].interviewerId;
           this.studentInput.interviewerName=result[0].interviewerName;
           this.studentInput.userName=result[0].userName;
-      }
-        )
+      })
     }
+
   })}
 
 

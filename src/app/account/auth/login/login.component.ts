@@ -226,7 +226,7 @@ export class LoginComponent implements OnInit {
                   console.log('response',response);
                  // debugger
                 },(error:Response) =>{
-                  window.alert("InValid Email or Password");
+                  window.alert("Invalid Email or Password, Please Enter a valid email");
                   //console.log("error",error)
                   return error;
                 } );
