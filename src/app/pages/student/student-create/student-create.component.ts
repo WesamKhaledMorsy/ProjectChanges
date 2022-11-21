@@ -131,6 +131,7 @@ export class StudentCreateComponent implements OnInit {
     }
     });
     this.GetAllStudentData();
+    this._getStudentByUserId();
     this.validate();
   }
 

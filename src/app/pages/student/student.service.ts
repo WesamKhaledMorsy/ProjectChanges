@@ -49,6 +49,32 @@ export class StudentService {
       url,{headers:headers}
     );
   }
+  public GetStudentByUserId(userId:string) : Observable <any>{
+    const headers = new HttpHeaders({
+      Authorization :`Bearer ${localStorage.getItem('jwt')}`,
+    });
+    let url=`${environment.apiUrl}/api/Student/GetStudentByUserId`;
+    if (userId!="")
+      url += `?id=${userId.toString()}`
+
+    return this.http.get<Student>(
+      url,{headers:headers}
+    );
+  }
+
+  userId :string = localStorage.getItem('userId');
+  public getStudentByUserId(id:string) : Observable <any>{
+    const headers = new HttpHeaders({
+      Authorization :`Bearer ${localStorage.getItem('jwt')}`,
+    });
+    let url=`${environment.apiUrl}/api/Student/GetStudentByUserId`;
+    if (id!="")
+      url += `?id=${id}`
+      console.log(id);
+    return this.http.get<Student>(
+      url,{headers:headers}
+    );
+  }
 
   public UpdateStudent(student: Student): Observable<Student[]> {
     const headers = new HttpHeaders({

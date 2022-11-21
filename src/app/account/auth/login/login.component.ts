@@ -225,7 +225,11 @@ export class LoginComponent implements OnInit {
                   this.router.navigate(['/dashboard']);
                   console.log('response',response);
                  // debugger
-                });
+                },(error:Response) =>{
+                  window.alert("InValid Email or Password");
+                  //console.log("error",error)
+                  return error;
+                } );
     }
   }
 }

@@ -137,8 +137,8 @@
             <div class="row">
               <div class="col-7">
                 <div class="text-primary p-4">
-                  <h5 class="text-primary">Welcome Back !</h5>
-                  <p>Sign in to continue to Skote.</p>
+                  <!-- <h5 class="text-primary">Welcome Back !</h5> -->
+                  <!-- <p>Sign in to continue to Skote.</p> -->
                 </div>
               </div>
               <div class="col-5 align-self-end">
@@ -148,10 +148,10 @@
           </div>
           <div class="card-body pt-0">
             <div>
-              <a routerLink="/">
-                <div class="avatar-md profile-user-wid mb-4">
+              <a>
+                <div class="avatar-md profile-user-wid mb-4 ml-10">
                   <span class="avatar-title rounded-circle bg-light">
-                    <img src="assets/images/logo.svg" alt="" class="rounded-circle" height="34">
+                    <img src="assets/images/KAITECH.png" alt="" class="rounded-circle" style="height: 80px; width:80px; box-shadow: rgba(95, 158, 160, 0.233);">
                   </span>
                 </div>
               </a>
@@ -161,7 +161,7 @@
 
                 <!-- <ngb-alert type="danger" *ngIf="error" [dismissible]="false">{{ error }}</ngb-alert> -->
 
-          
+
 
                 <div class="mb-3">
                   <label for="email">Email</label>
@@ -196,7 +196,7 @@
               </div>
 
                 <div class="mt-3 d-grid">
-                  <button class="btn btn-primary" type="submit">Log In</button>
+                  <button class="btn btn-primary" [disabled]="!loginForm.valid" type="submit">Log In</button>
                 </div>
                 <div class="mt-4 text-center">
                   <h5 class="font-size-14 mb-3">Sign in with</h5>
@@ -233,7 +233,7 @@
           <p>Don't have an account ? <a routerLink="/account/signup" class="fw-medium text-primary"> Signup
               now
             </a> </p>
-          <p>© {{year}} Skote. Crafted with <i class="mdi mdi-heart text-danger"></i> by Themesbrand</p>
+          <p>© {{year}} KAITECH <i class="mdi mdi-heart text-danger"></i></p>
         </div>
 
       </div>

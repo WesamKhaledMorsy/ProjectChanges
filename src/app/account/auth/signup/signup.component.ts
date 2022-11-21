@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, UntypedFormBuilder, UntypedFormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { AbstractControl, EmailValidator, UntypedFormBuilder, UntypedFormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { AuthenticationService } from '../../../core/services/auth.service';
 import { environment } from '../../../../environments/environment';
 import { first } from 'rxjs/operators';
 import { UserProfileService } from '../../../core/services/user.service';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { User } from 'src/app/core/models/auth.models';
 import { Observable } from 'rxjs/internal/Observable';
 //import { CustomEmailValidator } from "../shared/custom-email.validator";
-
+import'rxjs/RX';
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
@@ -22,7 +22,7 @@ export class SignupComponent implements OnInit {
   submitted = false;
   error = '';
   successmsg = false;
-
+  pattern: string | RegExp;
   // set the currenr year
   year: number = new Date().getFullYear();
   someServiceWorkingWithDatabase: any;
@@ -41,9 +41,9 @@ export class SignupComponent implements OnInit {
     this.signupForm = this.formBuilder.group({
       // username: [{value: null, disabled: false},
       //   [Validators.required, this.validateUsername()]],
-      username: ['',[Validators.required]],
+      username: ['',[Validators.required ,Validators.minLength(3)]],
       email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required],
+      password: ['', [Validators.required,Validators.minLength(8), Validators.maxLength(15)]],
     });
   }
 //   private validateUsername(): ValidatorFn {
@@ -86,6 +86,7 @@ export class SignupComponent implements OnInit {
     this.http.post<any>(`${environment.apiUrl}/api/Auth/Register`,body)
     .subscribe((data)=>{
       console.log("response",data);
+      console.log(data.error)
       localStorage.setItem('jwt', data.tokens);
       localStorage.setItem('roles',data.roles);
       localStorage.setItem('userId',data.userId);
@@ -104,10 +105,20 @@ export class SignupComponent implements OnInit {
 
 
       debugger
-    })
+    },(error:Response) =>{
+      window.alert("This Email is Exist , Try another email");
+      //console.log("error",error)
+      return error;
+    } )
+
 
   }
-
+  // .map(
+  //   (response:Response)=>{
+  //     const data = response.json();
+  //     return data;
+  //   }
+  // );
 }
 interface AsyncValidatorFn {
   (c: AbstractControl): Promise<ValidationErrors|null>|Observable<ValidationErrors|null>

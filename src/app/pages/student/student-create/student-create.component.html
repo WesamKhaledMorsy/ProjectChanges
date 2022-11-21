@@ -291,7 +291,7 @@
                   <div class="row justify-content-end"  *ngIf="StudentForm || IsUser" style="margin-top: 5px">
                     <div class="col-lg-10" >
                       <button [disabled]="!StudentForm.valid"
-                     type="submit" [routerLink]="['/student/studentProfile',StudentInput.id]"
+                     type="submit" [routerLink]="['/student/studentProfile',StudentInput.userId]"
                       class="btn btn-primary"
                       >Go To Profile</button>
                     </div>
