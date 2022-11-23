@@ -121,7 +121,7 @@
                       [(ngModel)]="StudentInput.genderId"
                       [disabled]="IsInterviewer"
                         placeholder="Enter Gender">
-                        <option value="0" selected>Gender</option>
+                        <option value="">Select Gender</option>
                         <option *ngFor="let gender of genders"
                         [value]="gender.id">
                           {{gender.genderType}}
@@ -166,7 +166,7 @@
                       [(ngModel)]="StudentInput.roundId"
                       [disabled]="IsInterviewer"
                         placeholder="Enter Gender">
-                        <option value="0" selected>Round</option>
+                        <option value="">Select Round</option>
                         <option *ngFor="let round of rounds"
                         [value]="round.id">
                           {{round.roundName}}
@@ -184,7 +184,7 @@
                       [(ngModel)]="StudentInput.trackId"
                       [disabled]="IsInterviewer"
                         placeholder="Enter Gender">
-                        <option value="0" selected>Tracks</option>
+                        <option value="">Select Tracks</option>
                         <option *ngFor="let track of tracks"
                         [value]="track.id">
                           {{track.trackName}}
@@ -218,7 +218,7 @@
 
                       [(ngModel)]="StudentInput.interviewerId"
                         placeholder="Enter Interview ....">
-                        <option value="0" selected>Interview</option>
+                        <option value="">Select Interview</option>
                         <option *ngFor="let interviewer of interviewers"
                         [value]="interviewer.id">
                           {{interviewer.interviewerName}}
@@ -242,7 +242,7 @@
                       <select  id="universityName" name="universityId"  class="form-control"
                       [(ngModel)]="StudentInput.universityId"  [disabled]="IsInterviewer"
                         placeholder="Enter University ....">
-                        <option value="0" selected> --------- University ---------</option>
+                        <option value="">Select University</option>
                         <option *ngFor="let university of universities"
                         [value]="university.id">
                           {{university.universityName}}
@@ -259,7 +259,7 @@
                       id="statusName" name="statusId"  class="form-control"
                       [(ngModel)]="StudentInput.statusId"
                         placeholder="Enter Status ....">
-                        <option value="0" selected >Waiting for Interview</option>
+                        <option value="">Select Status</option>
                         <option *ngFor="let status of statuses"
                         [value]="status.id">
                           {{status.statusName}}
@@ -391,7 +391,7 @@
                 <i class="bx bx-arrow-back"></i> Back To List
               </button>
             </aw-wizard-step>
-
+<!--
             <aw-wizard-step>
               <ng-template awWizardStepSymbol>
                 <i class="fas fa-check-circle"></i>
@@ -420,7 +420,7 @@
 
                 <i class="bx bx-arrow-back"></i> Back To List
               </button>
-            </aw-wizard-step>
+            </aw-wizard-step> -->
           </aw-wizard>
         </div>
       </div>

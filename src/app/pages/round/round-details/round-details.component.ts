@@ -12,6 +12,11 @@ import { RoundService } from '../round.service';
   styleUrls: ['./round-details.component.scss']
 })
 export class RoundDetailsComponent implements OnInit {
+  LogedIn : boolean = false;
+  IsAdmin !:boolean;
+  IsInterviewer !:boolean;
+  IsUser !:boolean;
+  isVisible: string;
 
 
   roundDetails : Round[] =[];
@@ -27,7 +32,27 @@ export class RoundDetailsComponent implements OnInit {
     private route:ActivatedRoute ) { }
 
   ngOnInit(): void {
-
+    const role :any =localStorage.getItem('roles');
+    if(role== "Admin"){
+       this.IsAdmin =true;
+       this.IsInterviewer=false;
+       this.IsUser=false;
+       this.LogedIn=false;
+    }else if (role=="Interviewer"){
+      this.IsInterviewer= true;
+      this.IsAdmin = false;
+      this.IsUser=false;
+      this.LogedIn=false;
+    }
+    else if(role == "Trainee"){
+      debugger
+      this.IsUser=true;
+      this.IsInterviewer=false;
+      this.IsAdmin=false;
+      this.LogedIn=false;
+      debugger
+    }
+    
     this.route.paramMap.subscribe((params)=>{
       const id = params.get("id");
       this.RoundId=id;

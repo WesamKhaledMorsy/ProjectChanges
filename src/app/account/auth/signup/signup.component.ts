@@ -9,6 +9,7 @@ import { UserProfileService } from '../../../core/services/user.service';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { User } from 'src/app/core/models/auth.models';
 import { Observable } from 'rxjs/internal/Observable';
+import { catchError, retry } from 'rxjs/operators';
 //import { CustomEmailValidator } from "../shared/custom-email.validator";
 import'rxjs/RX';
 @Component({
@@ -106,8 +107,9 @@ export class SignupComponent implements OnInit {
 
       debugger
     },(error:Response) =>{
+      error.statusText;
       window.alert("This Email is Exist , Try another email");
-      //console.log("error",error)
+       error.body.cancel;
       return error;
     } )
 
@@ -119,6 +121,10 @@ export class SignupComponent implements OnInit {
   //     return data;
   //   }
   // );
+  private handleErrorObservable(error: Response | any) {
+    console.error(error.message || error);
+    return Observable.throw(error.message || error);
+  }
 }
 interface AsyncValidatorFn {
   (c: AbstractControl): Promise<ValidationErrors|null>|Observable<ValidationErrors|null>

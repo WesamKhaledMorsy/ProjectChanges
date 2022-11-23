@@ -16,7 +16,11 @@
 
           <div class="col-4 d-inline-block">
               <label for="studentName">Student Name</label>
-              <select
+              <input  id="studentName"
+              name="studentName"
+               class="form-select"
+              [(ngModel)]="studentName" placeholder="Please Put Student Name" >
+              <!-- <select
               id="studentName"
               name="studentName"
                class="form-select"
@@ -27,7 +31,7 @@
                 [ngValue]="student.studentName">
                   {{student.studentName}}
                 </option>
-              </select>
+              </select> -->
           </div>
 
         <div class="col-3 d-inline-block">

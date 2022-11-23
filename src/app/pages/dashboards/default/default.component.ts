@@ -111,6 +111,8 @@ private http:HttpClient ,
     this.getStudentByUserId(this.userId);
      this._getStudentByUserId();
      this.GetAllInterviewerData();
+     this.getStudentAccepted();
+     this.getStudentRejected();
 
     /**
      * horizontal-vertical layput set
@@ -228,6 +230,8 @@ private http:HttpClient ,
     localStorage.removeItem('userId');
     this.LogedIn= true;
   }
+
+
   totalStudent:number;
   selectStudent : Student[];
 
@@ -254,6 +258,45 @@ private http:HttpClient ,
     });
     let url ="https://localhost:7115/api/Student/GetAllStudentData";
     return this.http.get<any>(url,{headers:headers});
+
+  }
+
+  StudentsAccepted:Student[];
+  acceptedNumber: Number;
+  StudentRejected:Student[];
+  rejectedStudents:Number;
+  _GetStudentAccepted():Observable<any>{
+    const headers = new HttpHeaders({
+      Authorization :`Bearer ${localStorage.getItem('jwt')}`,
+    });
+    let url ="https://localhost:7115/api/Student/GetStudentsAccepted";
+    return this.http.get<any>(url,
+      {headers:headers}
+      )
+  }
+  getStudentAccepted(){
+    this._GetStudentAccepted().subscribe(data =>{
+      this.StudentsAccepted=data;
+      this.acceptedNumber=this.StudentsAccepted.length;
+      debugger
+    })
+  }
+
+
+  _GetStudentRejected():Observable<any>{
+    const headers = new HttpHeaders({
+      Authorization :`Bearer ${localStorage.getItem('jwt')}`,
+    });
+    let url ="https://localhost:7115/api/Student/GetStudentsRejected";
+    return this.http.get<any>(url,{headers:headers});
+  }
+
+  getStudentRejected(){
+    this._GetStudentRejected().subscribe(data =>{
+      this.StudentRejected=data;
+      this.rejectedStudents=this.StudentRejected.length;
+      debugger
+    })
   }
 
   GetAllStudentData(){
@@ -287,11 +330,13 @@ private http:HttpClient ,
   }
   StudstatusName :string ;
   StudinterviewDate:string;
+  roundId:string;
   _getStudentByUserId(){
     this.getStudentByUserId(this.userId).subscribe(data=>{
       this.userId=data[0].userId;
       this.StudstatusName=data[0].statusName;
       this.studentInput.interviewDate=data[0].interviewDate;
+      this.studentInput.roundId=data[0].roundId;
       console.log(this.StudstatusName,this.StudinterviewDate);
       debugger
       return this.StudstatusName , this.StudinterviewDate;
@@ -321,6 +366,7 @@ _GetStudentByUserName(){
   this.GetStudentByUserName(this.username).subscribe(data=>{
    this.statusName=data[0].statusName;
    this.interviewDate=data[0].interviewDate;
+   this.roundId=data[0].roundId;
     console.log(this.statusName,this.interviewDate);
   })
 }

@@ -32,12 +32,13 @@
               [formGroup]="signupForm"
                (ngSubmit)="onSubmit()"
                 novalidate>
-<!--
+
                 <ngb-alert type="success" *ngIf="successmsg" [dismissible]="false">Registeration successfull.
-                </ngb-alert> -->
+                </ngb-alert>
 
-                <!-- <ngb-alert type="danger" *ngIf="error" [dismissible]="false">{{ error }}</ngb-alert> -->
+                <ngb-alert type="danger" *ngIf="error" [dismissible]="false">{{ error }}</ngb-alert>
 
+                
                 <div class="mb-3">
                   <label for="username" class="form-label">Username</label>
 
