@@ -1,0 +1,83 @@
+<div class="container-fluid">
+
+  <div class="row">
+    <div class>
+
+      <div class="table-responsive">
+        <table class="table project-list-table table-nowrap align-middle table-borderless">
+          <thead>
+            <tr>
+              <!-- <th scope="col" style="width: 100px">Interview</th> -->
+              <th scope="col">#</th>
+              <th scope="col">Student</th>
+              <th scope="col">User Name</th>
+              <th scope="col">Phone Number</th>
+              <th scope="col">Status</th>
+              <th scope="col">Gender</th>
+              <th scope="col">University</th>
+              <th scope="col">Grade</th>
+              <th scope="col">Round</th>
+              <th scope="col">Track</th>
+              <!-- <th scope="col">Interview</th> -->
+              <th scope="col">Interviewer</th>
+              <th scope="col" >Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!--  | search:searchText -->
+              <tr *ngFor="let student of selectStudent ; let i=index" >
+
+                <td>{{i+1}}</td>
+              <td>
+                <a
+                routerLinkActive="active" [routerLink]="['/student/studentProfile/',student.id]" >
+                  {{student.studentName}}
+                </a>
+              </td>
+              <td><a routerLinkActive="active"> {{student.userName}}</a></td>
+              <td><a routerLinkActive="active"> {{student.phoneNumber}}</a></td>
+              <td>
+                <a
+                routerLinkActive="active" class="badge badge-pill badge-soft-primary font-size-11"
+                [ngClass]=" { 'badge-soft-danger': student.statusName === 'Missed'||'Rejected',
+                'badge-soft-primary':student.statusName ==='waiting for accepting',
+               'badge-soft-warning':student.statusName === 'Waiting for Interview' ,
+               'badge-soft-success': student.statusName === 'Accepted'}">
+                  {{student.statusName}}
+                </a>
+              </td>
+              <td>
+                <a routerLinkActive="active">{{student.genderName}}</a>
+              </td>
+              <td><a routerLinkActive="active">{{student.universityName}}</a></td>
+              <td><a routerLinkActive="active">{{student.studentGrade}}</a></td>
+              <td><a routerLinkActive="active">{{student.roundName}}</a></td>
+              <td><a routerLinkActive="active">{{student.trackName}}</a></td>
+              <!-- <td><a routerLinkActive="active">{{student.interviewName}}</a></td> -->
+              <td><a routerLinkActive="active">{{student.interviewerName}}</a></td>
+
+              <td >
+                    <a
+                    [routerLink]="['/student/edit',student.id]"
+                    routerLinkActive="active" style="margin-left:2% ;"
+                    ><i class="fa fa-marker text-success"></i> Edit</a>
+
+
+
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- <app-pagination
+          [total-items]="Counter"
+          [page-size]="_pageSize"
+          (page-changed)="onPageChange($event)"
+        ></app-pagination> -->
+
+      </div>
+
+
+  </div>
+</div>
+

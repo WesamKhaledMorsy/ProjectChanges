@@ -1,0 +1,390 @@
+<header id="page-topbar">
+  <div class="navbar-header">
+    <div class="d-flex">
+      <!-- LOGO -->
+      <div class="navbar-brand-box">
+        <a routerLink="/" class="logo logo-dark">
+          <span class="logo-sm">
+            <img src="assets/images/logo.svg" alt="" height="22">
+          </span>
+          <span class="logo-lg">
+            <img src="assets/images/logo-dark.png" alt="" height="17">
+          </span>
+        </a>
+
+        <a routerLink="/" class="logo logo-light">
+          <span class="logo-sm">
+            <img src="assets/images/logo.svg" alt="" height="22">
+          </span>
+
+          <!-- <span class="logo-lg">
+            <img src="data:image/png;base64,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" alt="" height="30" width="30">
+          </span> -->
+          <p id="kaitech">KAITECH</p>
+        </a>
+      </div>
+
+      <button type="button" class="btn btn-sm px-3 font-size-16 header-item" id="vertical-menu-btn"
+        (click)="toggleMobileMenu($event)">
+        <i class="fa fa-fw fa-bars"></i>
+      </button>
+
+      <!-- App Search-->
+      <form class="app-search d-none d-xl-block">
+        <div class="position-relative">
+          <input type="text" class="form-control" placeholder="{{'HEADER.SEARCH' | translate}}">
+          <span class="bx bx-search-alt"></span>
+        </div>
+      </form>
+
+      <div class="dropdown-mega d-none d-lg-block ms-2" ngbDropdown>
+        <button type="button" class="btn header-item" ngbDropdownToggle data-toggle="dropdown" aria-haspopup="false"
+          aria-expanded="false">
+          {{ 'HEADER.MEGA_MENU' | translate}}
+          <i class="mdi mdi-chevron-down"></i>
+        </button>
+        <div class="dropdown-menu dropdown-megamenu" ngbDropdownMenu>
+          <div class="row">
+            <div class="col-sm-8">
+
+              <div class="row">
+                <div class="col-md-4">
+                  <h5 class="font-size-14 mt-0"> {{ 'HEADER.UI.TITLE' | translate}}</h5>
+                  <ul class="list-unstyled megamenu-list">
+                    <li>
+                      <a href="javascript:void(0);">{{ 'HEADER.UI.LIGHTBOX' | translate}}</a>
+                    </li>
+                    <li>
+                      <a href="javascript:void(0);">{{ 'HEADER.UI.RANGE_SLIDER' | translate}}</a>
+                    </li>
+                    <li>
+                      <a href="javascript:void(0);">{{ 'HEADER.UI.SWEET_ALERT' | translate}}</a>
+                    </li>
+                    <li>
+                      <a href="javascript:void(0);">{{ 'HEADER.UI.RATING' | translate}}</a>
+                    </li>
+                    <li>
+                      <a href="javascript:void(0);">{{ 'HEADER.UI.FORMS' | translate}}</a>
+                    </li>
+                    <li>
+                      <a href="javascript:void(0);">{{ 'HEADER.UI.TABLES' | translate}}</a>
+                    </li>
+                    <li>
+                      <a href="javascript:void(0);">{{ 'HEADER.UI.CHARTS' | translate}}</a>
+                    </li>
+                  </ul>
+                </div>
+
+                <div class="col-md-4">
+                  <h5 class="font-size-14 mt-0">{{ 'HEADER.APPLICATIONS.TITLE' | translate}}</h5>
+                  <ul class="list-unstyled megamenu-list">
+                    <li>
+                      <a href="javascript:void(0);">{{ 'HEADER.APPLICATIONS.ECOMMERCE' | translate}}</a>
+                    </li>
+                    <li>
+                      <a href="javascript:void(0);">{{ 'HEADER.APPLICATIONS.CALENDAR' | translate}}</a>
+                    </li>
+                    <li>
+                      <a href="javascript:void(0);">{{ 'HEADER.APPLICATIONS.EMAIL' | translate}}</a>
+                    </li>
+                    <li>
+                      <a href="javascript:void(0);">{{ 'HEADER.APPLICATIONS.PROJECTS' | translate}}</a>
+                    </li>
+                    <li>
+                      <a href="javascript:void(0);">{{ 'HEADER.APPLICATIONS.TASKS' | translate}}</a>
+                    </li>
+                    <li>
+                      <a href="javascript:void(0);">{{ 'HEADER.APPLICATIONS.CONTACTS' | translate}}</a>
+                    </li>
+                  </ul>
+                </div>
+
+                <div class="col-md-4">
+                  <h5 class="font-size-14 mt-0">{{ 'HEADER.EXTRA_PAGES.TITLE' | translate}}</h5>
+                  <ul class="list-unstyled megamenu-list">
+                    <li>
+                      <a href="javascript:void(0);">{{ 'HEADER.EXTRA_PAGES.LIGHT_SIDEBAR' | translate}}</a>
+                    </li>
+                    <li>
+                      <a href="javascript:void(0);">{{ 'HEADER.EXTRA_PAGES.COMPACT_SIDEBAR' | translate}}</a>
+                    </li>
+                    <li>
+                      <a href="javascript:void(0);">{{ 'HEADER.EXTRA_PAGES.HORIZONTAL_LAYOUT' | translate}}</a>
+                    </li>
+                    <li>
+                      <a href="javascript:void(0);">{{ 'HEADER.EXTRA_PAGES.MAINTENANCE' | translate}}</a>
+                    </li>
+                    <li>
+                      <a href="javascript:void(0);">{{ 'HEADER.EXTRA_PAGES.COMING SOON' | translate}}</a>
+                    </li>
+                    <li>
+                      <a href="javascript:void(0);">{{ 'HEADER.EXTRA_PAGES.TIMELINE' | translate}}</a>
+                    </li>
+                    <li>
+                      <a href="javascript:void(0);">{{ 'HEADER.EXTRA_PAGES.FAQ' | translate}}</a>
+                    </li>
+
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="row">
+                <div class="col-sm-6">
+                  <h5 class="font-size-14 mt-0"> {{ 'HEADER.UI.TITLE' | translate}}</h5>
+                  <ul class="list-unstyled megamenu-list">
+                    <li>
+                      <a href="javascript:void(0);">{{ 'HEADER.UI.LIGHTBOX' | translate}}</a>
+                    </li>
+                    <li>
+                      <a href="javascript:void(0);">{{ 'HEADER.UI.RANGE_SLIDER' | translate}}</a>
+                    </li>
+                    <li>
+                      <a href="javascript:void(0);">{{ 'HEADER.UI.SWEET_ALERT' | translate}}</a>
+                    </li>
+                    <li>
+                      <a href="javascript:void(0);">{{ 'HEADER.UI.RATING' | translate}}</a>
+                    </li>
+                    <li>
+                      <a href="javascript:void(0);">{{ 'HEADER.UI.FORMS' | translate}}</a>
+                    </li>
+                    <li>
+                      <a href="javascript:void(0);">{{ 'HEADER.UI.TABLES' | translate}}</a>
+                    </li>
+                    <li>
+                      <a href="javascript:void(0);">{{ 'HEADER.UI.CHARTS' | translate}}</a>
+                    </li>
+                  </ul>
+                </div>
+
+                <div class="col-sm-5">
+                  <div>
+                    <img src="assets/images/megamenu-img.png" alt="" class="img-fluid mx-auto d-block">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="d-flex">
+      <div class="dropdown d-inline-block d-lg-none ms-2" ngbDropdown>
+        <button type="button" class="btn header-item noti-icon" id="page-header-search-dropdown" data-toggle="dropdown"
+          aria-haspopup="true" ngbDropdownToggle aria-expanded="false">
+          <i class="mdi mdi-magnify"></i>
+        </button>
+        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end p-0" ngbDropdownMenu
+          aria-labelledby="page-header-search-dropdown">
+          <form class="p-3">
+            <div class="m-0">
+              <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search ..." aria-label="Recipient's username">
+                <div class="input-group-append">
+                  <button class="btn btn-primary" type="submit"><i class="mdi mdi-magnify"></i></button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div class="dropdown d-inline-block" ngbDropdown>
+        <button type="button" class="btn header-item" id="page-header-user-dropdown" ngbDropdownToggle>
+          <img *ngIf="flagvalue !== undefined" src="{{flagvalue}}" alt="Header Language" height="16"> <span
+            class="ms-1">{{countryName}}</span>
+          <img *ngIf="flagvalue === undefined" src="{{valueset}}" alt="Header Language" height="16">
+          <span *ngIf="flagvalue === undefined" class="ms-1">English</span>
+        </button>
+        <div class="dropdown-menu dropdown-menu-end" ngbDropdownMenu>
+          <!-- item-->
+          <a href="javascript:void(0);" class="dropdown-item notify-item" *ngFor="let item of listLang"
+            (click)="setLanguage(item.text, item.lang, item.flag)" [ngClass]="{'active': cookieValue === item.lang}">
+            <img src="{{item.flag}}" alt="user-image" class="me-1" height="12"> <span
+              class="align-middle">{{item.text}}</span>
+          </a>
+          <!-- item-->
+        </div>
+      </div>
+
+      <div class="dropdown d-none d-lg-inline-block ms-1" ngbDropdown>
+        <button type="button" class="btn header-item noti-icon" ngbDropdownToggle>
+          <i class="bx bx-customize"></i>
+        </button>
+        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end" ngbDropdownMenu>
+          <div class="px-lg-2">
+            <div class="row no-gutters">
+              <div class="col">
+                <a class="dropdown-icon-item" href="javascript: void(0);">
+                  <img src="assets/images/brands/github.png" alt="Github">
+                  <span>GitHub</span>
+                </a>
+              </div>
+              <div class="col">
+                <a class="dropdown-icon-item" href="javascript: void(0);">
+                  <img src="assets/images/brands/bitbucket.png" alt="bitbucket">
+                  <span>Bitbucket</span>
+                </a>
+              </div>
+              <div class="col">
+                <a class="dropdown-icon-item" href="javascript: void(0);">
+                  <img src="assets/images/brands/dribbble.png" alt="dribbble">
+                  <span>Dribbble</span>
+                </a>
+              </div>
+            </div>
+
+            <div class="row no-gutters">
+              <div class="col">
+                <a class="dropdown-icon-item" href="javascript: void(0);">
+                  <img src="assets/images/brands/dropbox.png" alt="dropbox">
+                  <span>Dropbox</span>
+                </a>
+              </div>
+              <div class="col">
+                <a class="dropdown-icon-item" href="javascript: void(0);">
+                  <img src="assets/images/brands/mail_chimp.png" alt="mail_chimp">
+                  <span>Mail Chimp</span>
+                </a>
+              </div>
+              <div class="col">
+                <a class="dropdown-icon-item" href="javascript: void(0);">
+                  <img src="assets/images/brands/slack.png" alt="slack">
+                  <span>Slack</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="dropdown d-none d-lg-inline-block ms-1">
+        <button type="button" class="btn header-item noti-icon" data-toggle="fullscreen" (click)="fullscreen()">
+          <i class="bx bx-fullscreen"></i>
+        </button>
+      </div>
+
+      <div class="dropdown d-inline-block" ngbDropdown>
+        <button type="button" class="btn header-item noti-icon" id="page-header-notifications-dropdown"
+          ngbDropdownToggle>
+          <i class="bx bx-bell bx-tada"></i>
+          <span class="badge bg-danger rounded-pill">3</span>
+        </button>
+        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end p-0"
+          aria-labelledby="page-header-notifications-dropdown" ngbDropdownMenu>
+          <div class="p-3">
+            <div class="row align-items-center">
+              <div class="col">
+                <h6 class="m-0">{{ 'HEADER.NOTIFICATIONS.TITLE' | translate}} </h6>
+              </div>
+              <div class="col-auto">
+                <a href="javascript: void(0);" class="small">{{ 'HEADER.NOTIFICATIONS.VIEW_ALL' | translate}}</a>
+              </div>
+            </div>
+          </div>
+          <ngx-simplebar style="position: relative; height: 230px;">
+            <a href="javascript: void(0);" class="text-reset notification-item">
+              <div class="d-flex">
+                <div class="avatar-xs me-3">
+                  <span class="avatar-title bg-primary rounded-circle font-size-16">
+                    <i class="bx bx-cart"></i>
+                  </span>
+                </div>
+                <div class="flex-grow-1">
+                  <h6 class="mb-1">{{ 'HEADER.NOTIFICATIONS.FIRST.TITLE' | translate}}</h6>
+                  <div class="font-size-12 text-muted">
+                    <p class="mb-1">{{ 'HEADER.NOTIFICATIONS.FIRST.TEXT' | translate}}</p>
+                    <p class="mb-0"><i class="mdi mdi-clock-outline"></i>
+                      {{ 'HEADER.NOTIFICATIONS.FIRST.TIME' | translate}}</p>
+                  </div>
+                </div>
+              </div>
+            </a>
+            <a href="javascript: void(0);" class="text-reset notification-item">
+              <div class="d-flex">
+                <img src="assets/images/users/avatar-3.jpg" class="me-3 rounded-circle avatar-xs" alt="user-pic">
+                <div class="flex-grow-1">
+                  <h6 class="mb-1">{{ 'HEADER.NOTIFICATIONS.SECOND.TITLE' | translate}}</h6>
+                  <div class="font-size-12 text-muted">
+                    <p class="mb-1">{{ 'HEADER.NOTIFICATIONS.SECOND.TEXT' | translate}}</p>
+                    <p class="mb-0"><i class="mdi mdi-clock-outline"></i>{{ 'HEADER.NOTIFICATIONS.SECOND.TIME' |
+                      translate}}</p>
+                  </div>
+                </div>
+              </div>
+            </a>
+            <a href="javascript: void(0);" class="text-reset notification-item">
+              <div class="d-flex">
+                <div class="avatar-xs me-3">
+                  <span class="avatar-title bg-success rounded-circle font-size-16">
+                    <i class="bx bx-badge-check"></i>
+                  </span>
+                </div>
+                <div class="flex-grow-1">
+                  <h6 class="mb-1">{{ 'HEADER.NOTIFICATIONS.THIRD.TITLE' | translate}}</h6>
+                  <div class="font-size-12 text-muted">
+                    <p class="mb-1">{{ 'HEADER.NOTIFICATIONS.THIRD.TEXT' | translate}}</p>
+                    <p class="mb-0"><i class="mdi mdi-clock-outline"></i>{{ 'HEADER.NOTIFICATIONS.THIRD.TIME' |
+                      translate}}</p>
+                  </div>
+                </div>
+              </div>
+            </a>
+            <a href="javascript: void(0);" class="text-reset notification-item">
+              <div class="d-flex">
+                <img src="assets/images/users/avatar-4.jpg" class="me-3 rounded-circle avatar-xs" alt="user-pic">
+                <div class="flex-grow-1">
+                  <h6 class="mb-1">{{ 'HEADER.NOTIFICATIONS.FOUR.TITLE' | translate}}</h6>
+                  <div class="font-size-12 text-muted">
+                    <p class="mb-1">{{ 'HEADER.NOTIFICATIONS.FOUR.TEXT' | translate}}</p>
+                    <p class="mb-0"><i class="mdi mdi-clock-outline"></i>{{ 'HEADER.NOTIFICATIONS.FOUR.TIME' |
+                      translate}}</p>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </ngx-simplebar>
+          <div class="p-2 border-top d-grid">
+            <a class="btn btn-sm btn-link font-size-14 text-center" href="javascript:void(0)">
+              <i class="mdi mdi-arrow-right-circle me-1"></i> <span key="t-view-more">{{
+                'HEADER.NOTIFICATIONS.LOAD_MORE' | translate}}</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="dropdown d-inline-block" ngbDropdown>
+        <button type="button" class="btn header-item" ngbDropdownToggle id="page-header-user-dropdown">
+          <img class="rounded-circle header-profile-user" src="assets/images/users/avatar-1.jpg" alt="Header Avatar">
+          <span class="d-none d-xl-inline-block ms-1">Henry</span>
+          <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
+        </button>
+        <div class="dropdown-menu dropdown-menu-end" ngbDropdownMenu>
+          <!-- item-->
+          <a class="dropdown-item" routerLink="/contacts/profile"><i class="bx bx-user font-size-16 align-middle me-1"></i>
+            {{ 'HEADER.LOGIN.PROFILE' | translate}}</a>
+          <a class="dropdown-item" href="javascript: void(0);"><i
+              class="bx bx-wallet font-size-16 align-middle me-1"></i>{{ 'HEADER.LOGIN.MY_WALLET' | translate}}</a>
+          <a class="dropdown-item d-block" href="javascript: void(0);"><span
+              class="badge bg-success float-end">11</span><i class="bx bx-wrench font-size-16 align-middle me-1"></i>{{
+            'HEADER.LOGIN.SETTINGS' | translate}} </a>
+          <a class="dropdown-item" href="javascript: void(0);"><i
+              class="bx bx-lock-open font-size-16 align-middle me-1"></i>
+            {{ 'HEADER.LOGIN.LOCK_SCREEN' | translate}}</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item text-danger" href="javascript: void(0);" (click)="logout()"><i
+              class="bx bx-power-off font-size-16 align-middle me-1 text-danger"></i>
+            {{ 'HEADER.LOGIN.LOGOUT' | translate}}</a>
+        </div>
+      </div>
+
+      <div class="dropdown d-inline-block">
+        <button type="button" class="btn header-item noti-icon right-bar-toggle" (click)="toggleRightSidebar()">
+          <i class="bx bx-cog bx-spin"></i>
+        </button>
+      </div>
+
+    </div>
+  </div>
+</header>

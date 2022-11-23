@@ -1,0 +1,119 @@
+
+
+<div class="container-fluid">
+
+
+  <div class="row">
+    <div class="col-lg-12">
+        <!--! search  -->
+         <div class="col-sm-4">
+          <div class="search-box me-2 mb-2 d-inline">
+            <div class="position-relative">
+              <!-- <input type="text" class="form-control" placeholder="Search..." [(ngModel)]="term"> -->
+              <input type="text" name="searchText" class="form-control"
+                     placeholder="Search..." [(ngModel)]="searchText">
+              <i class="bx bx-search-alt search-icon"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- <div class="col-sm-4">
+          <div class="search-box me-2 mb-2 d-inline">
+            <div class="position-relative">
+              <input type="text" name="searchText" class="form-control" placeholder="Project Name" [(ngModel)]="searchName">
+            </div>
+          </div>
+        </div> -->
+
+
+
+      <div class>
+        <a
+        class="btn btn-outline-primary mb-3"
+        [routerLink]="['/track/createTrack']"
+        routerLinkActive="active" *ngIf="!IsInterviewer && !IsUser && LoggedIn">
+          Create Track
+        </a>
+
+        <div class="table-responsive">
+          <table class="table project-list-table table-nowrap align-middle table-borderless">
+            <thead>
+              <tr>
+                <th scope="col" style="width: 100px">Track</th>
+                <th scope="col">Start Date</th>
+                <th scope="col">End Date</th>
+                <th scope="col">@Round</th>
+                <th scope="col" *ngIf="!IsInterviewer && !IsUser && LoggedIn">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!--  | search:searchText -->
+                <tr *ngFor="let track of selectTracks" >
+                <td>
+                  <h5 class="text-truncate font-size-14" >
+                    <a href="javascript: void(0);" class="text-dark"
+                    routerLinkActive="active"
+                    [routerLink]="['/track/detailsTrack',track.id]"
+                    >{{track.trackName}}</a>
+                  </h5>
+
+
+                </td>
+                <td>{{track.startDate| date:'dd/MM/yyyy'}}</td>
+                <td>{{track.endDate | date:'dd/MM/yyyy'}}</td>
+
+                <td>
+                  <a [routerLink]="['/round/detailsRound',track.roundId]"
+                  routerLinkActive="active" >
+                    {{track.roundName}}
+                  </a>
+
+                </td>
+
+
+
+                <td *ngIf="!IsInterviewer && !IsUser && LoggedIn">
+
+                      <a
+                      [routerLink]="['/track/edit',track.id]"
+                      routerLinkActive="active" style="margin-left:2% ;"
+                      ><i class="fa fa-marker text-success"></i> Edit</a>
+
+                      <a
+                      style="cursor: pointer;" style="margin-right:2% ;"
+                      (click) =onDeleteTrack(track.id)>
+                      <i class="fa fa-trash text-danger"></i> Delete</a>
+
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <!-- <app-pagination
+            [total-items]="Counter"
+            [page-size]="_pageSize"
+            (page-changed)="onPageChange($event)"
+          ></app-pagination> -->
+
+        </div>
+      </div>
+    </div>
+
+
+  <!-- end row -->
+
+  <!-- <div class="row">
+    <div class="col-12">
+      <div class="text-center my-3">
+        <a href="javascript:void(0);" class="text-success">
+          <i class="bx bx-loader bx-spin font-size-18 align-middle mr-2"></i> Load more
+        </a>
+      </div>
+    </div> -->
+    <!-- end col-->
+<!-- </div> -->
+  <!-- end row -->
+<!-- </div> -->
+
+
+

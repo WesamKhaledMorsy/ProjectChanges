@@ -1,0 +1,173 @@
+
+<div class="container-fluid">
+  <!-- <h1 *ngIf="isAddMode">Add New Round<h1>
+  <h1 *ngIf="!isAddMode">Edit Round <h1> -->
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <form class="card-body" #interviewForm="ngForm"  (ngSubmit)="onSubmit(interviewForm)">
+          <h4 class="card-title mb-4">Create New Interview</h4>
+
+            <div class="row mb-4">
+              <label for="interviewName" class="col-form-label col-lg-2" >Name</label>
+                <div class="col-lg-10">
+                <input id="interviewName"
+                name="interviewName" type="text" class="form-control"
+                  placeholder="Enter Interview Name..." [disabled]="IsInterviewer"
+                  [(ngModel)]="interviewInput.interviewName">
+              </div>
+            </div>
+
+
+
+
+            <div class="row mb-4">
+              <label class="col-form-label col-lg-2">Start Date (mm/dd/yyyy)</label>
+              <div class="col-lg-10">
+
+                <input   class="form-control"
+                name="startDate"
+                 placeholder="Start Date"
+                 [disabled]="IsUser"
+                type="datetime-local"
+                 name="startDate" #startDate="ngModel"
+                [(ngModel)]="interviewInput.startDate" />
+              </div>
+            </div>
+
+            <div class="row mb-4">
+              <label class="col-form-label col-lg-2">End Date (mm/dd/yyyy)</label>
+              <div class="col-lg-10">
+
+                <input
+                type="datetime-local"
+                 class="form-control" name="endDate"
+                #endDate="ngModel" [disabled]="IsUser"
+                [(ngModel)]="interviewInput.endDate" >
+
+              </div>
+            </div>
+            <div class="row mb-4">
+              <label class="col-form-label col-lg-2">Start Time </label>
+              <div class="col-lg-10">
+
+                <input   type="datetime-local"
+                 class="form-control" name="startTime"
+                #endDate="ngModel" [disabled]="IsUser"
+                [(ngModel)]="interviewInput.startTime" >
+
+              </div>
+            </div>
+
+            <!--
+              <date-input date="{{date}}" timezone="[[timezone]]"></date-input>
+            -->
+            <div class="row mb-4">
+              <label class="col-form-label col-lg-2">End Time </label>
+              <div class="col-lg-10">
+
+                <input type="datetime-local"
+                 class="form-control" name="endTime"
+                #endDate="ngModel" [disabled]="IsUser"
+                [(ngModel)]="interviewInput.endTime" >
+
+              </div>
+            </div>
+
+            <div class="row mb-4">
+              <label class="col-form-label col-lg-2">Number of Students in Day</label>
+              <div class="col-lg-10">
+
+                <input type="text"  class="form-control" name="count"
+                #endDate="ngModel" [disabled]="IsUser"
+                [(ngModel)]="interviewInput.count" >
+
+              </div>
+            </div>
+            <div class="row mb-4">
+              <label for="interviewerId" class="col-form-label col-lg-2" >Interviewer</label>
+                <div class="col-lg-10">
+                  <select id="interviewerId" class="form-control" [disabled]="IsInterviewer"
+                  name="interviewerId"  [(ngModel)]="interviewInput.interviewerId">
+                      <option value="0" selected>Select Interviewer Name</option>
+                      <option *ngFor="let interviewer of interviewers"
+                      [value]="interviewer.id">
+                        {{interviewer.interviewerName}}
+                        </option>
+
+                  </select>
+              </div>
+            </div>
+
+            <!-- <div class="row mb-4">
+              <label for="studentId" class="col-form-label col-lg-2" >Student</label>
+                <div class="col-lg-10">
+                  <select id="studentId" class="form-control"  [disabled]="!IsAdmin"
+                  name="studentId"  [(ngModel)]="interviewInput.studentId">
+                      <option value="0" selected>Select Student Name</option>
+                      <option *ngFor="let student of students"
+                      [value]="student.id">
+                        {{student.studentName}}
+                        </option>
+
+                  </select>
+              </div>
+            </div> -->
+
+            <!-- <div class="row mb-4">
+              <label for="adminId" class="col-form-label col-lg-2" >Round</label>
+                <div class="col-lg-10">
+                  <select id="roundId" class="form-control"  [disabled]="!IsAdmin && IsInterviewer"
+                  name="roundId" [(ngModel)]="interviewInput.roundId">
+                  <option value="0" selected>Select Round Name</option>
+                  <option *ngFor="let round of rounds"
+                  [value]="round.id">
+                    {{round.roundName}}
+                    </option>
+                  </select>
+              </div>
+            </div> -->
+
+            <!-- <div class="row mb-4">
+              <label for="adminId" class="col-form-label col-lg-2" >Admin</label>
+                <div class="col-lg-10">
+                <input id="adminId"
+                name="adminId" type="text" class="form-control"
+                  placeholder="####"  [disabled]="!IsAdmin"
+                  [(ngModel)]="interviewInput.adminId">
+              </div>
+            </div> -->
+
+
+          <div class="row justify-content-end">
+            <div class="col-lg-10" >
+              <button
+              type="submit"
+              class="btn btn-primary"
+              >{{ isAddMode ? "Create Interview" : "Edit Interview" }}</button>
+            </div>
+          </div>
+
+          <div class="row col-8">
+            <div  class="col-lg-12 col-md-12">
+              <button class="btn btn-info"
+              [routerLink]="['/interview/listInterview']"
+              routerLinkActive="active" style="color:wheat">
+                <i class="bx bx-arrow-back"></i> Back To List
+              </button>
+            </div>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+
+<!-- </ng-template> -->
+
+<!-- end row -->
+
+<!-- container-fluid -->
+
+
+

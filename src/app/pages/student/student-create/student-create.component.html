@@ -1,0 +1,429 @@
+<div class="container-fluid">
+  <!-- <app-page-title title="Form Wizard" [breadcrumbItems]="breadCrumbItems"></app-page-title> -->
+
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title mb-4 text-center" style="font-size:25px ; color: rgb(66, 66, 212);">Personal Info</h4>
+          <aw-wizard [navBarLayout]="'large-empty-symbols'">
+            <aw-wizard-step>
+              <ng-template awWizardStepSymbol>
+                <i class="fas fa-user"></i>
+              </ng-template>
+              <div class="row">
+                <div class="col-12">
+                  <form class="card-body" #StudentForm="ngForm"  (ngSubmit)="onSubmit(StudentForm)">
+                  <div class="row mb-3">
+                    <label for="name" class="col-md-3 col-form-label">Name</label>
+                       <div class="col-md-9">
+                        <input id="name"
+                           name="studentName" type="text" class="form-control" required
+                           placeholder="Student Name..." [disabled]="!IsAdmin && IsInterviewer"
+                           [(ngModel)]="StudentInput.studentName">
+                        </div>
+                  </div>
+
+                  <!-- <div class="row mb-3">
+                    <label for="name" class="col-md-3 col-form-label">User Name</label>
+                       <div class="col-md-9">
+                        <input id="userName"
+                           name="userName" type="text" class="form-control"
+                           placeholder="User Name..."
+                           [disabled]="!IsAdmin && IsInterviewer"
+                           [(ngModel)]="StudentInput.userName" >
+                        </div>
+                  </div> -->
+
+
+                  <!-- <div class="row mb-3">
+                    <label class="col-md-3 col-form-label">Email</label>
+                    <div class="col-md-9">
+                      <input class="form-control" name="email" [(ngModel)]="StudentInput.email"
+                      type="text" placeholder="Enter Your Email ..........">
+                    </div>
+                  </div> -->
+
+                  <div class="row mb-3">
+                    <label for="PhoneNumber" class="col-md-3 col-form-label">Phone Number</label>
+                    <div class="col-md-9">
+                      <input class="form-control" name="phoneNumber"
+                       placeholder="Enter Phone Number"
+                       required minlength="11" type="text" pattern="^[0-9]*$" maxlength="11"
+                       [disabled]="IsInterviewer"
+                          [(ngModel)]="StudentInput.phoneNumber"
+                          #name="ngModel"
+                       >
+                       <div class="alert"></div>
+                            <!-- <div *ngIf="phoneNumber.invalid && (phoneNumber.dirty || phoneNumber.touched)"
+                            class="alert">
+
+                          <div *ngIf="StudentInput.phoneNumber.errors?.['required']">
+                            Name is required.
+                          </div>
+                          <div *ngIf="phoneNumber.errors?.['maxlength']">
+                            Name must be at least 4 characters long.
+                          </div>
+                          <div *ngIf="phoneNumber.errors?.['forbiddenName']">
+                            Name cannot be Bob.
+                          </div>
+
+                        </div> -->
+                    </div>
+                      <!--
+                        <label for="PhoneNubmer" class="col-form-label col-lg-2" >Phone Number</label>
+                        <div class="col-lg-10">
+                        <input id="name"
+                        name="PhoneNubmer" type="text" class="form-control"
+                          placeholder="Student Phone Number..." [disabled]="!IsAdmin && IsInterviewer"
+                          [(ngModel)]="studentInput.PhoneNumber">
+                          </div>
+                            -->
+                  </div>
+
+                  <div class="row mb-3">
+                    <label for="graduationYear" class="col-md-3 col-form-label">Graduation Year</label>
+                    <div class="col-md-9">
+                      <!-- <input id="graduationYear"
+                      name="graduationYear" type="text" class="form-control"
+                        placeholder="Enter Graduation Year"
+                         minlength="4" required
+                        pattern="^[0-9]*$"
+                        maxlength="4"
+                        [disabled]="!IsAdmin && IsInterviewer"
+                        [(ngModel)]="StudentInput.graduationYear"
+                        > -->
+                        <select id="graduationYear"
+                        name="graduationYear" type="text" class="form-control"
+                          placeholder="Enter Graduation Year"
+                           minlength="4" required
+                          pattern="^[0-9]*$"
+                          maxlength="4"
+                          [disabled]="!IsAdmin && IsInterviewer"
+                          [(ngModel)]="StudentInput.graduationYear">
+                          <option>2015</option>
+                          <option>2016</option><option>2017</option>
+                          <option>2018</option>
+                          <option>2019</option>
+                          <option>2020</option>
+                          <option>2021</option>
+                          <option>2022</option>
+                          <option>2023</option>
+
+                        </select>
+                    </div>
+                  </div>
+
+                  <div class="row mb-3">
+                    <label for="genderName" class="col-md-3 col-form-label">gender</label>
+                    <div class="col-md-9">
+                      <select  id="genderType" name="genderId"  class="form-control"
+                      [(ngModel)]="StudentInput.genderId"
+                      [disabled]="IsInterviewer"
+                        placeholder="Enter Gender">
+                        <option value="0" selected>Gender</option>
+                        <option *ngFor="let gender of genders"
+                        [value]="gender.id">
+                          {{gender.genderType}}
+                          </option>
+
+                      </select>
+
+                    </div>
+                  </div>
+
+                  <!-- <div class="row mb-3">
+                    <label for="studentGrade" class="col-md-3 col-form-label">Grade</label>
+                    <div class="col-md-9">
+                      <select  id="studentGrade" name="studentGrade"  class="form-control"
+                      [(ngModel)]="StudentInput.gradeId"
+                        placeholder="Enter studentGrade">
+                        <option value="0" selected>Grade</option>
+                        <option *ngFor="let grade of grades"
+                        [value]="grade.id">
+                          {{grade.gradeValue}}
+                          </option>
+
+                      </select>
+
+                    </div>
+                  </div> -->
+                          <div class="row mb-3" *ngIf="IsAdmin || IsInterviewer">
+                    <label for="studentGrade" class="col-md-3 col-form-label">Grade</label>
+                    <div class="col-md-9">
+                      <input  id="studentGrade" name="studentGrade"
+                      maxlength="2"
+                      type="number" class="form-control"
+                      [(ngModel)]="StudentInput.studentGrade"  [disabled]="!IsInterviewer && !IsAdmin"
+                        placeholder="Enter studentGrade...">
+
+                    </div>
+                  </div>
+                  <div class="row mb-3">
+                    <label for="roundName" class="col-md-3 col-form-label">Round</label>
+                    <div class="col-md-9">
+                      <select  id="roundName" name="roundId"  class="form-control"
+                      [(ngModel)]="StudentInput.roundId"
+                      [disabled]="IsInterviewer"
+                        placeholder="Enter Gender">
+                        <option value="0" selected>Round</option>
+                        <option *ngFor="let round of rounds"
+                        [value]="round.id">
+                          {{round.roundName}}
+                          </option>
+
+                      </select>
+
+                    </div>
+                  </div>
+
+                  <div class="row mb-3">
+                    <label for="trackName" class="col-md-3 col-form-label">Track</label>
+                    <div class="col-md-9">
+                      <select  id="trackName" name="trackId"  class="form-control"
+                      [(ngModel)]="StudentInput.trackId"
+                      [disabled]="IsInterviewer"
+                        placeholder="Enter Gender">
+                        <option value="0" selected>Tracks</option>
+                        <option *ngFor="let track of tracks"
+                        [value]="track.id">
+                          {{track.trackName}}
+                          </option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <!-- <div class="row mb-3" *ngIf="!IsUser"  >
+                    <label for="interviewName" class="col-md-3 col-form-label">Interview</label>
+                    <div class="col-md-9">
+
+                        <select  id="interviewName" name="interviewId"  class="form-control"
+
+                        [(ngModel)]="StudentInput.interviewId"
+                          placeholder="Enter Interview ....">
+                          <option value="0" selected>Interview</option>
+                          <option *ngFor="let interview of interviews"
+                          [value]="interview.id">
+                            {{interview.interviewName}}
+                            </option>
+                        </select>
+
+                    </div>
+                  </div> -->
+
+                  <div class="row mb-3" *ngIf="IsAdmin">
+                    <label for="interviewerName" class="col-md-3 col-form-label">Interviewer</label>
+                    <div class="col-md-9">
+                      <select  id="interviewerName" name="interviewerId"  class="form-control"
+
+                      [(ngModel)]="StudentInput.interviewerId"
+                        placeholder="Enter Interview ....">
+                        <option value="0" selected>Interview</option>
+                        <option *ngFor="let interviewer of interviewers"
+                        [value]="interviewer.id">
+                          {{interviewer.interviewerName}}
+                          </option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <!-- <div class="row mb-3" *ngIf="IsAdmin && IsInterviewer">
+                    <label for="gradeName" class="col-md-3 col-form-label">Grade</label>
+                    <div class="col-md-9">
+                      <input id="gradeValue" name="gradeId" class="form-control"
+                      [(ngModel)]="StudentInput.gradeValue" >
+
+                    </div>
+                  </div> -->
+
+                  <div class="row mb-3" >
+                    <label for="universityName" class="col-md-3 col-form-label">University</label>
+                    <div class="col-md-9">
+                      <select  id="universityName" name="universityId"  class="form-control"
+                      [(ngModel)]="StudentInput.universityId"  [disabled]="IsInterviewer"
+                        placeholder="Enter University ....">
+                        <option value="0" selected> --------- University ---------</option>
+                        <option *ngFor="let university of universities"
+                        [value]="university.id">
+                          {{university.universityName}}
+                          </option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="row mb-3" *ngIf="IsAdmin || IsInterviewer && !IsUser" >
+                    <label for="statusName" class="col-md-3 col-form-label" >Status</label>
+                    <div class="col-md-9">
+                      <select
+                      [disabled]="isAddMode"
+                      id="statusName" name="statusId"  class="form-control"
+                      [(ngModel)]="StudentInput.statusId"
+                        placeholder="Enter Status ....">
+                        <option value="0" selected >Waiting for Interview</option>
+                        <option *ngFor="let status of statuses"
+                        [value]="status.id">
+                          {{status.statusName}}
+                          </option>
+                      </select>
+                    </div>
+                  </div>
+                  <!-- <div class="row mb-3" *ngIf="IsAdmin">
+                    <label for="interviewStartDate" class="col-md-3 col-form-label">Interview</label>
+                    <div class="col-md-9" *ngFor="let interview of interview">
+                      <input id="interviewStartDate" name="interviewStartDate" type="date" class="form-control"
+
+                      [(ngModel)]="StudentInput.interviewerId"
+                        placeholder="Enter Interview start Date ...." [value]="interview.startDate">
+
+                    </div>
+                  </div> -->
+                  <div class="row justify-content-end">
+                    <div class="col-lg-10" >
+                      <button
+                     type="submit"
+                      class="btn btn-primary" [disabled]="!StudentForm.valid"
+                      >{{ isAddMode ? "JOIN US" : "Edit Student" }}</button>
+
+                    </div>
+                  </div>
+
+                  <!-- [routerLink]="['/student/studentProfile',StudentInput.id]" -->
+                  <div class="row justify-content-end"  *ngIf="StudentForm&& !IsUser" style="margin-top: 5px">
+                    <div class="col-lg-10" >
+                      <button [disabled]="!StudentForm.valid"
+                     type="submit" [routerLink]="['/student/studentProfile',StudentInput.id]"
+                      class="btn btn-primary"
+                      >Go To Profile</button>
+                    </div>
+                  </div>
+                  <!-- <div class="row justify-content-end"  *ngIf="IsUser" style="margin-top: 5px">
+                    <div class="col-lg-10" >
+                      <button [disabled]="!StudentForm.valid"
+                     type="submit" [routerLink]="['/student/studentProfile',StudentInput.userId]"
+                      class="btn btn-primary"
+                      >Go To Profile</button>
+                    </div>
+                  </div> -->
+
+                  </form>
+                </div>
+              </div>
+
+
+              <ul class="list-inline wizard mb-0">
+                <li class="next list-inline-item float-end">
+                  <button class="btn btn-primary" [disabled]="!StudentForm.valid || IsInterviewer" awNextStep>Next</button>
+                </li>
+              </ul>
+
+              <button class="btn btn-info" *ngIf="IsAdmin"
+              [routerLink]="['/student/listStudent']"
+              routerLinkActive="active" style="color:rgb(252, 252, 252)">
+
+                <i class="bx bx-arrow-back"></i> Back To List
+              </button>
+            </aw-wizard-step>
+
+            <aw-wizard-step>
+              <ng-template awWizardStepSymbol>
+                <i class="fas fa-user-circle"></i>
+              </ng-template>
+              <div class="row">
+                <div class="col-12">
+
+                  <!-- <div class="row mb-3">
+                    <label class="col-md-3 col-form-label">Name</label>
+                    <div class="col-md-9">
+                      <input class="form-control" name="email" type="text" placeholder="Enter email">
+                    </div>
+                  </div> -->
+
+                  <div class="row">
+                    <h5>Profile Picture</h5>
+                    <ngx-dropzone  (change)="uploadPhoto($event,StudentInput.id)">
+                      <ngx-dropzone-label>Drop it, Here!</ngx-dropzone-label>
+                      <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
+                        <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+                      </ngx-dropzone-preview>
+                    </ngx-dropzone>
+                  </div>
+
+                  <div class="row justify-content-end">
+                    <div class="col-lg-10" >
+                      <button
+                     (click)="uploadPhoto"
+                      class="btn btn-primary"
+                      >{{ isAddMode ? "Add Document" : "Edit Document" }}</button>
+                    </div>
+                  </div>
+
+                  <!-- <div class="row mb-3">
+                    <label class="col-md-3 col-form-label">Last name</label>
+                    <div class="col-md-9">
+                      <input class="form-control" name="username" type="text" placeholder="Enter Username">
+                    </div>
+                  </div> -->
+                  <!-- <div class="row mb-3">
+                    <label class="col-md-3 col-form-label">Password</label>
+                    <div class="col-md-9">
+                      <input class="form-control" name="password" type="password" placeholder="Enter Password">
+                    </div>
+                  </div> -->
+                </div>
+              </div>
+
+              <ul class="list-inline wizard mb-0">
+                <li class="previous list-inline-item">
+                  <button class="btn btn-primary"
+                  awPreviousStep>Previous</button>
+                </li>
+                <li class="next list-inline-item float-end">
+                  <button class="btn btn-primary"
+                  *ngIf="isUploaded"
+                  awNextStep>Next</button>
+                </li>
+              </ul>
+
+              <button class="btn btn-info" *ngIf="IsAdmin"
+              [routerLink]="['/student/listStudent']"
+              routerLinkActive="active" style="color:wheat;margin-top: 5px;">
+
+                <i class="bx bx-arrow-back"></i> Back To List
+              </button>
+            </aw-wizard-step>
+
+            <aw-wizard-step>
+              <ng-template awWizardStepSymbol>
+                <i class="fas fa-check-circle"></i>
+              </ng-template>
+              <div class="row justify-content-center">
+                <div class="col-lg-6">
+                  <div class="text-center">
+                    <div class="mb-4">
+                      <i class="mdi mdi-check-circle-outline text-success display-4"></i>
+                    </div>
+                    <div>
+                      <h5>Confirm Detail</h5>
+                      <p class="text-muted">If several languages coalesce, the grammar of the resulting</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <ul class="list-inline wizard mb-0">
+                <li class="previous list-inline-item"><button class="btn btn-primary" awPreviousStep>Previous</button>
+                </li>
+              </ul>
+
+              <button class="btn btn-info" *ngIf="IsAdmin"
+              [routerLink]="['/student/listStudent']"
+              routerLinkActive="active" style="color:wheat ; margin-top: 5px;">
+
+                <i class="bx bx-arrow-back"></i> Back To List
+              </button>
+            </aw-wizard-step>
+          </aw-wizard>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

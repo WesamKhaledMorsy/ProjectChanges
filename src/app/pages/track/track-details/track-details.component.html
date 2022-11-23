@@ -1,0 +1,105 @@
+<div class="container-fluid">
+  <!-- start page title -->
+
+  <!-- end page title -->
+
+  <div class="row">
+    <div class="col-lg-10">
+      <div class="card">
+        <div class="card-body" >
+          <div class="media" *ngFor="let track of trackDetails">
+            <img src="assets/images/companies/img-1.png" alt="" class="avatar-sm me-4">
+
+            <div class="font-size-15 mt-4">
+              <h5 class="text-truncate font-size-15">Track Details</h5>
+              <p class="text-muted"  >{{track.trackName}}</p>
+            </div>
+          </div>
+
+             <h5 class="text-truncate font-size-15">Track</h5>
+
+            </div>
+        <div class="container" style="margin-left:10%">
+
+          <div class="row task-dates">
+            <div class="col-sm-4 col-8">
+              <div class="mt-4 ">
+                <h5 class="font-size-14">Track</h5>
+                <p class="text-muted mb-0">{{track.trackName}}</p>
+              </div>
+            </div>
+          </div>
+
+
+  <div class="row task-dates">
+    <div class="col-sm-4 col-8">
+      <div class="mt-4">
+        <h5 class="font-size-14"><i class="bx bx-calendar me-1 text-primary"></i> Start Date</h5>
+        <p class="text-muted mb-0" >{{track.startDate }}</p>
+      </div>
+    </div>
+
+
+
+    <div class="row task-dates">
+      <div class="col-sm-4 col-8">
+        <div class="mt-4">
+          <h5 class="font-size-14"><i class="bx bx-calendar me-1 text-primary"></i> Due Date</h5>
+          <p class="text-muted mb-5" >{{track.endDate }}</p>
+        </div>
+      </div>
+  </div>
+
+  <div class="row col-sm-4 col-lg-12" *ngIf="IsAdmin">
+    <div class="mt-4">
+      <h5 class="font-size-14"><i class="bx bx-user-pin me-1 text-primary"></i> Students</h5>
+      <table class="table project-list-table table-nowrap align-middle table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Student</th>
+          </tr>
+        </thead>
+        <tbody >
+          <tr  *ngFor="let student of track.students ; let i= index" >
+            <td>
+              <p class="text-muted mb-0"
+                [routerLink]="['/student/studentProfile',student.id]">
+                <a>{{i+1}}- </a>
+                {{student.studentName}}
+              </p>
+          </td>
+          </tr>
+
+          <!-- <tr  *ngFor="let studenttrack of round.tracks" >
+            <td>
+              <p class="text-muted mb-0"
+              [routerLink]="['/track/detailsTrack',studenttrack.id]"
+               >
+               {{studenttrack.trackName}}
+              </p>
+          </td>
+          </tr> -->
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+
+
+  <div class="row col-8">
+    <div  class="col-lg-12 col-md-12">
+      <button class="btn btn-info" *ngIf="IsAdmin"
+      [routerLink]="['/track/listTrack']"
+      routerLinkActive="active" style="color:rgb(255, 255, 255); margin-bottom: 4px;">
+        <i class="bx bx-arrow-back"></i> Back To List
+      </button>
+    </div>
+  </div>
+
+
+
+
+</div>
+</div>
+<!-- end col -->
+

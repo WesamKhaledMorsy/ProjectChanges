@@ -1,0 +1,170 @@
+<div class="container-fluid">
+  <div class="row">
+       <!--! search  -->
+       <div class="col-sm-4">
+        <div class="search-box me-2 mb-2 d-inline">
+          <div class="position-relative">
+            <!-- <input type="text" class="form-control" placeholder="Search..." [(ngModel)]="term"> -->
+            <input type="text" name="searchText" class="form-control"
+                   placeholder="Search..." [(ngModel)]="searchText">
+            <i class="bx bx-search-alt search-icon"></i>
+          </div>
+        </div>
+      </div>
+        <!--! -------- -->
+        <div class="row">
+
+          <div class="col-4 d-inline-block">
+              <label for="studentName">Student Name</label>
+              <select
+              id="studentName"
+              name="studentName"
+               class="form-select"
+              [(ngModel)]="studentName"
+             >
+                <option value="" selected>Select Student Name</option>
+                <option  *ngFor="let student of StudentData"
+                [ngValue]="student.studentName">
+                  {{student.studentName}}
+                </option>
+              </select>
+          </div>
+
+        <div class="col-3 d-inline-block">
+            <label for="statusId">Statues</label>
+            <select  id="statusId" name="statusId" [(ngModel)]="statusId" class="form-select" >
+              <option  value="">Select Status ...</option>
+              <option  *ngFor="let status of statuses"
+              [value]="status.id">
+                {{status.statusName}}
+              </option>
+            </select>
+        </div>
+
+      <div class="col-3 d-inline-block">
+          <label for="Email">Email</label>
+          <input id="Email" type="text" name="email" class="form-control"
+          [(ngModel)]="email" >
+            <!-- <option  *ngFor="let project of projectData"
+            [ngValue]="project.id"  >
+              {{project.identifier}}
+            </option> -->
+      </div>
+        </div>
+
+</div>
+
+<div class="btn-group btn-group-example mb-3" role="group">
+    <!-- <button type="button" class="btn btn-primary w-xs mt-2" (click)="onFilterChange()" > -->
+      <button type="button" class="btn btn-primary w-xs mt-2" (click)="FilterStudents()" >
+
+      Search<i class="bx bx-search-alt search-icon"></i></button>
+    <!-- <button type="button" class="btn btn-danger w-xs mt-2" (click)="Reset()"> -->
+      <button type="button" class="btn btn-danger w-xs mt-2" (click)="Reset()">
+      Reset  </button>
+</div>
+
+</div>
+
+<!-- <div class="row">
+<div class="col-6">
+  <button  (click)="onFilterChangeDescription()" class="btn btn-success mt-1 ml-5">
+    Search with Description
+  </button>
+</div>
+</div> -->
+  <!--!-->
+  <div class="row">
+    <div class>
+      <a
+      class="btn btn-outline-primary mb-3"
+      [routerLink]="['/student/createStudent']"
+      routerLinkActive="active"
+      *ngIf="!IsUser && !IsInterviewer && LoggedIn">
+        Create Student
+      </a>
+
+      <div class="table-responsive">
+        <table class="table project-list-table table-nowrap align-middle table-borderless">
+          <thead>
+            <tr>
+              <!-- <th scope="col" style="width: 100px">Interview</th> -->
+              <th scope="col">#</th>
+              <th scope="col" style="width: 100px" (click)="sortName()"> Student &nbsp; <i class="fa fa-sort"></i></th>
+              <th scope="col">User Name</th>
+              <th scope="col">Phone Number</th>
+              <th scope="col">Email</th>
+              <th scope="col">Status</th>
+              <th scope="col">Gender</th>
+              <th scope="col">University</th>
+              <th scope="col">Grade</th>
+              <th scope="col">Round</th>
+              <th scope="col">Track</th>
+            <th scope="col">Interview Date</th>
+              <th scope="col">Interviewer</th>
+
+              <th scope="col" *ngIf="IsAdmin || IsInterviewer && LoggedIn">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!--  | search:searchText -->
+              <tr *ngFor="let student of StudentData | searchFilter: searchText ; let i=index;" >
+
+                <td>{{i+1}}</td>
+              <td>
+                <a
+                routerLinkActive="active" [routerLink]="['/student/studentProfile/',student.id]" >
+                  {{student.studentName}}
+                </a>
+              </td>
+              <td><a routerLinkActive="active"> {{student.userName}}</a></td>
+              <td><a routerLinkActive="active"> {{student.phoneNumber}}</a></td>
+              <td><a routerLinkActive="active"> {{student.email}}</a></td>
+              <td>
+                <a
+                routerLinkActive="active" class="badge badge-pill badge-soft-primary font-size-11"
+                [ngClass]=" { 'badge-soft-danger': student.statusName === 'Missed'||'Rejected',
+                'badge-soft-primary':student.statusName ==='waiting for accepting',
+               'badge-soft-warning':student.statusName === 'Waiting for Interview' ,
+               'badge-soft-success': student.statusName === 'Accepted'}">
+                  {{student.statusName}}
+                </a>
+              </td>
+              <td>
+                <a routerLinkActive="active">{{student.genderName}}</a>
+              </td>
+              <td><a routerLinkActive="active">{{student.universityName}}</a></td>
+              <td><a routerLinkActive="active">{{student.studentGrade}}</a></td>
+              <td><a routerLinkActive="active">{{student.roundName}}</a></td>
+              <td><a routerLinkActive="active">{{student.trackName}}</a></td>
+              <td><a routerLinkActive="active">{{student.interviewDate | date:'M/d/yy, h:mm a'}}</a></td>
+              <td><a routerLinkActive="active">{{student.interviewerName}}</a></td>
+
+              <td *ngIf="!IsUser && LoggedIn">
+                    <a
+                    [routerLink]="['/student/edit',student.id]"
+                    routerLinkActive="active" style="margin-left:2% ;"
+                    ><i class="fa fa-marker text-success"></i> Edit</a>
+
+                    <a *ngIf="IsAdmin && LoggedIn"
+                    type="button"
+                    style="cursor: pointer;" style="margin-right:2% ;"
+                    (click) =onDeleteStudent(student.id)>
+                    <i class="fa fa-trash text-danger"></i> Delete</a>
+
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- <app-pagination
+          [total-items]="Counter"
+          [page-size]="_pageSize"
+          (page-changed)="onPageChange($event)"
+        ></app-pagination> -->
+
+      </div>
+
+
+  </div>
+</div>

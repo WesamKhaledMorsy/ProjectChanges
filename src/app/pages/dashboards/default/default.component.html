@@ -1,0 +1,659 @@
+<!-- <app-loader></app-loader> -->
+<!-- <div class="container-fluid">
+
+    <div class="row">
+        <div class="col-12">
+            <div class="page-title-box d-flex align-items-center justify-content-between">
+                <h4 class="mb-0 font-size-18">Dashboard</h4>
+                <div class="page-title-right">
+                    <ol class="breadcrumb m-0">
+                        <li class="breadcrumb-item active">Welcome to Dashboard</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-xl-4">
+            <div class="card overflow-hidden">
+                <div class="bg-primary bg-soft">
+                    <div class="row">
+                        <div class="col-7">
+                            <div class="text-primary p-3">
+                                <h5 class="text-primary">Welcome Back !</h5>
+                                <p>Skote Dashboard</p>
+                            </div>
+                        </div>
+                        <div class="col-5 align-self-end">
+                            <img src="assets/images/profile-img.png" alt="" class="img-fluid">
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body pt-0">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="avatar-md profile-user-wid mb-4">
+                                <img src="assets/images/users/avatar-1.jpg" alt="" class="img-thumbnail rounded-circle">
+                            </div>
+                            <h5 class="font-size-15 text-truncate">Henry Price</h5>
+                            <p class="text-muted mb-0 text-truncate">UI/UX Designer</p>
+                        </div>
+
+                        <div class="col-sm-8">
+                            <div class="pt-4">
+
+                                <div class="row">
+                                    <div class="col-6">
+                                        <h5 class="font-size-15">125</h5>
+                                        <p class="text-muted mb-0">Projects</p>
+                                    </div>
+                                    <div class="col-6">
+                                        <h5 class="font-size-15">$1245</h5>
+                                        <p class="text-muted mb-0">Revenue</p>
+                                    </div>
+                                </div>
+                                <div class="mt-4">
+                                    <a href="" class="btn btn-primary btn-sm">View Profile <i
+                                            class="mdi mdi-arrow-right ms-1"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title mb-4">Monthly Earning</h4>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <p class="text-muted">This month</p>
+                            <h3>$34,252</h3>
+                            <p class="text-muted"><span class="text-success mr-2"> 12% <i class="mdi mdi-arrow-up"></i>
+                                </span> From
+                                previous period</p>
+
+                            <div class="mt-4">
+                                <a href="" class="btn btn-primary btn-sm">View More <i
+                                        class="mdi mdi-arrow-right ms-1"></i></a>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+
+                            <apx-chart dir="ltr" class="apex-charts" [series]="monthlyEarningChart.series"
+                                [chart]="monthlyEarningChart.chart" [legend]="monthlyEarningChart.legend"
+                                [colors]="monthlyEarningChart.colors" [labels]="monthlyEarningChart.labels"
+                                [stroke]="monthlyEarningChart.stroke" [plotOptions]="monthlyEarningChart.plotOptions">
+                            </apx-chart>
+                        </div>
+                    </div>
+                    <p class="text-muted mb-0">We craft digital, graphic and dimensional thinking.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-8">
+            <div class="row">
+                <div *ngFor="let stat of statData" class="col-md-4">
+                    <app-stat [title]="stat.title" [value]="stat.value" [icon]="stat.icon"></app-stat>
+                </div>
+            </div>
+
+
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-sm-flex flex-wrap">
+                        <h4 class="card-title mb-4">Email Sent</h4>
+                        <div class="ms-auto">
+                            <ul class="nav nav-pills">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="javascript: void(0);"
+                                        [ngClass]="{'active': isActive === 'week'}" (click)="weeklyreport()">Week</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="javascript: void(0);" (click)="monthlyreport()"
+                                        [ngClass]="{'active': isActive === 'month'}">Month</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="javascript: void(0);" (click)="yearlyreport()"
+                                        [ngClass]="{'active': isActive === 'year'}">Year</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <apx-chart dir="ltr" class="apex-charts" [chart]="emailSentBarChart.chart"
+                        [series]="emailSentBarChart.series" [legend]="emailSentBarChart.legend"
+                        [colors]="emailSentBarChart.colors" [fill]="emailSentBarChart.fill"
+                        [dataLabels]="emailSentBarChart.dataLabels" [xaxis]="emailSentBarChart.xaxis"
+                        [plotOptions]="emailSentBarChart.plotOptions">
+                    </apx-chart>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-xl-4">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title mb-4">Social Source</h4>
+                    <div class="text-center">
+                        <div class="avatar-sm mx-auto mb-4">
+                            <span class="avatar-title rounded-circle bg-primary bg-soft font-size-24">
+                                <i class="mdi mdi-facebook text-primary"></i>
+                            </span>
+                        </div>
+                        <p class="font-16 text-muted mb-2"></p>
+                        <h5><a href="javascript: void(0);" class="text-dark">Facebook - <span
+                                    class="text-muted font-16">125
+                                    sales</span> </a></h5>
+                        <p class="text-muted">Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero
+                            venenatis
+                            faucibus tincidunt.</p>
+                        <a href="javascript: void(0);" class="text-primary font-16">Learn more <i
+                                class="mdi mdi-chevron-right"></i></a>
+                    </div>
+                    <div class="row mt-4">
+                        <div class="col-4">
+                            <div class="social-source text-center mt-3">
+                                <div class="avatar-xs mx-auto mb-3">
+                                    <span class="avatar-title rounded-circle bg-primary font-size-16">
+                                        <i class="mdi mdi-facebook text-white"></i>
+                                    </span>
+                                </div>
+                                <h5 class="font-size-15">Facebook</h5>
+                                <p class="text-muted mb-0">125 sales</p>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="social-source text-center mt-3">
+                                <div class="avatar-xs mx-auto mb-3">
+                                    <span class="avatar-title rounded-circle bg-info font-size-16">
+                                        <i class="mdi mdi-twitter text-white"></i>
+                                    </span>
+                                </div>
+                                <h5 class="font-size-15">Twitter</h5>
+                                <p class="text-muted mb-0">112 sales</p>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="social-source text-center mt-3">
+                                <div class="avatar-xs mx-auto mb-3">
+                                    <span class="avatar-title rounded-circle bg-pink font-size-16">
+                                        <i class="mdi mdi-instagram text-white"></i>
+                                    </span>
+                                </div>
+                                <h5 class="font-size-15">Instagram</h5>
+                                <p class="text-muted mb-0">104 sales</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-4">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title mb-5">Activity</h4>
+                    <ul class="verti-timeline list-unstyled">
+                        <li class="event-list">
+                            <div class="event-timeline-dot">
+                                <i class="bx bx-right-arrow-circle font-size-18"></i>
+                            </div>
+                            <div class="media">
+                                <div class="mr-3">
+                                    <h5 class="font-size-14">22 Nov <i
+                                            class="bx bx-right-arrow-alt font-size-16 text-primary align-middle ms-2"></i>
+                                    </h5>
+                                </div>
+                                <div class="media-body">
+                                    <div>
+                                        Responded to need “Volunteer Activities
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="event-list">
+                            <div class="event-timeline-dot">
+                                <i class="bx bx-right-arrow-circle font-size-18"></i>
+                            </div>
+                            <div class="media">
+                                <div class="mr-3">
+                                    <h5 class="font-size-14">17 Nov <i
+                                            class="bx bx-right-arrow-alt font-size-16 text-primary align-middle ms-2"></i>
+                                    </h5>
+                                </div>
+                                <div class="media-body">
+                                    <div>
+                                        Everyone realizes why a new common language would be desirable... <a
+                                            href="javascript: void(0);">Read more</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="event-list active">
+                            <div class="event-timeline-dot">
+                                <i class="bx bxs-right-arrow-circle font-size-18 bx-fade-right"></i>
+                            </div>
+                            <div class="media">
+                                <div class="mr-3">
+                                    <h5 class="font-size-14">15 Nov <i
+                                            class="bx bx-right-arrow-alt font-size-16 text-primary align-middle ms-2"></i>
+                                    </h5>
+                                </div>
+                                <div class="media-body">
+                                    <div>
+                                        Joined the group “Boardsmanship Forum”
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="event-list">
+                            <div class="event-timeline-dot">
+                                <i class="bx bx-right-arrow-circle font-size-18"></i>
+                            </div>
+                            <div class="media">
+                                <div class="mr-3">
+                                    <h5 class="font-size-14">12 Nov <i
+                                            class="bx bx-right-arrow-alt font-size-16 text-primary align-middle ms-2"></i>
+                                    </h5>
+                                </div>
+                                <div class="media-body">
+                                    <div>
+                                        Responded to need “In-Kind Opportunity”
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="text-center mt-4"><a href="javascript: void(0);" class="btn btn-primary btn-sm">View
+                            More <i class="mdi mdi-arrow-right ms-1"></i></a></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-4">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title mb-4">Top Cities Selling Product</h4>
+
+                    <div class="text-center">
+                        <div class="mb-4">
+                            <i class="bx bx-map-pin text-primary display-4"></i>
+                        </div>
+                        <h3>1,456</h3>
+                        <p>San Francisco</p>
+                    </div>
+
+                    <div class="table-responsive mt-4">
+                        <table class="table table-centered table-nowrap">
+                            <tbody>
+                                <tr>
+                                    <td style="width: 30%">
+                                        <p class="mb-0">San Francisco</p>
+                                    </td>
+                                    <td style="width: 25%">
+                                        <h5 class="mb-0">1,456</h5>
+                                    </td>
+                                    <td>
+                                        <div class="progress bg-transparent progress-sm">
+                                            <div class="progress-bar bg-primary rounded" role="progressbar"
+                                                style="width: 94%" aria-valuenow="94" aria-valuemin="0"
+                                                aria-valuemax="100"></div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p class="mb-0">Los Angeles</p>
+                                    </td>
+                                    <td>
+                                        <h5 class="mb-0">1,123</h5>
+                                    </td>
+                                    <td>
+                                        <div class="progress bg-transparent progress-sm">
+                                            <div class="progress-bar bg-success rounded" role="progressbar"
+                                                style="width: 82%" aria-valuenow="82" aria-valuemin="0"
+                                                aria-valuemax="100"></div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p class="mb-0">San Diego</p>
+                                    </td>
+                                    <td>
+                                        <h5 class="mb-0">1,026</h5>
+                                    </td>
+                                    <td>
+                                        <div class="progress bg-transparent progress-sm">
+                                            <div class="progress-bar bg-warning rounded" role="progressbar"
+                                                style="width: 70%" aria-valuenow="70" aria-valuemin="0"
+                                                aria-valuemax="100"></div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title mb-4">Latest Transaction</h4>
+                    <app-transaction [transactions]="transactions"></app-transaction>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #content let-modal>
+    <div class="modal-header border-bottom-0">
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"> </button>
+    </div>
+    <div class="modal-body">
+        <div class="text-center mb-4">
+            <div class="avatar-md mx-auto mb-4">
+                <div class="avatar-title bg-light rounded-circle text-primary h1">
+                    <i class="mdi mdi-email-open"></i>
+                </div>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-xl-10">
+                    <h4 class="text-primary">Subscribe !</h4>
+                    <p class="text-muted font-size-14 mb-4">Subscribe our newletter and get notification to stay update.
+                    </p>
+
+                    <div class="input-group bg-light rounded">
+                        <input type="email" class="form-control bg-transparent border-0"
+                            placeholder="Enter Email address" aria-label="Recipient's username"
+                            aria-describedby="button-addon2">
+
+                        <button class="btn btn-primary" type="button" id="button-addon2">
+                            <i class="bx bxs-paper-plane"></i>
+                        </button>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template> -->
+
+<app-loader></app-loader>
+<div class="container-fluid">
+    <!-- start page title -->
+    <div class="row">
+        <div class="col-xl-12">
+            <div class="page-title-box d-flex align-items-center justify-content-between">
+            </div>
+        </div>
+    </div>
+    <!-- end page title -->
+
+    <div class="row">
+        <div class=" col-lg-12">
+            <div class="card overflow-hidden">
+                <div class="bg-primary bg-soft" style="margin-bottom: 8px; background-color:white;">
+                    <div class="row" *ngIf="IsUser">
+                        <div class="col-6">
+                            <div class="text-primary p-3">
+                              <h4  class="text-primary"
+                              style="float:left ; font-size:50px;
+                              color:black; font-family: 'Times New Roman', Times, serif;">
+                              Welcome To KAITECH <em>{{username}}</em>
+                            </h4>
+                            </div>
+                        </div>
+
+                        <div class="col-5 align-self-end">
+
+                            <img src="assets/images/greeting.png" alt="" class="img-fluid">
+                        </div>
+                    </div>
+                </div>
+<div class="row">
+
+  <!-- <div class="card" *ngIf="IsUser">
+      <div class="text-center mb-12 mt-12" >
+          <div class="avatar-md mx-auto mb-12">
+              <div class="avatar-title bg-light rounded-circle text-success h1">
+                  <i class="mdi mdi-email-open" *ngIf="!LogedIn"></i>
+                  <i class="mdi mdi-email-close" *ngIf="LogedIn"></i>
+              </div>
+          </div>
+
+          <div class="row justify-content-center" *ngIf="IsUser">
+              <div class="col-xl-10">
+
+                  <h2 *ngIf="LogedIn" class="text-muted font-size-14 mb-4">Please Login
+                  </h2>
+                  <h2 *ngIf="!LogedIn" class="text-info font-size-14 mb-4"
+                  style="font-size: 40px; text-shadow: rgb(0, 3, 100) ; color:rgb(0, 80, 100);" >You LoggedIn Successfully
+                  </h2>
+              </div>
+          </div>
+      </div>
+  </div> -->
+
+  <!-- <div class="flip-card">
+    <div class="flip-card-inner">
+      <div class="flip-card-front">
+        <img src="assets/images/avatar.png" alt="Avatar" style="width:300px;height:300px;">
+      </div>
+      <div class="flip-card-back">
+        <h1>John Doe</h1>
+        <p>Architect & Engineer</p>
+        <p>We love that guy</p>
+      </div>
+    </div>
+  </div> -->
+
+  <div class="row"  *ngIf="!IsAdmin || IsInterviewer || IsUser" >
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+
+          <div class="mr-3" >
+            <h5  class="mb-2" style="font-size:30px; color:rgb(52, 89, 190);">{{username}}</h5>
+
+              <img class="card-img-left img-fluid" src="assets/images/avatar.png" alt="Student Profile"  >
+              </div>
+            </div>
+            <div class="flip-card-back">
+              <div class="row" *ngIf="IsInterviewer">
+                <div class="col-12">
+                  <p class="m-5 text-dark" style="font-size:30px">{{username}}</p>
+                </div>
+              </div>
+              <div class="row" *ngIf="!IsInterviewer || !IsAdmin">
+                <div class="col-12" >
+                  <p class="m-5 " style="font-size:20px">Status</p>
+                </div>
+                <div class="col-12" style="font-size:20px" >
+                  <p class="mb-0 ml-5">{{studentInput.statusName}}</p>
+                </div>
+                <div class="col-12" >
+                  <p class="m-5 " style="font-size:20px">Interview Date</p>
+                </div>
+                <div class="col-12" style="font-size:20px">
+                  <p class="mb-0 ml-5">{{studentInput.interviewDate}}</p>
+                </div>
+              </div>
+
+        </div>
+      </div>
+  </div>
+  </div>
+
+<div class="row col-12 justify-content-center">
+  <div class="card mini-stats-wid justify-content-center" *ngIf="IsAdmin">
+    <div class="card-body">
+        <div class="d-flex flex-wrap">
+            <div class="mr-3">
+                <h5 class="text-muted mb-2" style="display: flex; align-items: center;">Total Students</h5>
+                <h5 class="mb-0" style="display: flex; align-items: center;">{{totalStudent}}</h5>
+            </div>
+            <div class="avatar-sm ms-auto">
+                <div class="avatar-title bg-light rounded-circle text-primary font-size-20">
+                    <i class="bx bxs-book-bookmark"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+  <!-- <div class="flip-card">
+    <div class="flip-card-inner">
+      <div class="flip-card-front">
+        <img src="assets/images/avatar.png" alt="Avatar" style="width:300px;height:300px;">
+      </div>
+      <div class="flip-card-back">
+        <h1>John Doe</h1>
+        <p>Architect & Engineer</p>
+        <p>We love that guy</p>
+      </div>
+    </div>
+  </div> -->
+
+<br>
+<div *ngIf="IsUser || IsAdmin">
+
+  <div class="row "  >
+    <div class="col-md-4 col-lg-4 col-xl-4" *ngFor="let track of selectTracks">
+
+        <div class="zoom">
+          <div class="flip-card mt-5" >
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                        <img class="card-img-top img-fluid"
+                        src="assets/images/word-track-hammered-black.jpg" alt="Track Image"  >
+              </div>
+              <div class="flip-card-back">
+                          <h5  class="mb-5 mt-5"><strong>{{track.trackName}}</strong></h5>
+                          <h5  class="mb-0">{{track.startDate | date:'MMM d, y'}}</h5>
+                          <button class="bg-info mt-2"
+                          [routerLink]="['/track/detailsTrack',track.id]"
+                          routerLinkActive="active"
+                          style="color:rgb(255, 255, 255);
+                                  font-size: 20px; float:center;
+                                  border-radius: 5px;">
+                          <i class="bx bx-arrow-back"></i> Go
+                        </button>
+
+              </div>
+                    </div>
+            </div>
+          </div>
+      </div>
+      </div>
+</div>
+
+  </div>
+</div>
+</div>
+
+
+<br>
+<hr>
+
+<div class="row"  *ngIf="IsAdmin">
+  <div class="card" style="align-items: center;">
+    <div class="card-body">
+      <div class="d-flex flex-wrap">
+            <div class="table-responsive">
+              <table class="table project-list-table table-nowrap align-middle table-striped table-dark">
+                <thead>
+                  <tr>
+                    <!-- <th scope="col" style="width: 100px">Interview</th> -->
+                    <th scope="col">#</th>
+                    <th scope="col">Student</th>
+                    <th scope="col">User Name</th>
+                    <th scope="col">Phone Number</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Gender</th>
+                    <th scope="col">University</th>
+                    <!-- <th scope="col">Grade</th> -->
+                    <th scope="col">Round</th>
+                    <th scope="col">Track</th>
+                    <!-- <th scope="col">Interview</th> -->
+                    <th scope="col">Interviewer</th>
+
+                  </tr>
+                </thead>
+                <tbody>
+                  <!--  | search:searchText -->
+                    <tr *ngFor="let student of selectStudent ; let i=index" >
+
+                      <td>{{i+1}}</td>
+                    <td>
+                      <!-- <a
+                      routerLinkActive="active" [routerLink]="['/student/studentProfile/',student.id]" > -->
+                      <a>
+                        {{student.studentName}}
+                      </a>
+                    </td>
+                    <td><a routerLinkActive="active"> {{student.userName}}</a></td>
+                    <td><a routerLinkActive="active"> {{student.phoneNumber}}</a></td>
+                    <td>
+                      <a
+                      routerLinkActive="active" class="badge badge-pill badge-soft-primary font-size-11"
+                      [ngClass]=" { 'badge-soft-danger': student.statusName === 'Missed'||'Rejected',
+                     'badge-soft-warning':student.statusName === 'Waiting for Interview' ,
+                     'badge-soft-success': student.statusName === 'Accepted'}">
+                        {{student.statusName}}
+                      </a>
+                    </td>
+                    <td>
+                      <a routerLinkActive="active">{{student.genderName}}</a>
+                    </td>
+                    <td><a routerLinkActive="active">{{student.universityName}}</a></td>
+                    <!-- <td><a routerLinkActive="active">{{student.studentGrade}}</a></td> -->
+                    <td><a routerLinkActive="active">{{student.roundName}}</a></td>
+                    <td><a routerLinkActive="active">{{student.trackName}}</a></td>
+                    <!-- <td><a routerLinkActive="active">{{student.interviewName}}</a></td> -->
+                    <td><a routerLinkActive="active">{{student.interviewerName}}</a></td>
+                  </tr>
+                </tbody>
+              </table>
+
+
+            </div>
+
+      </div>
+    </div>
+</div>
+</div>
+
+<div class="row" *ngIf="IsInterviewer">
+  <div class="card">
+    <div class="caed-body">
+      <div class="d-flex flex-wrap">
+          <a [routerLink]="['/student/listStudent']">Go To Students </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+
+
+
+
+
+</div>
+
+
+
