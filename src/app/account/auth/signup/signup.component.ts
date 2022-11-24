@@ -34,7 +34,7 @@ export class SignupComponent implements OnInit {
       private router: Router,
       private http : HttpClient,
        private authenticationService: AuthenticationService,
-    private userService: UserProfileService,
+   // private userService: UserProfileService,
     //private emailValidator: CustomEmailValidator
     ) { }
 
@@ -72,6 +72,7 @@ export class SignupComponent implements OnInit {
    * On submit form
    */
 
+  errorMessage:string;
   user:User;
   onSubmit() {
 
@@ -92,24 +93,31 @@ export class SignupComponent implements OnInit {
       localStorage.setItem('roles',data.roles);
       localStorage.setItem('userId',data.userId);
       localStorage.setItem('userName',data.username);
-      if(this.http.request)
+      console.log(data.message);
+      debugger
+      if(data.message==null)
       {
         this.router.navigate(['/student/createStudent']);
       }else if(data.tokens==null){
-        //window.alert("This Email is exist");
+        this.errorMessage=data.message;
+        console.log(this.errorMessage);
         this.router.navigate(['/account/signup']);
       }
       else{
-        window.alert("Please put your data Write");
+        this.errorMessage=data.message;
+        console.log(this.errorMessage);
+        // window.alert("Please put your data Write");
         this.router.navigate(['/account/signup']);
       }
 
 
       debugger
-    },(error:Response) =>{
-      error.statusText;
-      window.alert("This Email is Exist , Try another email");
+    },(error:any) =>{
+      console.log(error.message);
+        error.statusText;
+       // window.alert("This Email is Exist , Try another email");
        error.body.cancel;
+       console.log(error)
       return error;
     } )
 

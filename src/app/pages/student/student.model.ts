@@ -12,32 +12,32 @@ id : string;
 studentName ?:string;
 phoneNumber ?: string;
 email ?: Email;
-graduationYear ?:number;
+graduationYear ?:number = 2015;
 
-statusId ?:string;
+statusId ?:string="";
 statusName?: string;
 
-universityId ?: string;
+universityId ?: string="";
 universityName?: string;
 
-gradeId ?: string;
-gradeValue ?: number;
+// gradeId ?: string="";
+// gradeValue ?: number;
 
 adminId ?:string;
 
-roundId ?:string;
+roundId ?:string="";
 roundName ?: string;
 
-trackId ?: string;
+trackId ?: string="";
 trackName ?: string;
 
-genderId ?: string;
+genderId ?: string="";
 genderType ?:string;
 
-interviewerId ?:string;
+interviewerId ?:string="";
 interviewerName ?: string;
 
-interviewId?:string;
+interviewId?:string="";
 interviewName?:string;
 // documents:Document[];
 profilePicture?:string;

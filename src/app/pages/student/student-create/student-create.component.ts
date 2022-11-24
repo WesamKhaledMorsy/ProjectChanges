@@ -1,7 +1,7 @@
 import { HttpClient, HttpEventType, HttpHeaders } from '@angular/common/http';
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { ActivatedRoute, convertToParamMap } from '@angular/router';
+import { ActivatedRoute, convertToParamMap, Router } from '@angular/router';
 import { Observable } from 'rxjs/internal/Observable';
 import Swal from 'sweetalert2';
 import { Student } from '../student.model';
@@ -30,19 +30,6 @@ export class StudentCreateComponent implements OnInit {
  // bread crumb items
  breadCrumbItems: Array<{}>;
 
-//  graduationYear : [
-//   2015,
-//   2016,
-//   2017,
-//   2018,
-//   2019,
-//   2020,
-//   // {2021},
-//   // {2022},
-//   // {2023},
-//   // {2024},
-//   // {2025}
-//  ];
   students : Student[];
 
   editMode :boolean =false;  //? write editMode to check if we are in edit mode or Add mode
@@ -64,24 +51,25 @@ export class StudentCreateComponent implements OnInit {
    constructor(private http :HttpClient,
      private studentServices : StudentService ,
      private route:ActivatedRoute,
+     private router:Router
      ) { }
 
+     role :any =localStorage.getItem('roles');
   ngOnInit(): void {
     this.breadCrumbItems = [{ label: 'Forms' }, { label: 'Form Wizard', active: true }];
     debugger
-    const role :any =localStorage.getItem('roles');
-    if(role == "Admin"){
+    if(this.role == "Admin"){
        this.IsAdmin =true;
        this.IsInterviewer=false;
        this.IsUser=false;
        this.LoggedIn=true;
-    }else if (role=="Interviewer"){
+    }else if (this.role=="Interviewer"){
       this.IsInterviewer= true;
       this.IsAdmin = false;
       this.IsUser=false;
       this.LoggedIn=true;
     }
-    else if(role == "Trainee"){
+    else if(this.role == "Trainee"){
       this.IsUser=true;
       this.IsInterviewer=false;
       this.IsAdmin=false;
@@ -169,7 +157,8 @@ export class StudentCreateComponent implements OnInit {
 }
 userid :string =localStorage.getItem('userId');
 username:string=localStorage.getItem('userName');
-  onSubmit(form:NgForm){
+
+onSubmit(form:NgForm){
     if(this.isAddMode){
       const headers = new HttpHeaders({
         Authorization :`Bearer ${localStorage.getItem('jwt')}`,
@@ -217,7 +206,7 @@ username:string=localStorage.getItem('userName');
       //!==
       })
 
-
+    this.router.navigate(['/']);
     }
     else{
       debugger
@@ -236,6 +225,10 @@ username:string=localStorage.getItem('userName');
         timer: 1500
       });
     //!==
+    }
+    if(this.role == "Admin"){
+
+      this.router.navigate(['/student/listStudent']);
     }
         form.reset(this.StudentInput);
   }

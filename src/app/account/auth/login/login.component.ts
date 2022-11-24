@@ -195,6 +195,9 @@ export class LoginComponent implements OnInit {
   /**
    * Form submit
    */
+
+   errorMessage:string;
+
   onSubmit() {
     this.submitted = true;
 
@@ -209,7 +212,7 @@ export class LoginComponent implements OnInit {
               };
               this.http.post(`${environment.apiUrl}/api/Auth/Login`,this.loginForm.value)
                 .subscribe((response:any)=>{
-
+                    debugger
                   const token =(<any>response).tokens;
                   localStorage.setItem('jwt',token);
 
@@ -222,12 +225,30 @@ export class LoginComponent implements OnInit {
                   console.log(token);
                   // this.invalidLogin=false;
                   debugger
-                  this.router.navigate(['/dashboard']);
-                  console.log('response',response);
+                  // this.router.navigate(['/dashboard']);
+                  // console.log('response',response);
                  // debugger
+                 if(response.message==null)
+                 {
+                  debugger
+                   this.router.navigate(['/']);
+                 }else if(response.tokens==null){
+                   this.errorMessage=response.message;
+                   console.log(this.errorMessage);
+                   this.router.navigate(['/account/login']);
+                 }
+                 else{
+                   this.errorMessage=response.message;
+                   console.log(this.errorMessage);
+                   // window.alert("Please put your data Write");
+                   this.router.navigate(['/account/login']);
+                 }
+
+
                 },(error:Response) =>{
-                  window.alert("Invalid Email or Password, Please Enter a valid email");
-                  //console.log("error",error)
+                  // window.alert("Invalid Email or Password, Please Enter a valid email");
+                  this.errorMessage=error.statusText;
+                  console.log("error",this.errorMessage)
                   return error;
                 } );
     }

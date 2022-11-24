@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs/internal/Observable';
 import { environment } from 'src/environments/environment';
 import Swal from 'sweetalert2';
@@ -34,6 +34,7 @@ export class GenderCreateComponent implements OnInit {
    @ViewChild('dp', { static: true }) datePicker: any;
 
    constructor(private http :HttpClient,
+    private router:Router,
      private genderServices : GenderService,
      private route:ActivatedRoute ) { }
 
@@ -119,7 +120,7 @@ export class GenderCreateComponent implements OnInit {
         });
       //!==
       })
-
+this.router.navigate(['/gender/listGender']);
 
     }
     else{
@@ -139,6 +140,7 @@ export class GenderCreateComponent implements OnInit {
       });
     //!==
     }
+    this.router.navigate(['/gender/listGender']);
         form.reset(this.GenderInput);
   }
 

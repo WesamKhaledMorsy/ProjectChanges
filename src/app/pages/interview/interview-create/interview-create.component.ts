@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { guid } from '@fullcalendar/angular';
 import { Observable } from 'rxjs/internal/Observable';
 import { environment } from 'src/environments/environment';
@@ -44,6 +44,7 @@ export class InterviewCreateComponent implements OnInit {
    constructor(private http :HttpClient,
      private interviewServices : InterviewService ,
      private route:ActivatedRoute,
+     private router:Router
      ) { }
 
   ngOnInit(): void {
@@ -136,7 +137,7 @@ export class InterviewCreateComponent implements OnInit {
       //!==
       })
 
-
+      this.router.navigate(['/interview/listInterview']);
     }
     else{
       this.interviewInput.id=this.InterviewId;
@@ -155,6 +156,7 @@ export class InterviewCreateComponent implements OnInit {
       });
     //!==
     }
+    this.router.navigate(['/interview/listInterview']);
         form.reset(this.interviewInput);
   }
 

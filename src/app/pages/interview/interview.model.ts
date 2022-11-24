@@ -9,7 +9,7 @@ export class Interview{
 
  startTime:string;
  endTime:string;
- interviewerId: string;
+ interviewerId: string="";
  studentId:string;
  studentName:string;
  Students:Student[];

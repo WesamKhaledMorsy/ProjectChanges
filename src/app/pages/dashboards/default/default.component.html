@@ -406,7 +406,7 @@
         <div class=" col-lg-12">
             <div class="card overflow-hidden">
                 <div class="bg-primary bg-soft" style="margin-bottom: 8px; background-color:white;">
-                    <div class="row" *ngIf="IsUser && !LogedIn">
+                    <div class="row" >
                         <div class="col-6">
                             <div class="text-primary p-3">
                               <h4  class="text-primary"
@@ -414,222 +414,248 @@
                               color:black; font-family: 'Times New Roman', Times, serif;">
                               Welcome To KAITECH <em>{{username}}</em>
                             </h4>
-                            </div>
+                          </div>
 
-                        </div>
+                      </div>
 
                         <div class="col-5 align-self-end">
 
                             <img src="assets/images/greeting.png" alt="" class="img-fluid">
                         </div>
-                        <div  class="col-lg-12 col-md-12">
+                        <div  class="col-lg-12 col-md-12"  *ngIf="IsUser">
+                            <button type="button" class="btn btn-outline-secondary"
 
-                            <!-- <button type="button" class="btn btn-outline-secondary"*ngIf="!LogedIn"
-                            [routerLink]="['/round/detailsRound',roundId]"
+                            [routerLink]="['/student/createStudent']"
                             routerLinkActive="active"
-                            style="width:max-content; height: 30px;
+                            style="width:max-content; height: 30px; margin: 2%;
                                     font-size: 15px; float:center;color: black;
-                                    margin: 10%;
                                     border-radius: 5px;">
-                            <i class="bx bx-arrow-back"></i> Round Details
-                          </button> -->
-                        <button type="button" class="btn btn-outline-secondary"
-                        *ngIf="!statusName"
-                        [routerLink]="['/student/createStudent']"
-                        routerLinkActive="active"
-                        style="width:max-content; height: 30px; margin: 2%;
-                                font-size: 15px; float:center;color: black;
-                                border-radius: 5px;">
-                        Fill your data
-                      </button>
+                            Fill your data
+                          </button>
                         </div>
                     </div>
                 </div>
-<div class="row">
-  <div class="col-6"  *ngIf="!IsAdmin || IsInterviewer || IsUser && !LogedIn" >
-    <div class="flip-card" *ngIf="statusName">
-      <div class="flip-card-inner">
-        <div class="flip-card-front">
-
-          <div class="mr-3" >
-            <h5  class="mb-2" style="font-size:30px; color:rgb(52, 89, 190);">{{username}}</h5>
-
-              <img class="card-img-left img-fluid" src="assets/images/avatar.png" alt="Student Profile"  >
               </div>
-            </div>
-            <div class="flip-card-back" >
-              <div class="row" *ngIf="IsInterviewer">
-                <div class="col-12">
-                  <p class="m-5 text-dark" style="font-size:30px">{{username}}</p>
-                </div>
-              </div>
-              <div class="row" *ngIf="!IsInterviewer || !IsAdmin">
-                <div class="col-12" >
-                  <p class="m-5 " style="font-size:20px">Status</p>
-                </div>
-                <div class="col-12" style="font-size:15px" >
-                  <p class="mb-0 ml-5">{{StudstatusName}}</p>
-                </div>
-                <div class="col-12" *ngIf="StudinterviewDate">
-                  <p class="m-5 " style="font-size:20px">Interview Date</p>
-                </div>
-                <div class="col-12" style="font-size:15px">
-                  <p class="mb-0 ml-5">{{StudinterviewDate}}</p>
-                </div>
-              </div>
-
-        </div>
-      </div>
-  </div>
-
-  <div  class="col-lg-12 col-md-12">
-    <button type="button" class="btn btn-outline-secondary" *ngIf="statusName"
-    [routerLink]="['/round/detailsRound',roundId]"
-    routerLinkActive="active"
-    style="width:max-content; height: 30px;
-            font-size: 15px; float:center;color: black;
-            margin: 10%;
-            border-radius: 5px;">
-    <i class="bx bx-arrow-back"></i> Round Details
-  </button>
-  </div>
-
-</div>
-
-
-<div class="row" *ngIf="IsAdmin && !LogedIn">
-  <div class="col-xl-4 col-sm-6">
-    <div class="card">
-      <div class="row">
-        <div class="col-xl-5">
-          <div class="text-center p-4 border-end">
-            <div class="avatar-sm mx-auto mb-3 mt-1">
-              <span class="avatar-title rounded-circle bg-soft font-size-16">
-               All
-              </span>
-            </div>
           </div>
-        </div>
-
-        <div class="col-xl-7">
-          <div class="p-1 text-center text-xl-start">
-            <div class="row">
-              <div class="col-12">
-                <div>
-                  <p class="text-muted mb-2 text-truncate"> Students Num</p>
-                  <h5>{{totalStudent}}</h5>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
     </div>
-  </div>
-  <div class="col-xl-4 col-sm-6">
-    <div class="card">
+
       <div class="row">
-        <div class="col-xl-5">
-          <div class="text-center p-4 border-end">
-            <div class="avatar-sm mx-auto mb-3 mt-1">
-              <span class="avatar-title rounded-circle bg-soft font-size-16">
-               ACC
-              </span>
-            </div>
-          </div>
-        </div>
 
-        <div class="col-xl-7">
-          <div class="p-1 text-center text-xl-start">
-            <div class="row">
-              <div class="col-12">
-                <div>
-                  <p class="text-muted mb-2 text-truncate">Accepted Students Num</p>
-                  <h5>{{acceptedNumber}}</h5>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </div>
-
-  <div class="col-xl-4 col-sm-6">
-    <div class="card">
-      <div class="row">
-        <div class="col-xl-5">
-          <div class="text-center p-4 border-end">
-            <div class="avatar-sm mx-auto mb-3 mt-1">
-              <span class="avatar-title rounded-circle bg-soft font-size-16">
-               REJ
-              </span>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-xl-7">
-          <div class="p-1 text-center text-xl-start">
-            <div class="row">
-              <div class="col-12">
-                <div>
-                  <p class="text-muted mb-2 text-truncate">Rejected Students Num</p>
-                  <h5>{{rejectedStudents}}</h5>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </div>
-</div>
-
-
-
-
-
-
-
-<br>
-<div *ngIf="IsUser || IsAdmin ">
-
-  <div class="row" *ngIf="statusName">
-    <div class="col-md-4 col-lg-4 col-xl-4" *ngFor="let track of selectTracks">
-
-        <div class="zoom">
-          <div class="flip-card mt-5" >
+        <div class="col-6"  *ngIf="!IsAdmin || IsInterviewer || IsUser" >
+          <div class="flip-card" >
             <div class="flip-card-inner">
               <div class="flip-card-front">
-                        <img class="card-img-top img-fluid"
-                        src="assets/images/word-track-hammered-black.jpg" alt="Track Image"  >
-              </div>
-              <div class="flip-card-back">
-                          <h5  class="mb-5 mt-5"><strong>{{track.trackName}}</strong></h5>
-                          <h5  class="mb-0">{{track.startDate | date:'MMM d, y'}}</h5>
-                          <button type="button" class="btn btn-outline-secondary"
-                          [routerLink]="['/track/detailsTrack',track.id]"
-                          routerLinkActive="active"
-                          style="width:max-content; height: 30px; color: black;
-                                  font-size: 15px; float:center;
-                                  border-radius: 5px;">
-                          <i class="bx bx-arrow-back"></i>Details
-                        </button>
+
+                <div class="mr-3" >
+                  <h5  class="mb-2" style="font-size:30px; color:rgb(52, 89, 190);">{{username}}</h5>
+
+                    <img class="card-img-left img-fluid" src="assets/images/avatar.png" alt="Student Profile"  >
+                    </div>
+                  </div>
+                  <div class="flip-card-back" >
+                    <div class="row" *ngIf="IsInterviewer">
+                      <div class="col-12">
+                        <p class="m-5 text-dark" style="font-size:30px">{{username}}</p>
+                      </div>
+                    </div>
+                    <div class="row" *ngIf="IsUser">
+                      <div class="col-12" >
+                        <p class="m-5 " style="font-size:20px">Status</p>
+                      </div>
+                      <div class="col-12" style="font-size:15px" >
+                        <p class="mb-0 ml-5">{{StudstatusName}}</p>
+                      </div>
+                      <div class="col-12" *ngIf="StudinterviewDate">
+                        <p class="m-5 " style="font-size:20px">Interview Date</p>
+                      </div>
+                      <div class="col-12" style="font-size:15px">
+                        <p class="mb-0 ml-5">{{StudinterviewDate}}</p>
+                      </div>
+                    </div>
 
               </div>
+            </div>
+        </div>
+
+        <div  class="col-lg-12 col-md-12">
+          <button type="button" class="btn btn-outline-secondary" *ngIf="statusName && IsUser"
+          [routerLink]="['/round/detailsRound',roundId]"
+          routerLinkActive="active"
+          style="width:max-content; height: 30px;
+                  font-size: 15px; float:center;color: black;
+                  margin: 10%;
+                  border-radius: 5px;">
+          <i class="bx bx-arrow-back"></i> Round Details
+        </button>
+        </div>
+
+      </div>
+
+
+      <div class="row" *ngIf="IsAdmin">
+        <div class="col-xl-4 col-sm-6">
+          <div class="card">
+            <div class="row">
+              <div class="col-xl-5">
+                <div class="text-center p-4 border-end">
+                  <div class="avatar-sm mx-auto mb-3 mt-1">
+                    <span class="avatar-title rounded-circle bg-soft font-size-16">
+                    ALL
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-xl-7">
+                <div class="p-1 text-center text-xl-start">
+                  <div class="row">
+                    <div class="col-12">
+                      <div>
+                        <p class="text-muted mb-2 text-truncate"> Students Num</p>
+                        <h5>{{totalStudent}}</h5>
+                      </div>
                     </div>
+                  </div>
+                </div>
+              </div>
+
             </div>
           </div>
-      </div>
-      </div>
-</div>
+        </div>
 
-  </div>
-</div>
-</div>
+        <div class="col-xl-4 col-sm-6">
+          <div class="card">
+            <div class="row">
+              <div class="col-xl-5">
+                <div class="text-center p-4 border-end">
+                  <div class="avatar-sm mx-auto mb-3 mt-1">
+                    <span class="avatar-title rounded-circle bg-soft font-size-16">
+                    ACC
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-xl-7">
+                <div class="p-1 text-center text-xl-start">
+                  <div class="row">
+                    <div class="col-12">
+                      <div>
+                        <p class="text-muted mb-2 text-truncate">Accepted Students Num</p>
+                        <h5>{{acceptedNumber}}</h5>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="col-xl-4 col-sm-6">
+          <div class="card">
+            <div class="row">
+              <div class="col-xl-5">
+                <div class="text-center p-4 border-end">
+                  <div class="avatar-sm mx-auto mb-3 mt-1">
+                    <span class="avatar-title rounded-circle bg-soft font-size-16">
+                    REJ
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-xl-7">
+                <div class="p-1 text-center text-xl-start">
+                  <div class="row">
+                    <div class="col-12">
+                      <div>
+                        <p class="text-muted mb-2 text-truncate">Rejected Students Num</p>
+                        <h5>{{rejectedStudents}}</h5>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+
+      <div class="col-xl-4 col-sm-6">
+        <div class="card">
+          <div class="row">
+            <div class="col-xl-5">
+              <div class="text-center p-4 border-end">
+                <div class="avatar-sm mx-auto mb-3 mt-1">
+                  <span class="avatar-title rounded-circle bg-soft font-size-16">
+                  WAIT
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-xl-7">
+              <div class="p-1 text-center text-xl-start">
+                <div class="row">
+                  <div class="col-12">
+                    <div>
+                      <p class="text-muted mb-2 text-truncate">Waiting Students Num</p>
+                      <h5>{{StudentsWaitingNumber}}</h5>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      </div>
+
+
+
+      <br>
+      <div *ngIf="IsUser|| IsAdmin">
+
+        <div class="row" *ngIf="statusName" >
+          <div class="col-md-4 col-lg-4 col-xl-4" *ngFor="let track of selectTracks">
+
+              <div class="zoom">
+                <div class="flip-card mt-5" >
+                  <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                              <img class="card-img-top img-fluid"
+                              src="assets/images/word-track-hammered-black.jpg" alt="Track Image"  >
+                    </div>
+                     <div class="flip-card-back">
+                                <h5  class="mb-5 mt-5"><strong>{{track.trackName}}</strong></h5>
+                                <h5  class="mb-0">{{track.startDate | date:'MMM d, y'}}</h5>
+                                <button type="button" class="btn btn-outline-secondary"
+                                [routerLink]="['/track/detailsTrack',track.id]"
+                                routerLinkActive="active"
+                                style="width:max-content; height: 30px; color: black;
+                                        font-size: 15px; float:center;
+                                        border-radius: 5px;">
+                                <i class="bx bx-arrow-back"></i>Details
+                              </button>
+
+                    </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+            </div>
+      </div>
+
+
+      </div>
+
+
+
 
 
 <br>
@@ -715,19 +741,38 @@
                                   border-radius: 5px;">
                           <i class="bx bx-arrow-back"></i> Go To Students
                         </button>
-          <!-- <a [routerLink]="['/student/listStudent']">Go To Students </a> -->
       </div>
     </div>
   </div>
 </div>
 
+<div class="row col-2" *ngIf="IsAdmin && !LogedIn">
+  <div class="card">
+    <div class="caed-body">
+      <div class="d-flex flex-wrap">
+        <button type="button" class="btn btn-outline-secondary"
+                           [routerLink]="['/addRole']"
+                          routerLinkActive="active"
+                          style="width:max-content; height: 30px;
+                                  font-size: 15px; float:center;
+                                  margin-top: 2.5%;
+                                  margin-bottom: 2.5%;
+                                  border-radius: 5px;">
+                          <i class="bx bx-arrow-back"></i> AddRole
+          </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 </div>
 
 
 
 
 
-</div>
+
 
 
 

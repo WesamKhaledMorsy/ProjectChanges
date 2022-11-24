@@ -6,7 +6,9 @@ export class User {
   lastName?: string;
   token?: string;
   email: string;
+  message : string;
+  role? :string;
 }
 export const users: Array<User> = [
- 
+
 ];

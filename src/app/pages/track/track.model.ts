@@ -9,7 +9,7 @@ export class Track
   endDate: string;
 
   adminId ?:string;
-  roundId ?: string;
+  roundId ?: string="";
   roundName ?:string;
 
   trackImage?: string;

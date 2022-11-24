@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs/internal/Observable';
 import { environment } from 'src/environments/environment';
 import Swal from 'sweetalert2';
@@ -40,6 +40,7 @@ export class UniversityCreateComponent implements OnInit {
    constructor(private http :HttpClient,
      private universityServices : UniversityService ,
      private route:ActivatedRoute,
+     private router: Router,
      ) { }
 
   ngOnInit(): void {
@@ -143,7 +144,7 @@ export class UniversityCreateComponent implements OnInit {
         });
       //!==
       })
-
+      this.router.navigate(['/university/listUniversity']);
 
     }
     else{
@@ -151,6 +152,7 @@ export class UniversityCreateComponent implements OnInit {
       this.universityServices.UpdateUniversity(this.universityInput)
           .subscribe((UpUniversity)=>{
           this.universityUpdated.emit(UpUniversity);
+            this.router.navigate(['/university/listUniversity']);
       }, )
 
       //!==

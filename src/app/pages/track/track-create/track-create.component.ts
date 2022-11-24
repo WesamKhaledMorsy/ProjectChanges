@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs/internal/Observable';
 import { environment } from 'src/environments/environment';
 import Swal from 'sweetalert2';
@@ -35,6 +35,7 @@ export class TrackCreateComponent implements OnInit {
    constructor(private http :HttpClient,
      private trackServices : TrackService ,
      private route:ActivatedRoute,
+     private router:Router
      ) { }
 
   ngOnInit(): void {
@@ -102,7 +103,7 @@ onSubmit(form:NgForm){
     //!==
     })
 
-
+    this.router.navigate(['/track/listTrack']);
   }
   else{
     this.trackInput.id=this.TrackId;
@@ -121,6 +122,8 @@ onSubmit(form:NgForm){
     });
   //!==
   }
+
+  this.router.navigate(['/track/listTrack']);
       form.reset(this.trackInput);
 }
 

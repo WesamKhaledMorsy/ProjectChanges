@@ -102,7 +102,8 @@
                           [disabled]="!IsAdmin && IsInterviewer"
                           [(ngModel)]="StudentInput.graduationYear">
                           <option>2015</option>
-                          <option>2016</option><option>2017</option>
+                          <option>2016</option>
+                          <option>2017</option>
                           <option>2018</option>
                           <option>2019</option>
                           <option>2020</option>
@@ -242,7 +243,7 @@
                       <select  id="universityName" name="universityId"  class="form-control"
                       [(ngModel)]="StudentInput.universityId"  [disabled]="IsInterviewer"
                         placeholder="Enter University ....">
-                        <option value="">Select University</option>
+                        <option value="" selected>Select University</option>
                         <option *ngFor="let university of universities"
                         [value]="university.id">
                           {{university.universityName}}
@@ -259,9 +260,9 @@
                       id="statusName" name="statusId"  class="form-control"
                       [(ngModel)]="StudentInput.statusId"
                         placeholder="Enter Status ....">
-                        <option value="">Select Status</option>
+                        <option value="" empty>Select Status</option>
                         <option *ngFor="let status of statuses"
-                        [value]="status.id">
+                        [ngValue]="status.id">
                           {{status.statusName}}
                           </option>
                       </select>

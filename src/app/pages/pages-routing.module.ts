@@ -44,7 +44,7 @@ const routes: Routes = [
   {path:'student',loadChildren:()=> import('./student/student.module').then(m=>m.StudentModule)},
   {path:'interview',loadChildren:()=> import('./interview/interview.module').then(m=>m.InterviewModule)},
   {path:'interviewer',loadChildren:()=> import('./interviewer/interviewer.module').then(m=>m.InterviewerModule)},
-
+  // {path:'addRole',loadChildren:()=> import('./admin-dashboard/')}
 
 
 

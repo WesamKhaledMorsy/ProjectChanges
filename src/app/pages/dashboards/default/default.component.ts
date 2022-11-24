@@ -113,6 +113,7 @@ private http:HttpClient ,
      this.GetAllInterviewerData();
      this.getStudentAccepted();
      this.getStudentRejected();
+     this.getStudentWaiting();
 
     /**
      * horizontal-vertical layput set
@@ -235,7 +236,6 @@ private http:HttpClient ,
   totalStudent:number;
   selectStudent : Student[];
 
-
   getStudents(){
     const headers = new HttpHeaders({
       Authorization :`Bearer ${localStorage.getItem('jwt')}`,
@@ -261,6 +261,8 @@ private http:HttpClient ,
 
   }
 
+  StudentsWaiting:Student[];
+  StudentsWaitingNumber:number;
   StudentsAccepted:Student[];
   acceptedNumber: Number;
   StudentRejected:Student[];
@@ -278,6 +280,22 @@ private http:HttpClient ,
     this._GetStudentAccepted().subscribe(data =>{
       this.StudentsAccepted=data;
       this.acceptedNumber=this.StudentsAccepted.length;
+      debugger
+    })
+  }
+  _GetStudentWaiting():Observable<any>{
+    const headers = new HttpHeaders({
+      Authorization :`Bearer ${localStorage.getItem('jwt')}`,
+    });
+    let url ="https://localhost:7115/api/Student/GetStudentsWaitingForInterview";
+    return this.http.get<any>(url,
+      {headers:headers}
+      )
+  }
+  getStudentWaiting(){
+    this._GetStudentWaiting().subscribe(data =>{
+      this.StudentsWaiting=data;
+      this.StudentsWaitingNumber=this.StudentsWaiting.length;
       debugger
     })
   }

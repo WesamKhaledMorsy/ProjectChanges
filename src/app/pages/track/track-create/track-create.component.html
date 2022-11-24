@@ -51,7 +51,7 @@
 
                   <select id="roundId" class="form-control"
                   name="roundId"  [(ngModel)]="trackInput.roundId">
-                      <option value="0" selected>Select Round Name</option>
+                      <option value="">Select Round Name</option>
                       <option *ngFor="let round of rounds"
                       [value]="round.id">
                         {{round.roundName}}
@@ -81,7 +81,7 @@
             </div>
           </div>
 
-          <div class="row col-8">
+          <!-- <div class="row col-8">
 
             <div  class="col-lg-12 col-md-12">
 
@@ -92,7 +92,7 @@
                 <i class="bx bx-arrow-back"></i> Back To List
               </button>
             </div>
-          </div>
+          </div> -->
         </form>
       </div>
     </div>

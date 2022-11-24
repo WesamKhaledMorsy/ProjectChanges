@@ -26,3 +26,17 @@ select {
   width: 100%;
   padding: .5rem;
 }
+
+.error{
+  color:#ff0000;
+  font-size: 15px;
+  margin-bottom: 1px;
+  padding-top: 1px;
+  border:red;
+  border-radius: 5px;
+}
+
+em{
+  font-weight: lighter;
+  color: #d95353;
+}

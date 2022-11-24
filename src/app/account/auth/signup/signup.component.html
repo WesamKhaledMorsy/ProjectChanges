@@ -38,15 +38,21 @@
 
                 <ngb-alert type="danger" *ngIf="error" [dismissible]="false">{{ error }}</ngb-alert>
 
-                
+
                 <div class="mb-3">
-                  <label for="username" class="form-label">Username</label>
+                  <label for="username" class="form-label">User Name</label>
 
                   <input type="text" formControlName="username"
                   class="form-control"
                     [ngClass]="{ 'is-invalid': submitted && f.username.errors }"
                     id="username"
                     placeholder="Enter username" required />
+
+                    <div class="feedback">
+                      <span>
+                        <em >User Name can contain only lowercase letters and digits.</em>
+                      </span>
+                  </div>
 
                   <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
                     <div *ngIf="f.username.errors.required">Username is required</div>
@@ -65,6 +71,7 @@
                     <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
                   </div>
                 </div>
+
 
                 <div class="form-control" *ngIf="this.signupForm['controls']
                     .username.hasError('alreadyExist')">
@@ -89,7 +96,15 @@
                       Password is required , Minlength is 8 characters, should include @/.#
                     </div>
                   </div>
+                  <div class="feedback">
+                    <span>
+                      <em > Minlength is 8 characters, should include "@ / . #"</em>
+                    </span>
                 </div>
+                </div>
+
+
+                <div class="error">{{errorMessage}}</div>
 
                 <div class="mt-4 d-grid">
                   <button class="btn btn-primary" type="submit"
@@ -117,11 +132,12 @@
                     </li>
                   </ul>
                 </div>
-                <div class="mt-4 text-center">
+                <!-- <div class="mt-4 text-center">
                   <p class="mb-0">By registering you agree to the Skote <a href="javascript: void(0);"
                       class="text-primary">Terms of
                       Use</a></p>
-                </div>
+                </div> -->
+
               </form>
             </div>
           </div>

@@ -6,13 +6,14 @@ import { SaasComponent } from './saas/saas.component';
 import { CryptoComponent } from './crypto/crypto.component';
 import { BlogComponent } from './blog/blog.component';
 import { JobsComponent } from "./jobs/jobs.component";
+import { AddRoleComponent } from './default/add-role/add-role.component';
 
 const routes: Routes = [
   {
     path: 'default',
     component: DefaultComponent
   },
- 
+
     {
         path: 'saas',
         component: SaasComponent
@@ -28,6 +29,10 @@ const routes: Routes = [
     {
         path:"jobs",
         component:JobsComponent
+    },
+    {
+      path:'addRole',
+      component:AddRoleComponent
     }
 ];
 

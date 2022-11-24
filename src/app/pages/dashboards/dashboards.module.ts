@@ -17,9 +17,10 @@ import { CryptoComponent } from './crypto/crypto.component';
 import { BlogComponent } from './blog/blog.component';
 import { JobsComponent } from './jobs/jobs.component';
 import { RouterModule } from '@angular/router';
+import { AddRoleComponent } from './default/add-role/add-role.component';
 
 @NgModule({
-  declarations: [DefaultComponent, SaasComponent, CryptoComponent, BlogComponent, JobsComponent],
+  declarations: [DefaultComponent, SaasComponent, CryptoComponent, BlogComponent, JobsComponent, AddRoleComponent],
   imports: [
     CommonModule,
     FormsModule,

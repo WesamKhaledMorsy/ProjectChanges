@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs/internal/Observable';
 import { environment } from 'src/environments/environment';
 import Swal from 'sweetalert2';
@@ -35,6 +35,7 @@ export class StatusCreateComponent implements OnInit {
    constructor(private http :HttpClient,
      private statusServices : StatusService ,
      private route:ActivatedRoute,
+     private router:Router
      ) { }
 
   ngOnInit(): void {
@@ -119,7 +120,7 @@ export class StatusCreateComponent implements OnInit {
         });
       //!==
       })
-
+      this.router.navigate(['/status/listStatus']);
 
     }
     else{
@@ -139,6 +140,7 @@ export class StatusCreateComponent implements OnInit {
       });
     //!==
     }
+    this.router.navigate(['/status/listStatus']);
         form.reset(this.StatusInput);
   }
 
